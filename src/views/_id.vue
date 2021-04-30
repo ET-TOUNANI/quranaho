@@ -1,11 +1,20 @@
 <template>
-  <div class="chapter text-white">
+  <div class="chapter text-white bg-gray-800">
     <div class="container mx-auto">
       <!-- {{ JSON.stringify(chapter) }} -->
-      <div class="chapter__container">
-        <span class="quran text-2xl" v-for="(verse) in verses" :key="verse.id"
-          >{{ verse.text_indopak }}
-        </span>
+      <div class="chapter__container quran text-2xl flex flex-wrap">
+        <tamplate v-for="verse in verses" :key="verse.id" class="inline-flex">
+          <span
+            v-for="(word, index) in verse.text_indopak.split(' ')"
+            :key="index"
+            >{{ word }}</span
+          >
+          <img
+            src="../assets/verse-number-bg.png"
+            class="h-8 w-8 mx-2"
+            alt=""
+          />
+        </tamplate>
       </div>
     </div>
   </div>
@@ -34,7 +43,7 @@ export default {
       try {
         await axios
           .get(
-            `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=1`
+            `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`
           )
           .then(response => {
             console.log("Reponse Data");

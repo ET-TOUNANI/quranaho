@@ -1,6 +1,7 @@
 <template>
   <div class="gallery ">
     <div
+      v-if="!loading"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-2 md:gap-2 "
     >
       <chapter-card
@@ -9,6 +10,7 @@
         :chapter="chapter"
       />
     </div>
+    <div v-else>loading...</div>
   </div>
 </template>
 
@@ -22,6 +24,10 @@ export default {
   },
   data() {
     return {
+      loading: {
+        type: Boolean,
+        default: true
+      },
       error: {
         type: String,
         default: ""
@@ -40,6 +46,9 @@ export default {
           })
           .catch(error => {
             this.error = error;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       } catch (error) {
         console.log(error);

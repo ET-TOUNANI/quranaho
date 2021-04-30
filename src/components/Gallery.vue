@@ -1,12 +1,14 @@
 <template>
   <div class="gallery">
-    <div class="grid grid-cols-3 gap-4">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-2 md:gap-2 "
+    >
       <div
         v-for="chapter in chapters"
         :key="chapter.id"
         class="bg-green-400 rounded-md p-8"
       >
-        <h1>{{ JSON.stringify(chapter.name_arabic) }}</h1>
+        <h1>{{ chapter.name_arabic }}</h1>
       </div>
     </div>
   </div>
@@ -43,7 +45,6 @@ export default {
     }
   },
   mounted() {
-    console.log("Mounted");
     this.fetchChapters();
   }
 };

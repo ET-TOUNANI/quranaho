@@ -1,14 +1,14 @@
 <template>
-  <div class="gallery">
+  <div class="gallery ">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-2 md:gap-2 "
     >
       <div
         v-for="chapter in chapters"
         :key="chapter.id"
-        class="bg-green-400 rounded-md p-8"
+        class="bg-green-400 rounded-md p-8 border-2 border-green-500"
       >
-        <h1>{{ chapter.name_arabic }}</h1>
+        <chapter-card :chapter="chapter" />
       </div>
     </div>
   </div>
@@ -16,8 +16,12 @@
 
 <script>
 import axios from "axios";
+import ChapterCard from "./ChapterCard.vue";
 export default {
   name: "Gallery",
+  components: {
+    ChapterCard
+  },
   data() {
     return {
       error: {

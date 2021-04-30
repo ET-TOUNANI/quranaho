@@ -8,3 +8,18 @@ html,
 body {
   direction: rtl;
 }
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+@font-face {
+  font-family: "quran";
+  src: url("../fonts/pdms-saleem-quranfont.ttf");
+}
+
+.quran {
+  font-family: "quran";
+}

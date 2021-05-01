@@ -25,9 +25,7 @@ body,
   height: 100%;
 }
 
-:root {
-  --navbar-height: 80px;
-}
+ 
 .quran {
   font-family: "quran";
 }

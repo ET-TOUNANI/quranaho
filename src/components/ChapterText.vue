@@ -1,6 +1,6 @@
 <template>
   <div
-    class="chapter__container quran text-3xl text-center "
+    class="chapter__container dark:text-white text-black quran text-3xl text-center "
     :class="
       verses.length < 36
         ? 'sm:max-w-sm md:max-w-md lg:max-w-md mx-auto text-center'

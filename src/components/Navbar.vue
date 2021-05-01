@@ -1,7 +1,7 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav class="bg-gray-800">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+  <nav class="shadow dark:bg-gray-800">
+    <div class="max-w-7xl  mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
@@ -75,7 +75,7 @@
                 alt="Workflow"
               />
               <router-link to="/">
-                <h1 class="text-white px-2 text-gray-200 text-2xl font-black">
+                <h1 class="text-white text-gray-600 px-2 dark:text-gray-200 text-2xl font-black">
                   {{ translatedWords.title }}
                 </h1>
               </router-link>
@@ -87,14 +87,14 @@
 
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -105,7 +105,7 @@
         >
           <button
             @click="swtichThemeMode"
-            class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-trasparent"
+            class="dark:bg-gray-800 p-1 rounded-full text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
           >
             <svg
               v-if="isDarkModeOn"
@@ -160,14 +160,14 @@
             >
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -206,7 +206,7 @@ export default {
         type: Boolean,
         default: false
       },
-      isDarkModeOn: false,
+      isDarkModeOn: true,
       translatedWords: {
         chapters: "جميع سور",
         about: "معلومات عنا",
@@ -219,17 +219,15 @@ export default {
       this.isHidden = !this.isHidden;
     },
     swtichThemeMode() {
-      this.isDarkModeOn = !this.isDarkModeOn;
       if (this.isDarkModeOn)
         document.documentElement.setAttribute("class", "dark");
       else document.documentElement.setAttribute("class", "light");
+      this.isDarkModeOn = !this.isDarkModeOn;
     }
   }
 };
 </script>
 
 <style>
-nav {
-  height: var(--navbar-height);
-}
+
 </style>

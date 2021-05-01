@@ -105,7 +105,7 @@
         >
           <button
             @click="swtichThemeMode"
-            class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-trasparent"
           >
             <svg
               v-if="isDarkModeOn"
@@ -151,16 +151,6 @@
               ></button>
             </div>
 
-            <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
             <div
               class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu"
@@ -216,10 +206,7 @@ export default {
         type: Boolean,
         default: false
       },
-      isDarkModeOn: {
-        type: Boolean,
-        dafault: false
-      },
+      isDarkModeOn: false,
       translatedWords: {
         chapters: "جميع سور",
         about: "معلومات عنا",
@@ -233,6 +220,9 @@ export default {
     },
     swtichThemeMode() {
       this.isDarkModeOn = !this.isDarkModeOn;
+      if (this.isDarkModeOn)
+        document.documentElement.setAttribute("class", "dark");
+      else document.documentElement.setAttribute("class", "light");
     }
   }
 };

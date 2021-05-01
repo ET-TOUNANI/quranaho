@@ -1,7 +1,7 @@
 <template>
   <div class="chapter text-white bg-white dark:bg-gray-800">
     <div class="container mx-auto">
-      <div v-if="isLoading" class="absolute w-40 inset-1/2 ">
+      <div v-if="isLoading" class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2 ">
         {{ translatedWords.loading + "..." }}
       </div>
       <chapter-text

@@ -20,8 +20,8 @@
       <div class="mt-1 relative">
         <div>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <div class="absolute inset-y-0 left-0  pl-2 flex items-center ">
-              <span class="text-gray-500 sm:text-sm cursor-pointer h-full py-3">
+            <div class="absolute inset-y-0 left-0 py-3  pl-3 flex items-center ">
+              <span class="text-gray-500 sm:text-sm cursor-pointer h-full ">
                 <svg
                   class="h-full m-0"
                   version="1.1"
@@ -65,7 +65,7 @@
             <input
               type="text"
               class="block w-full text-gray-900  bg-white border
-                 border-gray-300 rounded-md shadow-sm pr-3 pl-8 py-2 
+                 border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3 
                  sm:text-sm border-gray-300 rounded-md focus:outline-none 
                  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               :placeholder="translatedWords.search + '...'"
@@ -74,8 +74,8 @@
         </div>
 
         <ul
-          v-if="false"
-          class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+          v-if="true"
+          class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -84,7 +84,7 @@
           <li
             v-for="i in 23"
             :key="i"
-            class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
+            class="text-gray-900 cursor-default select-none relative py-5 border-b pl-3 pr-9"
             id="listbox-option-0"
             role="option"
           >

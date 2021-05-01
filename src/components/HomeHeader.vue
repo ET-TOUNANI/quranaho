@@ -20,7 +20,9 @@
       <div class="mt-1 relative">
         <div>
           <div class="mt-1 relative rounded-md shadow-sm">
-            <div class="absolute inset-y-0 left-0 py-3  pl-3 flex items-center ">
+            <div
+              class="absolute inset-y-0 left-0 py-3  pl-3 flex items-center "
+            >
               <span class="text-gray-500 sm:text-sm cursor-pointer h-full ">
                 <svg
                   class="h-full m-0"
@@ -128,10 +130,10 @@ export default {
   data() {
     return {
       translatedWords: {
-        search: "بحث"
-      }
+        search: "بحث",
+      },
     };
-  }
+  },
 };
 </script>
 

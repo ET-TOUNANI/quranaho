@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-gray-800 py-2">
+  <div class="home bg-gray-800 xs:px-6 sm:px-2">
     <div class="container mx-auto">
       <home-header />
       <gallery />

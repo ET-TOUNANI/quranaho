@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import VerseIcon from "@/components/VerseIcon.vue"
+import VerseIcon from "@/components/icons/VerseIcon.vue"
 export default {
   components: {
     VerseIcon

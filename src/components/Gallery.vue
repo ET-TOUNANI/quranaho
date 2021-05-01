@@ -16,7 +16,7 @@
 
 <script>
 import axios from "axios";
-import ChapterCard from "./ChapterCard.vue";
+import ChapterCard from "./partials/ChapterCard.vue";
 export default {
   name: "Gallery",
   components: {

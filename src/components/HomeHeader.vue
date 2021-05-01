@@ -11,16 +11,10 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar.vue";
+import SearchBar from "@/components/partials/SearchBar.vue";
 
 export default {
-  data() {
-    return {
-      translatedWords: {
-        search: "بحث"
-      }
-    };
-  },
+ 
   components: {
     SearchBar
   }

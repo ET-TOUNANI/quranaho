@@ -15,7 +15,7 @@
 </template>
 
 <script lang="js">
-import ChapterText from "@/components/ChapterText.vue";
+import ChapterText from "@/components/partials/ChapterText.vue";
 import axios from "axios";
 export default {
   data() {

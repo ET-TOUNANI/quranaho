@@ -9,6 +9,10 @@
   font-family: "quran";
   src: url("../fonts/ScheherazadeRegOT.ttf");
 }
+@font-face {
+  font-family: "arabic";
+  src: url("../fonts/me_quran_Regular.ttf");
+}
 *,
 html,
 body {
@@ -26,4 +30,8 @@ body,
 }
 .quran {
   font-family: "quran";
+}
+
+.arabic {
+  font-family: "arabic";
 }

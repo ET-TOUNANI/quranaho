@@ -8,9 +8,9 @@
             :key="index"
             >{{ word + " " }}
           </span>
-          <span class="bg-white text-black relative">
+          <span class="text-gray-700 relative mx-2">
             <span
-              class="chapter__verseNumberText absolute w-full text-center font-black"
+              class="pt-2 absolute w-full h-full text-lg text-center font-bold"
               >{{ verse.id }}</span
             >
             <span class="chapter__verseNumberIcon">

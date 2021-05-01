@@ -8,7 +8,7 @@
 
           <button
             type="button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
@@ -83,18 +83,18 @@
           </div>
           <div class="hidden  sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-600 hover:text-white" -->
 
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -160,14 +160,14 @@
             >
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -179,18 +179,18 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" :class="isHidden ? 'hidden' : ''" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-600 hover:text-white" -->
 
         <!-- Active: "bg-gray-100", Not Active: "" -->
         <router-link
-          class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-300 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           to="/"
           >{{ translatedWords.chapters }}</router-link
         >
 
         <router-link
           to="/about"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-300 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.about }}</router-link
         >
       </div>

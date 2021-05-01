@@ -1,7 +1,7 @@
 <template>
   <div
     @click="goToChapter"
-    class="inline-flex items-center justify-start px-4 py-6 border border-transparent rounded-sm cursor-pointer shadow-sm  text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    class="inline-flex items-center justify-start px-4 py-6 border border-transparent rounded-sm cursor-pointer shadow  text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
   >
     <div class="flex-1 text-2xl items-center justify-center flex-col">
       <p class="arabic text-2xl">{{ chapter.name_arabic }}</p>

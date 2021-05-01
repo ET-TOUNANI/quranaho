@@ -12,6 +12,9 @@ import Navbar from "./components/Navbar.vue";
 export default {
   components: {
     Navbar
+  },
+  metaInfo: {
+    title: "القرآن الكريم"
   }
 };
 </script>
@@ -20,5 +23,4 @@ export default {
 .app__container {
   height: calc(100% - var(--navbar-height));
 }
-
 </style>

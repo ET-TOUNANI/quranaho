@@ -1,17 +1,23 @@
 <template>
   <div class="chapter text-white bg-gray-800">
     <div class="container mx-auto">
-      <div class="chapter__container quran text-3xl ">
+      <div v-if="isLoading">
+        <h1>loading....</h1>
+      </div>
+      <div v-else class="chapter__container quran text-3xl ">
+        <span class="quran" v-if="chapterId != 1">{{
+          startingVerse + " "
+        }}</span>
         <span v-for="verse in verses" :key="verse.id">
           <span
             v-for="(word, index) in verse.text_indopak.split(' ')"
             :key="index"
             >{{ word + " " }}
           </span>
-          <span class="text-gray-700 relative mx-2">
+          <span class="text-gray-700 relative mx-1">
             <span
               class="pt-2 absolute w-full h-full text-lg text-center font-bold"
-              >{{ verse.id }}</span
+              >{{ verse.verse_key.split(":")[1] }}</span
             >
             <span class="chapter__verseNumberIcon">
               <svg
@@ -100,27 +106,54 @@ export default {
         type: String,
         default: ""
       },
-      chapter: {},
-      verses: {}
+      verses: {},
+      startingVerse: {
+        type: String
+      },
+      chapterId: {
+        type: Number
+      },
+      isLoading: {
+        type: Boolean,
+        default: true
+      }
     };
   },
   mounted() {
-    console.log(this.$route);
-    let chapterId = this.$route.params.id;
-    this.fetchChapter(chapterId);
+    this.chapterId = this.$route.params.id;
+    this.fetchStartingVerse();
+    this.fetchChapter();
   },
   methods: {
-    async fetchChapter(id) {
+    // load the whole chapter
+    async fetchChapter() {
+      try {
+        await axios
+          .get(
+            `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${this.chapterId}`
+          )
+          .then(response => {
+            this.verses = response.data.verses;
+            this.isLoading = false;
+          })
+          .catch(error => {
+            this.error = error;
+          });
+      } catch (error) {
+        this.error = error;
+      }
+    },
+    // load the first verse for the rest of chapters
+    async fetchStartingVerse() {
+      let id = 1;
       try {
         await axios
           .get(
             `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`
           )
           .then(response => {
-            console.log("Reponse Data");
-            console.log(response);
-            this.chapter = response.data;
-            this.verses = response.data.verses;
+            this.startingVerse = response.data.verses[0].text_indopak;
+            console.log("Strting verse: ", this.startingVerse);
           })
           .catch(error => {
             this.error = error;

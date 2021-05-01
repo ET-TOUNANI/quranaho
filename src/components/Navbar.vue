@@ -1,10 +1,11 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav class="bg-gray-800 ">
+  <nav class="bg-gray-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
+
           <button
             type="button"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -73,9 +74,16 @@
               alt="Workflow"
             />
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class="hidden  sm:block sm:ml-6">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+
+              <router-link
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                to="/"
+                >Home</router-link
+              >
+
               <a
                 href="#"
                 class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -86,19 +94,7 @@
               <a
                 href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Team</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Projects</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Calendar</a
+                >About</a
               >
             </div>
           </div>
@@ -156,13 +152,41 @@
             Leaving: "transition ease-in duration-75"
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
-          --></div>
+          -->
+            <div
+              class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu-button"
+              tabindex="-1"
+            >
+              <!-- Active: "bg-gray-100", Not Active: "" -->
+              <router-link
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                to="/"
+                >Home</router-link
+              >
+
+              <a
+                href="#"
+                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                aria-current="page"
+                >Dashboard</a
+              >
+
+              <a
+                href="#"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >About</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
+    <div class="sm:hidden hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <a
@@ -195,7 +219,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      hidden: {
+        type: Boolean,
+        default: false
+      }
+    };
+  },
+  methods: {
+    toggle() {
+      this.hidden = !this.hidden;
+    }
+  }
+};
 </script>
 
 <style>

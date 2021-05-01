@@ -1,8 +1,14 @@
+/* import tailwindcss */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* custom style */
+
+@font-face {
+  font-family: "quran";
+  src: url("../fonts/ScheherazadeRegOT.ttf");
+}
 *,
 html,
 body {
@@ -15,11 +21,9 @@ body,
   height: 100%;
 }
 
-@font-face {
-  font-family: "quran";
-  src: url("../fonts/pdms-saleem-quranfont.ttf");
+:root {
+  --navbar-height: 80px;
 }
-
 .quran {
   font-family: "quran";
 }

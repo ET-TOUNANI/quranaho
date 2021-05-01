@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home bg-gray-800 py-2">
     <div class="container mx-auto"><Gallery /></div>
   </div>
 </template>

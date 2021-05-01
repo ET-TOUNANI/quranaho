@@ -198,4 +198,8 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+nav {
+  height: var(--navbar-height);
+}
+</style>

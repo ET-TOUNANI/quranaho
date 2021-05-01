@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import Chapter from "../views/_id.vue";
+import Chapter from "../views/chapter/_id.vue";
 
 Vue.use(VueRouter);
 
@@ -21,7 +21,7 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/:id",
+    path: "/chapter/:id",
     name: "id",
     component: Chapter,
   },

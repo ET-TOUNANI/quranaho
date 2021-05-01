@@ -9,6 +9,7 @@
             </span>
           </div>
           <input
+            @input="search"
             type="text"
             class="block w-full text-gray-900  bg-white border
                  border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3 
@@ -23,20 +24,39 @@
   </div>
 </template>
 
-<script>
+<script type="js">
 import SearchDropdown from "@/components/partials/SearchDropdown.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
+import axios from "axios";
 export default {
   data() {
     return {
       translatedWords: {
         search: "بحث"
-      }
+      },
+      error: ""
     };
   },
   components: {
     SearchDropdown,
     SearchIcon
+  },
+  methods: {
+    // search chapter or verse
+    async search(event){
+      console.log(event.target.value);
+
+      try {
+        await axios
+          .get("")
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => (this.error = error));
+      } catch (error) {
+        this.error = error;
+      }
+    }
   }
 };
 </script>

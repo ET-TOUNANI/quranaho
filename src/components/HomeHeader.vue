@@ -5,6 +5,16 @@
       src="https://cdn.qurancdn.com/assets/quran-logo-f5d0f128f5aa2a1949a3157d96bbd04a184e4a4ee0e05d464a3f2ae8d0bdcbdf.png"
       alt=""
     />
+    <ul>
+      <li>add logo</li>
+      <li>search for word</li>
+      <li>search for hizb</li>
+      <li>search for juz</li>
+      <li>search for ayah</li>
+      <li>search dropdown</li>
+      <li>navbar translation</li>
+      <li>migration to typescript</li>
+    </ul>
 
     <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto my-8">
       <div class="mt-1 relative">

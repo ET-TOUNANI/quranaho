@@ -1,8 +1,8 @@
 <template>
   <div class="chapter text-white bg-gray-800">
     <div class="container mx-auto">
-      <div v-if="isLoading">
-        <h1>loading....</h1>
+      <div v-if="isLoading" class="absolute w-40 inset-1/2 ">
+        {{ translatedWords.loading + "..."}}
       </div>
       <chapter-text
         v-else
@@ -14,19 +14,22 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 import ChapterText from "@/components/ChapterText.vue";
 import axios from "axios";
 export default {
   data() {
     return {
+       translatedWords: {
+        loading: "جار التحميل"
+      },
       error: {
         type: String,
         default: ""
       },
       verses: {},
       startingVerse: {
-        type: String
+        type: [String, Object]
       },
       chapterId: {
         type: Number
@@ -74,7 +77,6 @@ export default {
           )
           .then(response => {
             this.startingVerse = response.data.verses[0].text_indopak;
-            console.log("Strting verse: ", this.startingVerse);
           })
           .catch(error => {
             this.error = error;

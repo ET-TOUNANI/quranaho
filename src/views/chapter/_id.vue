@@ -14,7 +14,7 @@
             :key="index"
             >{{ word + " " }}
           </span>
-          <span class="text-gray-700 relative mx-1">
+          <span class="text-gray-700 relative">
             <span
               class="pt-2 absolute w-full h-full text-lg text-center font-bold"
               >{{ verse.verse_key.split(":")[1] }}</span

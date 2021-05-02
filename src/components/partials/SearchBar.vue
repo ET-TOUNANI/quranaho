@@ -4,15 +4,15 @@
       <div>
         <div class="mt-1 relative rounded-md shadow-sm">
           <div class="absolute inset-y-0 left-0 py-3  pl-3 flex items-center ">
-            <span class="text-gray-500 sm:text-sm cursor-pointer h-full ">
+            <span class="sm:text-sm cursor-pointer h-full ">
               <search-icon />
             </span>
           </div>
           <input
             @input="search"
             type="text"
-            class="block w-full text-lg text-gray-900  bg-white border
-                 border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3 
+            class="block w-full text-md text-gray-900  bg-white border
+                 border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3
                    focus:outline-none 
                  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             :placeholder="translatedWords.search + '...'"
@@ -20,7 +20,10 @@
         </div>
       </div>
 
-      <search-dropdown :searchResults="searchResults" v-if="searchResultsLoaded" />
+      <search-dropdown
+        :searchResults="searchResults"
+        v-if="searchResultsLoaded"
+      />
     </div>
   </div>
 </template>
@@ -48,19 +51,23 @@ export default {
     // search chapter or verse
     async search(event){
       let searchQuery = event.target.value;
+      let searchPage = 0;
+
       try {
         await axios
-          .get(`https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=0&language=en`)
+          .get(`https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=${searchPage}&language=en`)
           .then(response => {
             this.searchResults = response.data.search.results;
-            console.log(this.searchResults);
+            console.log(response);
             this.searchResultsLoaded = true
           })
           .catch(error => (this.error = error));
       } catch (error) {
         this.error = error;
       }
-    }
+    },
+
+
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <button
     @click="swtichThemeMode"
-    class="dark:bg-gray-800 p-1 rounded-full text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
+    class="dark:bg-gray-800 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
   >
     <svg
       v-if="isDarkModeOn"
@@ -45,10 +45,10 @@ export default {
   },
   methods: {
     swtichThemeMode() {
+      this.isDarkModeOn = !this.isDarkModeOn;
       if (this.isDarkModeOn)
         document.documentElement.setAttribute("class", "dark");
       else document.documentElement.setAttribute("class", "light");
-      this.isDarkModeOn = !this.isDarkModeOn;
     }
   }
 };

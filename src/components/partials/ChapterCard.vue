@@ -11,7 +11,7 @@
       <p class="text-sm text-left text-gray-200 ">{{ chapter.name_simple }}</p>
     </div>
     <div
-      class="rounded-full bg-white text-sm flex flex-wrap justify-center items-center text-gray-800 h-7 w-7"
+      class="rounded-full text-sm bg-gray-100 flex flex-wrap justify-center items-center text-gray-800 h-7 w-7"
     >
       {{ chapter.id }}
     </div>

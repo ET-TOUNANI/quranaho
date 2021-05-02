@@ -1,7 +1,7 @@
 <template>
   <ul
     v-if="true"
-    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+    class="absolute z-10 mt-1 w-full shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"
     aria-labelledby="listbox-label"

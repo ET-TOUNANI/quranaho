@@ -20,12 +20,10 @@ body {
 }
 
 html,
-body,
-#app {
+body {
   height: 100%;
 }
 
- 
 .quran {
   font-family: "quran";
 }

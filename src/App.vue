@@ -1,9 +1,7 @@
 <template>
-  <div id="app" class=" dark:bg-gray-800">
+  <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
     <Navbar />
-    <div class="app__container mt-3 dark:bg-gray-800">
-      <router-view />
-    </div>
+    <router-view />
   </div>
 </template>
 
@@ -19,8 +17,4 @@ export default {
 };
 </script>
 
-<style>
-.app__container {
-  height: calc(100% - var(--navbar-height));
-}
-</style>
+<style></style>

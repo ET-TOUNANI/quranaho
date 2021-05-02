@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery pb-2">
+  <div class="gallery  pb-2">
     <div
       v-if="!loading"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-2 md:gap-2 "

@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav class="shadow dark:bg-gray-800">
+  <nav class="shadow bg-gray-100 dark:bg-gray-800 ">
     <div class="max-w-7xl  mx-auto px-2 sm:px-6 lg:px-4">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -85,18 +85,18 @@
           </div>
           <div class="hidden  sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-600 hover:text-white" -->
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800" -->
 
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -105,7 +105,7 @@
         <div
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0"
         >
-          <mode-switcher></mode-switcher>
+          <mode-switcher />
 
           <!-- Profile dropdown -->
           <div class="ml-3 relative">
@@ -128,14 +128,14 @@
             >
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -147,18 +147,18 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" :class="isHidden ? 'hidden' : ''" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-600 hover:text-white" -->
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800" -->
 
         <!-- Active: "bg-gray-100", Not Active: "" -->
         <router-link
-          class="text-gray-300 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
           to="/"
           >{{ translatedWords.chapters }}</router-link
         >
 
         <router-link
           to="/about"
-          class="text-gray-300 hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.about }}</router-link
         >
       </div>

@@ -11,15 +11,16 @@
           <input
             @input="search"
             type="text"
-            class="block w-full text-gray-900  bg-white border
+            class="block w-full text-lg text-gray-900  bg-white border
                  border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3 
-                 sm:text-sm border-gray-300 rounded-md focus:outline-none 
-                 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                   focus:outline-none 
+                 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             :placeholder="translatedWords.search + '...'"
           />
         </div>
       </div>
-      <search-dropdown v-if="false" />
+
+      <search-dropdown :searchResults="searchResults" v-if="searchResultsLoaded" />
     </div>
   </div>
 </template>
@@ -34,7 +35,9 @@ export default {
       translatedWords: {
         search: "بحث"
       },
-      error: ""
+      error: "",
+      searchResults: {},
+      searchResultsLoaded: false
     };
   },
   components: {
@@ -44,13 +47,14 @@ export default {
   methods: {
     // search chapter or verse
     async search(event){
-      console.log(event.target.value);
-
+      let searchQuery = event.target.value;
       try {
         await axios
-          .get("")
+          .get(`https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=0&language=en`)
           .then(response => {
-            console.log(response);
+            this.searchResults = response.data.search.results;
+            console.log(this.searchResults);
+            this.searchResultsLoaded = true
           })
           .catch(error => (this.error = error));
       } catch (error) {

@@ -208,7 +208,7 @@ export default {
       },
       isDarkModeOn: true,
       translatedWords: {
-        chapters: "جميع سور",
+        chapters: "جميع السور",
         about: "معلومات عنا",
         title: "القرآن الكريم"
       }

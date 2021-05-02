@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-gray-400">
-      <h1 class="text-center">Quran</h1>
+  <div class="bg-indigo-800 h-56 text-white">
+      <h1 class="text-center py-10">Quran</h1>
   </div>
 </template>
 

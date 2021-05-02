@@ -1,6 +1,7 @@
 <template>
   <div class="chapter text-white dark:bg-gray-800">
     <div class="container mx-auto">
+      <chapter-header />
       <div
         v-if="isLoading"
         class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2 "
@@ -19,6 +20,8 @@
 
 <script lang="js">
 import ChapterText from "@/components/partials/ChapterText.vue";
+import ChapterHeader from "@/components/partials/ChapterHeader.vue";
+
 import axios from "axios";
 export default {
   data() {
@@ -44,7 +47,8 @@ export default {
     };
   },
   components: {
-    ChapterText
+    ChapterText,
+    ChapterHeader
   },
   mounted() {
     this.chapterId = this.$route.params.id;

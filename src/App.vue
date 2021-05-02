@@ -1,15 +1,18 @@
 <template>
   <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
-    <Navbar />
+    <header-navbar />
     <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import HeaderNavbar from "@/components/HeaderNavbar.vue";
+import Footer from "@/components/partials/Footer.vue";
 export default {
   components: {
-    Navbar
+    HeaderNavbar,
+    Footer
   },
   metaInfo: {
     title: "القرآن الكريم"

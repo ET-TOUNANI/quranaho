@@ -71,7 +71,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "VerseIcon"
+};
 </script>
 
 <style></style>

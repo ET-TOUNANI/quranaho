@@ -1,6 +1,6 @@
 <template>
   <ul
-    v-if="true"
+    v-if="searchResults.length > 0"
     class="absolute z-10 mt-1 w-full shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"

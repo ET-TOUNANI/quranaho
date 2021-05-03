@@ -37,6 +37,35 @@
           </li>
         </ul>
       </div>
+       <div class="mx-2">
+        <button
+          @click="showDropdown = !showDropdown"
+          class="w-52 py-2 bg-gray-50 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+        >
+          {{ translatedWords.chapters }}
+        </button>
+        <ul
+          v-if="showDropdown"
+          class="absolute  w-52 z-10 shadow-lg max-h-96 rounded-md py-1 text-base  overflow-auto sm:text-sm"
+          tabindex="-1"
+          role="listbox"
+          aria-labelledby="listbox-label"
+          aria-activedescendant="listbox-option-3"
+        >
+          <li
+            v-for="reciter in reciters"
+            :key="reciter.id"
+            class="text-gray-900 bg-white select-none relative py-1 border-b px-2 hover:bg-gray-100"
+            id="listbox-option-0"
+            role="option"
+            @click="changeReciter(reciter.id)"
+          >
+            <span class="quran text-2xl my-1 font-normal ml-3 block truncate ">
+              {{ reciter.translated_name.name }}
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

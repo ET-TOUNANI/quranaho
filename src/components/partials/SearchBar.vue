@@ -52,6 +52,7 @@ export default {
     async search(event){
       let searchQuery = event.target.value;
       let searchPage = 0;
+      if(searchQuery.length > 0) {
 
       try {
         await axios
@@ -64,6 +65,9 @@ export default {
           .catch(error => (this.error = error));
       } catch (error) {
         this.error = error;
+      }
+      } else {
+        this.searchResults = [];
       }
     },
 

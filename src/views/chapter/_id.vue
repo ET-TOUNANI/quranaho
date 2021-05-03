@@ -1,7 +1,7 @@
 <template>
   <div class="chapter text-white dark:bg-gray-800">
+    <chapter-header />
     <div class="container mx-auto">
-      <chapter-header />
       <div
         v-if="isLoading"
         class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2 "
@@ -15,12 +15,14 @@
         :verses="verses"
       />
     </div>
+    <player />
   </div>
 </template>
 
 <script lang="js">
 import ChapterText from "@/components/partials/ChapterText.vue";
 import ChapterHeader from "@/components/partials/ChapterHeader.vue";
+import Player from "@/components/partials/Player.vue";
 
 import axios from "axios";
 export default {
@@ -48,7 +50,8 @@ export default {
   },
   components: {
     ChapterText,
-    ChapterHeader
+    ChapterHeader,
+    Player
   },
   mounted() {
     this.chapterId = this.$route.params.id;

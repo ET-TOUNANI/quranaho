@@ -11,7 +11,7 @@
       <li
         v-for="(result, index) in searchResults"
         :key="index"
-        class="text-gray-900  select-none relative py-1 border-b px-2 hover:bg-gray-100"
+        class="text-gray-900 bg-white select-none relative py-1 border-b px-2 hover:bg-gray-100"
         id="listbox-option-0"
         role="option"
       >

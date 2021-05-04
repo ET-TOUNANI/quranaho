@@ -4,14 +4,14 @@
   >
     <div class="container mx-auto py-4 flex">
       <button
-        class="px-6 py-2 bg-gray-50 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+        class="px-6 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
       >
         Surat
       </button>
       <div class="mx-2">
         <button
           @click="showDropdown = !showDropdown"
-          class="w-52 py-2 bg-gray-50 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
           {{ reciter }}
         </button>
@@ -26,7 +26,7 @@
           <li
             v-for="reciter in reciters"
             :key="reciter.id"
-            class="text-gray-900 bg-white select-none relative py-1 border-b px-2 hover:bg-gray-100"
+            class="text-gray-900 bg-white dark:bg-gray-300 select-none py-1 relative  border-b px-2 hover:bg-gray-100"
             id="listbox-option-0"
             role="option"
             @click="changeReciter(reciter.id)"

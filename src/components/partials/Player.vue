@@ -5,7 +5,7 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
-      <sound-adjuster-icon />
+      <sound-adjuster-icon :isAudioPlay="isAudioPlay" />
       <div
         class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2 "
       ></div>

@@ -4,7 +4,7 @@
     class="dark:bg-gray-800 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
   >
     <svg
-      v-if="isDarkModeOn"
+      v-if="!isDarkModeOn"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"

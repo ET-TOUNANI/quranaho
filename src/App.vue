@@ -2,7 +2,7 @@
   <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
     <header-navbar />
     <router-view />
-    <Footer />
+    <Footer v-if="false" />
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     class="w-full bg-gray-50 dark:bg-gray-900 border-t border-gray-500 h-10 fixed top-full transform -translate-y-full"
   >
     <div
-      class="container text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
+      class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
       <sound-adjuster-icon />
       <div
@@ -41,7 +41,9 @@ export default {
       error: "",
       versesAudioFilesList: [],
       audioHostDomainName: "https://audio.qurancdn.com",
-      isAudioFilesLoaded: false
+      isAudioFilesLoaded: false,
+      isAudioPlay: false,
+      audio: null
     };
   },
   methods: {
@@ -63,14 +65,25 @@ export default {
     },
     playAudioFile(recitationAudioFileName) {
       // console.log("YOu are in play adio file");
-      var audio = new Audio(
-        `${this.audioHostDomainName}/${recitationAudioFileName}`
+
+      if (!this.isAudioPlay) {
+        this.audio = new Audio(
+          `${this.audioHostDomainName}/${recitationAudioFileName}`
+        );
+        this.audio.play();
+        this.isAudioPlay = true;
+      }
+      console.log(this.audio.currentTime);
+      this.audio.addEventListener(
+        "durationchange",
+        function() {
+          console.log("play....");
+        },
+        false
       );
-      audio.play();
-      console.log(audio.duration);
-      audio.addEventListener("durationchange", function() {
-        console.log("play....");
-      });
+      // this.audio.ondurationchange = (event) => {
+      //   console.log("asdfkasdfjasdfasdfasdf")
+      // }
     },
     async playChapter() {
       await this.fetchChapterVerseAudio();

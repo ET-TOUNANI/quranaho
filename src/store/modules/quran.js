@@ -1,6 +1,16 @@
 export default {
-  state: {},
-  mutations: {},
+  state: {
+    chaptersList: {}
+  },
+  mutations: {
+    setChaptersList: (state, payload) => {
+      state.chaptersList = payload;
+    }
+  },
   actions: {},
-  getters: {}
+  getters: {
+    getChaptersList: state => {
+      return state.chaptersList;
+    }
+  }
 };

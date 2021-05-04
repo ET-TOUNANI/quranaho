@@ -17,6 +17,9 @@
 <script>
 import axios from "axios";
 import ChapterCard from "./partials/ChapterCard.vue";
+
+import { mapGetters } from "vuex";
+
 export default {
   name: "Gallery",
   components: {
@@ -42,7 +45,7 @@ export default {
           .get("https://api.quran.com/api/v4/chapters?language=en")
           .then(response => {
             this.chapters = response.data.chapters;
-            // console.log(response.data.chapters[0]);
+            this.$store.commit("setChaptersList", this.chapters);
           })
           .catch(error => {
             this.error = error;
@@ -55,7 +58,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.fetchChapters();
   }
 };

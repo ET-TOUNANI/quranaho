@@ -10,13 +10,13 @@
       </button>
       <div class="mx-2">
         <button
-          @click="showDropdown = !showDropdown"
+          @click="showRecitersDropdown = !showRecitersDropdown"
           class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
           {{ reciter }}
         </button>
         <ul
-          v-if="showDropdown"
+          v-if="showRecitersDropdown"
           class="absolute  w-52 z-10 shadow-lg max-h-96 rounded-md py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
@@ -39,13 +39,13 @@
       </div>
       <div class="mx-2">
         <button
-          @click="showDropdown = !showDropdown"
-          class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          @click="showChaptersDropdown = !showChaptersDropdown"
+          class="w-52 py-2 bg-gray-50  dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
-          {{ reciter }}
+          {{ chaptersList[0].name_arabic }}
         </button>
         <ul
-          v-if="showDropdown"
+          v-if="showChaptersDropdown"
           class="absolute  w-52 z-10 shadow-lg max-h-96 rounded-md py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
@@ -53,15 +53,15 @@
           aria-activedescendant="listbox-option-3"
         >
           <li
-            v-for="reciter in reciters"
-            :key="reciter.id"
+            v-for="chapter in chaptersList"
+            :key="chapter.id"
             class="text-gray-900 bg-white dark:bg-gray-300 select-none py-1 relative  border-b px-2 hover:bg-gray-100"
             id="listbox-option-0"
             role="option"
-            @click="changeReciter(reciter.id)"
+            @click="changeChapter(chapter.id)"
           >
             <span class="quran text-2xl my-1 font-normal ml-3 block truncate ">
-              {{ reciter.translated_name.name }}
+              {{ chapter.name_arabic }}
             </span>
           </li>
         </ul>
@@ -83,7 +83,9 @@ export default {
       reciters: {},
       error: "",
       reciter: "",
-      showDropdown: false
+      showRecitersDropdown: false,
+      showChaptersDropdown: false,
+      chaptersList: []
     };
   },
   methods: {
@@ -107,11 +109,15 @@ export default {
         reciter => reciter.id === reciterId
       );
       this.reciter = reciterObject[0].translated_name.name;
-      this.showDropdown = false;
+      this.showRecitersDropdown = false;
+    },
+    changeChapter(chapterId) {
+      let cId = chapterId;
     }
   },
   created() {
     this.fetchReciters();
+    this.chaptersList = this.$store.getters.getChaptersList;
   }
 };
 </script>

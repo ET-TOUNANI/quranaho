@@ -17,7 +17,7 @@
         </button>
         <ul
           v-if="showRecitersDropdown"
-          class="absolute  w-52 z-10 shadow-lg max-h-96 rounded-md py-1 text-base  overflow-auto sm:text-sm"
+          class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -26,7 +26,7 @@
           <li
             v-for="reciter in reciters"
             :key="reciter.id"
-            class="text-gray-900 bg-white dark:bg-gray-300 select-none py-1 relative  border-b px-2 hover:bg-gray-100"
+            class="text-gray-900 bg-white dark:bg-gray-300  cursor-pointerselect-none py-1 relative  border-b px-2 "
             id="listbox-option-0"
             role="option"
             @click="changeReciter(reciter.id)"
@@ -46,7 +46,7 @@
         </button>
         <ul
           v-if="showChaptersDropdown"
-          class="absolute  w-52 z-10 shadow-lg max-h-96 rounded-md py-1 text-base  overflow-auto sm:text-sm"
+          class="c--scrollbar absolute w-52 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -55,7 +55,7 @@
           <li
             v-for="chapter in chaptersList"
             :key="chapter.id"
-            class="text-gray-900 bg-white dark:bg-gray-300 select-none py-1 relative  border-b px-2 hover:bg-gray-100"
+            class="text-gray-900  select-none py-1 relative cursor-pointer border-b px-2 "
             id="listbox-option-0"
             role="option"
             @click="changeChapter(chapter.id)"

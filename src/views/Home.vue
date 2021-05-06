@@ -10,13 +10,11 @@
 <script lang="ts">
 import Gallery from "@/components/Gallery.vue";
 import HomeHeader from "@/components/HomeHeader.vue";
-import { Component, Vue } from "vue-property-decorator";
 
-@Component({
+export default {
   components: {
     Gallery,
     HomeHeader
   }
-})
-export default class Home extends Vue {}
+};
 </script>

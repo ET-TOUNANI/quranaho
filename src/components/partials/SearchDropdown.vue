@@ -1,7 +1,7 @@
 <template>
   <ul
     v-if="searchResults.length > 0"
-    class="absolute z-10 mt-1 w-full shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+    class="absolute text-gray-900 bg-white  z-10 mt-1 w-full shadow-lg max-h-96 rounded-sm py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"
     aria-labelledby="listbox-label"
@@ -11,7 +11,7 @@
       <li
         v-for="(result, index) in searchResults"
         :key="index"
-        class="text-gray-900 bg-white select-none relative py-1 border-b px-2 hover:bg-gray-100"
+        class="select-none relative py-1 border-b px-2 hover:bg-gray-100"
         id="listbox-option-0"
         role="option"
       >

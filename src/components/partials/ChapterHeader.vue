@@ -3,7 +3,7 @@
     class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700"
   >
     <div class="container mx-auto py-4 flex">
-      <div class="mx-2">
+      <div class="mx-2" v-if="false">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
           class="w-52 py-2 bg-gray-50  dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
@@ -32,7 +32,7 @@
           </li>
         </ul>
       </div>
-      
+
       <div class="mx-2">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"

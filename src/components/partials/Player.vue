@@ -5,7 +5,7 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
-      <sound-adjuster-icon :isAudioPlay="isAudioPlay" />
+      <sound-adjuster-icon :isPlaying="isPlaying" />
       <div
         class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2 "
       ></div>
@@ -41,60 +41,70 @@ export default {
       versesAudioFilesList: [],
       audioHostDomainName: "https://audio.qurancdn.com/",
       isAudioFilesLoaded: false,
-      isAudioPlay: false,
-      audio: null,
+      isPlaying: false,
+      // audio: null,
       audioFullSource: ""
     };
   },
   methods: {
     // load verse audio
     async fetchChapterVerseAudio() {
-      try {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
-          )
-          .then(response => {
-            this.versesAudioFilesList = response.data.audio_files;
-            this.isAudioFilesLoaded = true;
-          })
-          .catch(error => (this.error = error));
-      } catch (error) {
-        this.error = error;
-      }
+      // try {
+      //   await axios
+      //     .get(
+      //       `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
+      //     )
+      //     .then(response => {
+      //       this.versesAudioFilesList = response.data.audio_files;
+      //       this.isAudioFilesLoaded = true;
+      //     })
+      //     .catch(error => (this.error = error));
+      // } catch (error) {
+      //   this.error = error;
+      // }
     },
     // play audio file
     playAudioFile(audioFileName) {
-      if (!this.isAudioPlay) {
-        this.audio = new Audio(`${this.audioHostDomainName}/${audioFileName}`);
-        this.audio.play();
-        this.isAudioPlay = true;
-      }
+      // if (!this.isPlaying) {
+      //   this.audio = new Audio(`${this.audioHostDomainName}/${audioFileName}`);
+      //   this.audio.play();
+      //   this.isPlaying = true;
+      // }
     },
+    playbackListener(e) {
+      var audio = this.$refs.player;
 
+      //Sync local 'playbackTime' var to audio.currentTime and update global state
+      this.playbackTime = audio.currentTime;
+
+      console.log("update: " + audio.currentTime);
+
+      //Add listeners for audio pause and audio end events
+      audio.addEventListener("ended", this.endListener);
+      audio.addEventListener("pause", this.pauseListener);
+    },
     async playChapter() {
-      await this.fetchChapterVerseAudio();
-      // this.audioFullSource = this.audioHostDomainName + this.versesAudioFilesList[0].url;
-      this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
+      // await this.fetchChapterVerseAudio();
+      // // this.audioFullSource = this.audioHostDomainName + this.versesAudioFilesList[0].url;
+      // this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
 
-      let audioPlayerControl = document.getElementById("audioPlayerControl");
-      audioPlayerControl.addEventListener(
-        "ondurationchange",
-        () => {
-          console.log("change");
-        },
-        false
-      );
+      // let audioPlayerControl = document.getElementById("audioPlayerControl");
+      // audioPlayerControl.addEventListener(
+      //   "ondurationchange",
+      //   () => {
+      //     console.log("change");
+      //   },
+      //   false
+      // );
 
-      console.log(this.audioFullSource);
+      // console.log(this.audioFullSource);
 
-      audioPlayerControl.play();
+      // audioPlayerControl.play();
 
-      if (this.isAudioFilesLoaded)
-        this.playAudioFile(this.versesAudioFilesList[0].url);
-    },
-    test() {
-      console.log("change testing ");
+      // if (this.isAudioFilesLoaded)
+      //   this.playAudioFile(this.versesAudioFilesList[0].url);
+      this.$refs.player.play();
+      this.isPlaying = true;
     }
   },
   mounted: function() {
@@ -107,6 +117,23 @@ export default {
     // wait intill the entire view has been rendered
     this.$nextTick(function() {
       var audio = this.$refs.player;
+
+      this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
+      // wait for audio to load
+      audio.addEventListener(
+        "loadedmetadata",
+        function() {
+          // call this.initSlider();
+          console.log("loadedmetadata");
+        }.bind(this)
+      );
+    });
+
+    this.$watch("isPlaying", function() {
+      this.$refs.player.addEventListener(
+        "freqtimeupdate",
+        this.playBackListener
+      );
     });
   }
 };

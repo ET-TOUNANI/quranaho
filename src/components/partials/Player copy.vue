@@ -92,23 +92,9 @@ export default {
 
       if (this.isAudioFilesLoaded)
         this.playAudioFile(this.versesAudioFilesList[0].url);
-    },
-    test() {
-      console.log("change testing ");
-    }
+    } 
   },
-  mounted: function() {
-    // // wait intill the entire view has been rendreded
-    // this.$nextTick(() => {
-
-    // });
-    // this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
-
-    // wait intill the entire view has been rendered
-    this.$nextTick(function() {
-      var audio = this.$refs.player;
-    });
-  }
+ 
 };
 </script>
 

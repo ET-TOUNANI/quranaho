@@ -3,16 +3,18 @@
     <div class="mt-1 relative">
       <div>
         <div class="mt-1 relative rounded-md shadow-sm">
-          <div class="absolute inset-y-0 left-0 py-3  pl-3 flex items-center ">
-            <span class="sm:text-sm cursor-pointer h-full ">
-              <search-icon />
-            </span>
+          <div
+            class="absolute inset-y-0 left-0 py-4 ml-3  rounded-full cursor-pointer "
+          >
+            <!-- <span class="sm:text-sm cursor-pointer h-full "> -->
+            <search-icon />
+            <!-- </span> -->
           </div>
           <input
             @input="search"
             type="text"
-            class="block w-full text-md text-gray-900   border
-                 border-gray-300 rounded-full shadow-sm pr-3 pl-8 py-3
+            class="block w-full text-md text-gray-900 border
+                 border-gray-300 rounded-full shadow-sm pr-3 pl-10 py-3
                    focus:outline-none 
                  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             :placeholder="translatedWords.search + '...'"

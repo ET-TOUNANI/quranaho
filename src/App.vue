@@ -16,6 +16,14 @@ export default {
   },
   metaInfo: {
     title: "القرآن الكريم"
+  },
+  created: {
+    // set the theme
+    let appStyleMode = localStorage.getItem("mode");
+    if(appStyleMode === "dark")
+        document.documentElement.setAttribute("class", "dark");
+    else
+      else document.documentElement.setAttribute("class", "light");
   }
 };
 </script>

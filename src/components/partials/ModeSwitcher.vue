@@ -49,6 +49,7 @@ export default {
       if (this.isDarkModeOn)
         document.documentElement.setAttribute("class", "dark");
       else document.documentElement.setAttribute("class", "light");
+      localStorage.setItem("mode", this.isDarkModeOn);
     }
   }
 };

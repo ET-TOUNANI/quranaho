@@ -34,7 +34,7 @@ export default {
       sound: {
         url: "",
         time: {
-          played: "0:00",
+          played: "00:19:00",
           total: "2:00:00"
         }
       },

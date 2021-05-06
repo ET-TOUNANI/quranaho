@@ -17,13 +17,17 @@ export default {
   metaInfo: {
     title: "القرآن الكريم"
   },
-  created: {
-    // set the theme
-    let appStyleMode = localStorage.getItem("mode");
-    if(appStyleMode === "dark")
-        document.documentElement.setAttribute("class", "dark");
-    else
-      else document.documentElement.setAttribute("class", "light");
+  methods: {
+    setupAppThemeMode() {
+      // get the theme from local storage
+      let appThemeMode = localStorage.getItem("mode");
+      if (appThemeMode.length === 0) appThemeMode = "light";
+      document.documentElement.setAttribute("class", appThemeMode);
+      this.$store.commit("setAppThemeMode", appThemeMode);
+    }
+  },
+  created() {
+    this.setupAppThemeMode();
   }
 };
 </script>

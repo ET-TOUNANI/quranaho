@@ -2,13 +2,13 @@ export default {
   stata: {
     mode: "dark"
   },
-  mutatiosn: {
+  mutations: {
     setAppThemeMode: (state, payload) => {
       state.mode = payload;
     }
   },
   getters: {
-    getMode: state => {
+    getAppThemeMode: state => {
       return state.mode;
     }
   }

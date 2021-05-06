@@ -18,8 +18,6 @@
 import axios from "axios";
 import ChapterCard from "./partials/ChapterCard.vue";
 
-import { mapGetters } from "vuex";
-
 export default {
   name: "Gallery",
   components: {

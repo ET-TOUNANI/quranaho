@@ -14,7 +14,6 @@
 import SearchBar from "@/components/partials/SearchBar.vue";
 
 export default {
- 
   components: {
     SearchBar
   }
@@ -22,15 +21,3 @@ export default {
 </script>
 
 <style></style>
-
-//
-<ul v-if="false">
-//       <li>add logo</li>
-//       <li>search for word</li>
-//       <li>search for hizb</li>
-//       <li>search for juz</li>
-//       <li>search for ayah</li>
-//       <li>search dropdown</li>
-//       <li>navbar translation</li>
-//       <li>migration to typescript</li>
-//     </ul>

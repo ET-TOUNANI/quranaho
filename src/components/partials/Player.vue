@@ -16,7 +16,7 @@
         <play-pause-icon />
       </div>
       <div class="">
-        <audio ref="player" controls id="audioPlayerControl">
+        <audio ref="player" id="audioPlayerControl">
           <source :src="audioFullSource" type="audio/mpeg" />
           Your browser does not support the audio tag.
         </audio>

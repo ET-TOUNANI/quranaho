@@ -6,7 +6,6 @@
         src="https://cdn.qurancdn.com/assets/quran-logo-f5d0f128f5aa2a1949a3157d96bbd04a184e4a4ee0e05d464a3f2ae8d0bdcbdf.png"
         alt=""
       />
-      <my-audio-player url="https://audio.qurancdn.com/Sudais/mp3/002002.mp3" />
       <div class="text-lg text-gray-800 text-left w-full dark:text-gray-100 ">
         <h1 class="text-3xl font-semibold pt-3">About</h1>
         <p>
@@ -42,12 +41,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import MyAudioPlayer from "@/components/partials/MyAudioPlayer.vue";
-export default {
-  components: {
-    MyAudioPlayer
-  }
-};
-</script>

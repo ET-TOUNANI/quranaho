@@ -1,13 +1,9 @@
 export default {
   state: {
-    chaptersList: {},
     currentChapter: {},
     currentHizb: {}
   },
   mutations: {
-    setChaptersList: (state, payload) => {
-      state.chaptersList = payload;
-    },
     setCurrentChapter: (state, payload) => {
       state.currentChapter = payload;
     },
@@ -15,11 +11,15 @@ export default {
       state.currentHizb = payload;
     }
   },
-  actions: {},
-  getters: {
-    getChaptersList: state => {
-      return state.chaptersList;
+  actions: {
+    changeCurrentChapter: (context, payload) => {
+      context.commit("setCurrentChapter", payload);
     },
+    changeCurrentHizb: (context, payload) => {
+      context.commit("setCurrentHizb", payload);
+    }
+  },
+  getters: {
     getCurrentChapter: state => {
       return state.currentChapter;
     },

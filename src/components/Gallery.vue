@@ -43,7 +43,6 @@ export default {
           .get("https://api.quran.com/api/v4/chapters?language=en")
           .then(response => {
             this.chapters = response.data.chapters;
-            this.$store.commit("setChaptersList", this.chapters);
           })
           .catch(error => {
             this.error = error;

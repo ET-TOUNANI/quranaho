@@ -13,6 +13,7 @@
           {{ reciter }}
         </button>
         <ul
+        id="scroll-style-1"
           v-if="showRecitersDropdown"
           class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
@@ -44,6 +45,7 @@
           {{ chapter.name_arabic }}
         </button>
         <ul
+        id="scroll-style-1"
           v-if="showChaptersDropdown"
           class="c--scrollbar absolute w-52 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
@@ -75,6 +77,7 @@
           {{ translatedWords.hizb }}
         </button>
         <ul
+        id="scroll-style-1"
           v-if="showHizbsDropdown"
           class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"

@@ -4,7 +4,7 @@
     class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700"
   >
     <div class="container mx-auto py-4 flex">
-      <!-- header dropdown item -->
+      <!-- Reciters dropdown  -->
       <div class="mx-2">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
@@ -34,13 +34,14 @@
           </li>
         </ul>
       </div>
-      <!-- header dropdown item -->
+
+      <!-- Chapters dropdown  -->
       <div class="mx-2">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
           class="w-52 py-2 bg-gray-50  dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
-          {{ chaptersList[0].name_arabic }}
+          {{ chapter.name_arabic }}
         </button>
         <ul
           v-if="showChaptersDropdown"
@@ -56,7 +57,7 @@
             class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
             id="listbox-option-0"
             role="option"
-            @click="changeChapter(chapter.id)"
+            @click="changeChapter(chapter)"
           >
             <span class="text-md my-1 font-normal ml-3 block truncate ">
               {{ chapter.name_arabic }}
@@ -65,7 +66,7 @@
         </ul>
       </div>
 
-      <!-- header dropdown item -->
+      <!-- Hizbs dropdown -->
       <div class="mx-2">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
@@ -84,10 +85,10 @@
           <li
             v-for="hizb in 60"
             :key="hizb"
-           class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
+            class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
             id="listbox-option-0"
             role="option"
-            @click="changeReciter(reciter.id)"
+            @click="changeHizb(reciter.id)"
           >
             <p cclass="text-md my-1 font-normal ml-3 block truncate ">
               <span>
@@ -120,7 +121,7 @@ export default {
       reciters: {},
       error: "",
       reciter: "",
-      chapers: "",
+      chapter: "",
       showRecitersDropdown: false,
       showChaptersDropdown: false,
       showHizbsDropdown: false,
@@ -158,8 +159,18 @@ export default {
     },
 
     // Change chapter
-    changeChapter(chapterID) {
-      let cId = chapterID;
+    changeChapter(selectedChapter) {
+      // make sure that we are not fetching the same chapter
+      if (this.chapter.id !== selectedChapter.id) {
+        this.chapter = selectedChapter;
+        this.showChaptersDropdown = false;
+        this.$emit("changeChapter", selectedChapter.id);
+      }
+    },
+
+    // Change hizb
+    changeHizb(hizbID) {
+      this.showHizbsDropdown = false;
     },
     // Change juz
     changeJuz(juzID) {
@@ -177,6 +188,7 @@ export default {
           .then(response => {
             this.chaptersList = response.data.chapters;
             this.chaptersLoaded = true;
+            this.chapter = this.chaptersList[0];
           })
           .catch(error => {
             this.error = error;
@@ -193,6 +205,7 @@ export default {
   created() {
     this.fetchReciters();
     this.fetchChapters();
+    this.chapter = this.$store.getters.getCurrentChapter;
   }
 };
 </script>

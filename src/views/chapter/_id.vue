@@ -1,6 +1,6 @@
 <template>
   <div class="chapter text-white dark:bg-gray-800">
-    <chapter-header />
+    <chapter-header v-on:changeChapter="changeChapter" />
     <div class="container mx-auto">
       <div
         v-if="isLoading"
@@ -94,6 +94,12 @@ export default {
       } catch (error) {
         this.error = error;
       }
+    },
+    // fetch new chapter
+    changeChapter(chapterID) {
+      this.chapterId = chapterID;
+      this.fetchStartingVerse();
+      this.fetchChapter();
     }
   }
 };

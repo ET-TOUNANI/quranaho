@@ -88,7 +88,7 @@
             class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
             id="listbox-option-0"
             role="option"
-            @click="changeHizb(reciter.id)"
+            @click="changeHizb(hizb)"
           >
             <p cclass="text-md my-1 font-normal ml-3 block truncate ">
               <span>
@@ -127,7 +127,7 @@ export default {
       showHizbsDropdown: false,
       chaptersList: {},
       chaptersLoaded: false,
-      recitersLoaded: false
+      recitersLoaded: false, 
     };
   },
   methods: {
@@ -150,9 +150,9 @@ export default {
     },
 
     // Change current reciter
-    changeReciter(reciterId) {
+    changeReciter(reciterNumber) {
       let reciterObject = this.reciters.filter(
-        reciter => reciter.id === reciterId
+        reciter => reciter.id === reciterNumber
       );
       this.reciter = reciterObject[0].translated_name.name;
       this.showRecitersDropdown = false;
@@ -169,16 +169,18 @@ export default {
     },
 
     // Change hizb
-    changeHizb(hizbID) {
+    changeHizb(hizbNumber) {
+      // make sure that we are not fetching the same chapter
       this.showHizbsDropdown = false;
+      this.$emit("changeHizb", hizbNumber);
     },
     // Change juz
-    changeJuz(juzID) {
-      let jID = juzID;
+    changeJuz(juzNumber) {
+      let jID = juzNumber;
     },
     // Change rub
-    changeRub(rubID) {
-      let rID = rubID;
+    changeRub(rubNumber) {
+      let rID = rubNumber;
     },
     // Fetch list of all chapters names
     async fetchChapters() {

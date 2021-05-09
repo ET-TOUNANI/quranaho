@@ -45,22 +45,6 @@ export default {
     verses: {
       type: [Array, Object]
     }
-  },
-  mounted() {
-    //alert("Roboto loaded? " + document.fonts.check("1em Roboto")); // false
-
-    document.fonts.ready.then(function() {
-      // alert("All fonts in use by visible text have loaded.");
-      // alert("Roboto loaded? " + document.fonts.check("1em Roboto")); // true
-    });
-
-    document.fonts.onloadingdone = function(fontFaceSetEvent) {
-      // alert(
-      //   "onloadingdone we have " +
-      //     fontFaceSetEvent.fontfaces.length +
-      //     " font faces loaded"
-      // );
-    };
   }
 };
 </script>

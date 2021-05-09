@@ -41,7 +41,7 @@ export default {
       },
       verses: {},
       startingVerse: {
-        type: [String, Object]
+        type: [String]
       },
       chapterNumber: {
         type: Number
@@ -95,6 +95,7 @@ export default {
           )
           .then(response => {
             this.startingVerse = response.data.verses[0].text_indopak;
+
           })
           .catch(error => {
             this.error = error;
@@ -112,7 +113,7 @@ export default {
           )
           .then(response => {
             this.verses = response.data.verses;
-            this.isLoaded = true;
+         this.isLoaded = true;
           })
           .catch(error => {
             this.error = error;
@@ -124,6 +125,7 @@ export default {
 
     // fetch new chapter
     changeChapter(chapterNumber) {
+      this.$router.push({name: "id", params: {"id": chapterNumber}});
       this.isLoaded = false;
       this.chapterNumber = chapterNumber;
       this.fetchStartingVerse();
@@ -134,7 +136,7 @@ export default {
     changeHizb(hizbNumber) {
       this.isLoaded = false;
       let a = hizbNumber;
-      console.log(a)
+      this.fetchStartingVerse();
       this.fetchHizb(hizbNumber)
     }
   }

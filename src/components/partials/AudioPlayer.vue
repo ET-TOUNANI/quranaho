@@ -5,14 +5,16 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
-      <sound-adjuster-icon :isAudioPlay="isAudioPlay" />
+      <div @click="soundState = !soundState">
+        <sound-adjuster-icon :soundState="soundState" />
+      </div>
       <div
         class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2 "
       ></div>
       <p class="ml-2 text-sm">
-        00:21:31/1:51:49
+        {{ audioTotalDuration + "/" + audioProgressDuration }}
       </p>
-      <div @click="playChapter">
+      <div>
         <play-pause-icon />
       </div>
       <div class="">
@@ -43,7 +45,10 @@ export default {
       isAudioFilesLoaded: false,
       isAudioPlay: false,
       audio: null,
-      audioFullSource: ""
+      audioFullSource: "",
+      audioTotalDuration: "0:00:00",
+      audioProgressDuration: "0:00:00",
+      soundState: false
     };
   },
   methods: {

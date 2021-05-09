@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="chaptersLoaded && recitersLoaded"
-    class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700"
+    class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700 "
   >
     <div class="container mx-auto py-4 flex">
       <!-- Chapters dropdown  -->

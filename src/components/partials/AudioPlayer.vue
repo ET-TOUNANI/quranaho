@@ -5,19 +5,23 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
+      <div class="text-sm text-gray-50 bg-gray-700 px-2 mx-1 rounded">
+        audio not available for the moment
+      </div>
       <div @click="soundState = !soundState">
         <sound-adjuster-icon :soundState="soundState" />
       </div>
+
       <div
         class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2 "
       ></div>
       <p class="ml-2 text-sm">
         {{ audioTotalDuration + "/" + audioProgressDuration }}
       </p>
-      <div>
-        <play-pause-icon />
+      <div @click="playPauseState = !playPauseState">
+        <play-pause-icon :playPauseState="playPauseState" />
       </div>
-      <div class="">
+      <div class="hidden">
         <audio ref="player" id="audioPlayerControl">
           <source :src="audioFullSource" type="audio/mpeg" />
           Your browser does not support the audio tag.
@@ -48,7 +52,8 @@ export default {
       audioFullSource: "",
       audioTotalDuration: "0:00:00",
       audioProgressDuration: "0:00:00",
-      soundState: false
+      soundState: false,
+      playPauseState: false
     };
   },
   methods: {

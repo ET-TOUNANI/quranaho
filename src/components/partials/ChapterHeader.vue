@@ -4,38 +4,6 @@
     class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700"
   >
     <div class="container mx-auto py-4 flex">
-      <!-- Reciters dropdown  -->
-      <div class="mx-2">
-        <button
-          @click="showRecitersDropdown = !showRecitersDropdown"
-          class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
-        >
-          {{ reciter }}
-        </button>
-        <ul
-        id="scroll-style-1"
-          v-if="showRecitersDropdown"
-          class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
-          tabindex="-1"
-          role="listbox"
-          aria-labelledby="listbox-label"
-          aria-activedescendant="listbox-option-3"
-        >
-          <li
-            v-for="reciter in reciters"
-            :key="reciter.id"
-            class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
-            id="listbox-option-0"
-            role="option"
-            @click="changeReciter(reciter.id)"
-          >
-            <span class="text-md my-1 font-normal ml-3 block truncate ">
-              {{ reciter.translated_name.name }}
-            </span>
-          </li>
-        </ul>
-      </div>
-
       <!-- Chapters dropdown  -->
       <div class="mx-2">
         <button
@@ -45,7 +13,7 @@
           {{ chapter.name_arabic }}
         </button>
         <ul
-        id="scroll-style-1"
+          id="scroll-style-1"
           v-if="showChaptersDropdown"
           class="c--scrollbar absolute w-52 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
@@ -77,7 +45,7 @@
           {{ translatedWords.hizb }}
         </button>
         <ul
-        id="scroll-style-1"
+          id="scroll-style-1"
           v-if="showHizbsDropdown"
           class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
           tabindex="-1"
@@ -101,6 +69,38 @@
                 {{ hizb }}
               </span>
             </p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Reciters dropdown  -->
+      <div class="mx-2">
+        <button
+          @click="showRecitersDropdown = !showRecitersDropdown"
+          class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+        >
+          {{ reciter }}
+        </button>
+        <ul
+          id="scroll-style-1"
+          v-if="showRecitersDropdown"
+          class="absolute  w-52 z-10 shadow-lg bg-white dark:bg-gray-300 mt-1 max-h-96 rounded-sm py-1 text-base  overflow-auto sm:text-sm"
+          tabindex="-1"
+          role="listbox"
+          aria-labelledby="listbox-label"
+          aria-activedescendant="listbox-option-3"
+        >
+          <li
+            v-for="reciter in reciters"
+            :key="reciter.id"
+            class="text-gray-900 hover:bg-gray-100  select-none py-1 relative cursor-pointer border-b px-2 "
+            id="listbox-option-0"
+            role="option"
+            @click="changeReciter(reciter.id)"
+          >
+            <span class="text-md my-1 font-normal ml-3 block truncate ">
+              {{ reciter.translated_name.name }}
+            </span>
           </li>
         </ul>
       </div>
@@ -130,7 +130,7 @@ export default {
       showHizbsDropdown: false,
       chaptersList: {},
       chaptersLoaded: false,
-      recitersLoaded: false, 
+      recitersLoaded: false
     };
   },
   methods: {

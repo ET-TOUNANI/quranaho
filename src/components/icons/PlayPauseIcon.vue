@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer">
     <svg
-      v-if="isAudioPlay"
+      v-if="playPauseState"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -42,7 +42,7 @@
 <script>
 export default {
   name: "PlayPauseIcon",
-  props: { isAudioPlay: { type: Boolean } }
+  props: { playPauseState: { type: Boolean } }
 };
 </script>
 

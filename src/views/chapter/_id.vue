@@ -7,7 +7,7 @@
     <div class="container mx-auto">
       <div
         v-if="!isLoaded"
-        class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2 "
+        class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2"
       >
         {{ translatedWords.loading + "..." }}
       </div>
@@ -61,11 +61,12 @@ export default {
     ChapterHeader,
     AudioPlayer
   },
-  mounted() {
+  created() {
     this.chapterNumber = this.$route.params.id;
     this.fetchStartingVerse();
-    this.fetchChapter();
+    this.fetchChapter(this.chapterNumber);
   },
+
   methods: {
     // load the whole chapter
     async fetchChapter() {
@@ -85,6 +86,8 @@ export default {
         this.error = error;
       }
     },
+
+
     // load the first verse for the rest of chapters
     async fetchStartingVerse() {
       let id = 1;
@@ -95,7 +98,6 @@ export default {
           )
           .then(response => {
             this.startingVerse = response.data.verses[0].text_indopak;
-
           })
           .catch(error => {
             this.error = error;
@@ -104,8 +106,10 @@ export default {
         this.error = error;
       }
     },
+
+
     // fetch hizb
- async fetchHizb(hizbNumber) {
+    async fetchHizb(hizbNumber) {
       try {
         await axios
           .get(
@@ -123,6 +127,7 @@ export default {
       }
     },
 
+
     // fetch new chapter
     changeChapter(chapterNumber) {
       this.$router.push({name: "id", params: {"id": chapterNumber}});
@@ -132,10 +137,10 @@ export default {
       this.fetchChapter();
     },
 
+
     // fetch new hizb
     changeHizb(hizbNumber) {
       this.isLoaded = false;
-      let a = hizbNumber;
       this.fetchStartingVerse();
       this.fetchHizb(hizbNumber)
     }

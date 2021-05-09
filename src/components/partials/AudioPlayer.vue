@@ -5,7 +5,7 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
-      <div class="text-sm text-gray-50 bg-gray-700 px-2 mx-1 rounded">
+      <div class="text-sm text-gray-50 bg-red-800 opacity-80 px-2 mx-1 rounded">
         audio not available for the moment
       </div>
       <div @click="soundState = !soundState">

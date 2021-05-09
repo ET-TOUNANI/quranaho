@@ -1,17 +1,14 @@
 <template>
   <div
-    class="chapter__container quran dark:text-white text-black text-4xl leading-normal text-justify pt-4 min-h-screen lg:max-w-xl mx-auto"
-    :class="
-      verses.length < 36
-        ? 'sm:max-w-sm md:max-w-md lg:max-w-md mx-auto text-center'
-        : ''
-    "
+    class="chapter__container quran dark:text-white text-black text-4xl 
+    leading-normal text-justify pt-4 min-h-screen lg:max-w-xl mx-auto"
   >
-    <span class="quran" v-if="chapterId != 1 && chapterId != 9">
+    <span class="quran" v-if="chapterNumber != 1 && chapterNumber != 9">
       <span v-for="(word, index) in startingVerse.split(' ')" :key="index"
         >{{ word + " " }}
       </span>
     </span>
+
     <span v-for="verse in verses" :key="verse.id">
       <span v-for="(word, index) in verse.text_indopak.split(' ')" :key="index"
         >{{ word + " " }}
@@ -36,7 +33,7 @@ export default {
     VerseIcon
   },
   props: {
-    chapterId: {
+    chapterNumber: {
       type: [Number, String]
     },
     startingVerse: {

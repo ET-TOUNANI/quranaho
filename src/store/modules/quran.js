@@ -1,9 +1,13 @@
 export default {
   state: {
+    chaptersList: {},
     currentChapter: {},
     currentHizb: {}
   },
   mutations: {
+    setChaptersList: (state, payload) => {
+      state.chaptersList = payload;
+    },
     setCurrentChapter: (state, payload) => {
       state.currentChapter = payload;
     },
@@ -20,6 +24,9 @@ export default {
     }
   },
   getters: {
+    getChaptersList: state => {
+      return state.chaptersList;
+    },
     getCurrentChapter: state => {
       return state.currentChapter;
     },

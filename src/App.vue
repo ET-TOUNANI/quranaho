@@ -9,6 +9,7 @@
 <script>
 import HeaderNavbar from "@/components/HeaderNavbar.vue";
 import Footer from "@/components/partials/Footer.vue";
+import axios from "axios";
 export default {
   components: {
     HeaderNavbar,
@@ -17,6 +18,12 @@ export default {
   metaInfo: {
     title: "القرآن الكريم"
   },
+  data() {
+    return {
+      error: "",
+      isLoaded: false
+    };
+  },
   methods: {
     setupAppThemeMode() {
       // get the theme from local storage
@@ -24,10 +31,26 @@ export default {
       if (appThemeMode.length === 0) appThemeMode = "light";
       document.documentElement.setAttribute("class", appThemeMode);
       this.$store.commit("setAppThemeMode", appThemeMode);
+    },
+    async fetchChapters() {
+      try {
+        await axios
+          .get("https://api.quran.com/api/v4/chapters?language=en")
+          .then(response => {
+            this.$store.commit("setChaptersList", response.data.chapters);
+            this.isLoaded = true;
+          })
+          .catch(error => {
+            this.error = error;
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   created() {
     this.setupAppThemeMode();
+    this.fetchChapters();
   }
 };
 </script>

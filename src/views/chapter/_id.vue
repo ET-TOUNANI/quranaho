@@ -117,7 +117,8 @@ export default {
           )
           .then(response => {
             this.verses = response.data.verses;
-         this.isLoaded = true;
+            this.isLoaded = true;
+            console.log("🌻 🌻 🌻", response.data)
           })
           .catch(error => {
             this.error = error;

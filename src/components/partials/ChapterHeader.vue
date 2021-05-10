@@ -42,7 +42,14 @@
           @click="showHizbsDropdown = !showHizbsDropdown"
           class="w-52 py-2 bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
-          {{ translatedWords.hizb }}
+          <p class="text-md my-1 font-normal ml-3 block truncate ">
+            <span>
+              {{ translatedWords.hizb }}
+            </span>
+            <span class="mx-1">
+              {{ hizbNumber }}
+            </span>
+          </p>
         </button>
         <ul
           id="scroll-style-1"
@@ -61,7 +68,7 @@
             role="option"
             @click="changeHizb(hizb)"
           >
-            <p cclass="text-md my-1 font-normal ml-3 block truncate ">
+            <p class="text-md my-1 font-normal ml-3 block truncate ">
               <span>
                 {{ translatedWords.hizb }}
               </span>
@@ -130,7 +137,8 @@ export default {
       showHizbsDropdown: false,
       chaptersList: {},
       chaptersLoaded: false,
-      recitersLoaded: false
+      recitersLoaded: false,
+      hizbNumber: "?"
     };
   },
   methods: {
@@ -175,6 +183,7 @@ export default {
     changeHizb(hizbNumber) {
       // make sure that we are not fetching the same chapter
       this.showHizbsDropdown = false;
+      this.hizbNumber = hizbNumber;
       this.$emit("changeHizb", hizbNumber);
     },
     // Change juz

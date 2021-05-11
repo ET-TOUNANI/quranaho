@@ -4,15 +4,20 @@
     leading-normal text-justify pt-4 min-h-screen lg:max-w-xl mx-auto pb-16"
   >
     <span v-for="verse in verses" :key="verse.id">
-      <span v-if="Number(verse.verse_key.split(':')[1]) == 1">
+      <span v-if="getVerseNumber(verse) == 1">
         <!-- chapter starting devider -->
         <p
           class="px-5 mt-16 mb-5 w-full bg-gray-700 rounded border-b-4 border-gray-600"
         >
-          Surat Name {{ verse.verse_key }}
+          {{ chapterInfo.name_arabic }}
         </p>
+        <h1
+          class="px-5 mt-16 mb-5 w-full bg-gray-700 rounded border-b-4 border-gray-600"
+        >
+          >> {{ getChapterInfo(getChapterNumber(verse)).name_arabic }}
+        </h1>
 
-        <span class="quran" v-if="chapterNumber != 9 && chapterNumber != 1">
+        <span v-if="chapterNumber != 9 && chapterNumber != 1">
           <span v-for="(word, index) in startingVerse.split(' ')" :key="index"
             >{{ word + " " }}
           </span>
@@ -26,7 +31,7 @@
       <span class="relative">
         <span
           class="pt-4 text-gray-800 absolute w-full h-full text-lg text-center font-bold"
-          >{{ verse.verse_key.split(":")[1] }}</span
+          >{{ getVerseNumber(verse) }}</span
         >
         <span class="chapter__verseNumberIcon">
           <verse-icon />
@@ -45,7 +50,8 @@ export default {
   },
   props: {
     chapterNumber: {
-      type: [Number, String]
+      type: [Number, String],
+      default: 1
     },
     startingVerse: {
       type: [String, Object]
@@ -56,28 +62,56 @@ export default {
   },
   data() {
     return {
-      versesInfo: {},
-      error: ""
+      error: "",
+      isLoaded: false,
+      chapterInfo: {},
+      currentChapterNumber: 0
     };
   },
   methods: {
-    // fetch chapter infos
-    async fetchVersesInfo() {
-      await axios
-        .get(
-          `'https://api.quran.com/api/v4/verses/by_chapter/${this.chapterNumber}?language=ar&words=false'`
-        )
-        .then(response => {
-          this.versesInfo = response.data;
-        })
-        .catch(error => {
-          this.error = error;
-        });
+    // Fetch chapter info
+    async fetchChapterInfo(chapterNumber) {
+      try {
+        await axios
+          .get(
+            `https://api.quran.com/api/v4/chapters/${this.chapterNumber}?language=ar`
+          )
+          .then(response => {
+            this.chapterInfo = response.data.chapter;
+            this.isLoaded = true;
+          })
+          .catch(error => {
+            this.error = error;
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // Find verse number based on verse key
+    getVerseNumber(verse) {
+      return Number(verse.verse_key.split(":")[1]);
+    },
+
+    // Find chapter number based on verse key
+    getChapterNumber(verse) {
+      return Number(verse.verse_key.split(":")[0]);
+    },
+
+    // Get chpater info for chapter with the sepecific number
+    getChapterInfo(chapterNumber) {
+      console.log("chapterNumber:" + chapterNumber);
+      if (chapterNumber > this.currentChapterNumber) {
+        this.fetchChapterInfo(chapterNumber);
+        this.chapterNumber = chapterNumber;
+        console.log("🔥 ", this.currentChapterNumber);
+      }
+
+      return this.chapterInfo;
     }
   },
-  mounted() {
-    console.log("🍎 ");
-    console.log(this.$store.getters.getChaptersList);
+  created() {
+    this.fetchChapterInfo(this.chapterNumber);
   }
 };
 </script>

@@ -32,6 +32,7 @@ export default {
       document.documentElement.setAttribute("class", appThemeMode);
       this.$store.commit("setAppThemeMode", appThemeMode);
     },
+    // this is not working on reload target page
     async fetchChapters() {
       try {
         await axios

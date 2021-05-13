@@ -14,7 +14,7 @@
         <h1
           class="px-5 mt-16 mb-5 w-full bg-gray-700 rounded border-b-4 border-gray-600"
         >
-          >> {{ getChapterInfo(getChapterNumber(verse)).name_arabic }}
+          <!-- >> {{ getChapterInfo(getChapterNumber(verse)).name_arabic }} -->
         </h1>
 
         <span v-if="chapterNumber != 9 && chapterNumber != 1">

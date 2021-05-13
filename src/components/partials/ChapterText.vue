@@ -7,15 +7,10 @@
       <span v-if="getVerseNumber(verse) == 1">
         <!-- chapter starting devider -->
         <p
-          class="px-5 mt-16 mb-5 w-full bg-gray-700 rounded border-b-4 border-gray-600"
+          class="px-5 mt-16 mb-5 w-full bg-indigo-100 rounded border-b-4 border-indigo-200 dark:bg-indigo-800 dark:border-indigo-700"
         >
-          {{ chapterInfo.name_arabic }}
+          {{ translatedWords.chapter }} {{ chapterInfo.name_arabic }}
         </p>
-        <h1
-          class="px-5 mt-16 mb-5 w-full bg-gray-700 rounded border-b-4 border-gray-600"
-        >
-          <!-- >> {{ getChapterInfo(getChapterNumber(verse)).name_arabic }} -->
-        </h1>
 
         <span v-if="chapterNumber != 9 && chapterNumber != 1">
           <span v-for="(word, index) in startingVerse.split(' ')" :key="index"
@@ -65,7 +60,10 @@ export default {
       error: "",
       isLoaded: false,
       chapterInfo: {},
-      currentChapterNumber: 0
+      currentChapterNumber: 0,
+      translatedWords: {
+        chapter: "سورة"
+      }
     };
   },
   methods: {

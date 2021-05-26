@@ -98,12 +98,12 @@ export default {
 
     // Get chpater info for chapter with the sepecific number
     getChapterInfo(chapterNumber) {
-      console.log("chapterNumber:" + chapterNumber);
-      if (chapterNumber > this.currentChapterNumber) {
-        this.fetchChapterInfo(chapterNumber);
-        this.chapterNumber = chapterNumber;
-        console.log("🔥 ", this.currentChapterNumber);
-      }
+      // console.log("chapterNumber:" + chapterNumber);
+      // if (chapterNumber > this.currentChapterNumber) {
+      //   this.fetchChapterInfo(chapterNumber);
+      //   this.chapterNumber = chapterNumber;
+      //   console.log("🔥 ", this.currentChapterNumber);
+      // }
 
       return this.chapterInfo;
     }

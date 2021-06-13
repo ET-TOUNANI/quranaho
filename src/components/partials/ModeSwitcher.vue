@@ -4,7 +4,7 @@
     class="dark:bg-gray-800 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
   >
     <svg
-      v-if="appThemeMode === 'light'"
+      v-if="appColorTheme === 'light'"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -19,7 +19,7 @@
       ></path>
     </svg>
     <svg
-      v-if="appThemeMode === 'dark'"
+      v-if="appColorTheme === 'dark'"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -40,25 +40,25 @@
 export default {
   data() {
     return {
-      appThemeMode: "light"
+      appColorTheme: "light"
     };
   },
   methods: {
     swtichThemeMode() {
       // switch modes
-      this.appThemeMode = this.appThemeMode === "dark" ? "light" : "dark";
+      this.appColorTheme = this.appColorTheme === "dark" ? "light" : "dark";
 
       // change class in html tag
-      document.documentElement.setAttribute("class", this.appThemeMode);
+      document.documentElement.setAttribute("class", this.appColorTheme);
 
       // save mode in local storage
-      localStorage.setItem("mode", this.appThemeMode);
+      localStorage.setItem("mode", this.appColorTheme);
     }
   },
   created() {
     // bring the value from  stored in app state module
     // from App components, the value brought from local storage
-    this.appThemeMode = this.$store.getters.getAppThemeMode;
+    this.appColorTheme = this.$store.getters.getappColorTheme;
   }
 };
 </script>

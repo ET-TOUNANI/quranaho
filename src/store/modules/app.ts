@@ -3,12 +3,12 @@ export default {
     mode: "dark"
   },
   mutations: {
-    setAppThemeMode: (state, payload) => {
+    setappColorTheme: (state, payload) => {
       state.mode = payload;
     }
   },
   getters: {
-    getAppThemeMode: state => {
+    getappColorTheme: state => {
       return state.mode;
     }
   }

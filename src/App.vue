@@ -25,12 +25,12 @@ export default {
     };
   },
   methods: {
-    setupAppThemeMode() {
+    setupappColorTheme() {
       // get the theme from local storage
-      let appThemeMode = localStorage.getItem("mode");
-      if (appThemeMode.length === 0) appThemeMode = "light";
-      document.documentElement.setAttribute("class", appThemeMode);
-      this.$store.commit("setAppThemeMode", appThemeMode);
+      let appColorTheme = localStorage.getItem("mode");
+      if (appColorTheme === null) appColorTheme = "light";
+      document.documentElement.setAttribute("class", appColorTheme);
+      this.$store.commit("setappColorTheme", appColorTheme);
     },
     // this is not working on reload target page
     async fetchChapters() {
@@ -50,7 +50,7 @@ export default {
     }
   },
   created() {
-    this.setupAppThemeMode();
+    this.setupappColorTheme();
     this.fetchChapters();
   }
 };

@@ -52,6 +52,7 @@ export default {
   methods: {
     // search chapter or verse
     async search(event){
+      console.log(event.target.value);
       let searchQuery = event.target.value;
       let searchPage = 0;
       if(searchQuery.length > 0) {

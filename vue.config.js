@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/theholy-quran/" : "./",
+  publicPath: process.env.NODE_ENV === "production" ? "/" : "./",
 
   pwa: {
     name: "The Holy Quran",

@@ -44,7 +44,8 @@ export default {
         type: [String]
       },
       chapterNumber: {
-        type: Number
+        type: [Number ,String],
+        default: 0
       },
       isLoaded: {
         type: Boolean,
@@ -62,32 +63,12 @@ export default {
     AudioPlayer
   },
   created() {
-    this.chapterNumber = this.$route.params.id;
+    this.hizbNumber = this.$route.params.id;
     this.fetchStartingVerse();
-    this.fetchChapter(this.chapterNumber);
+    this.fetchHizb(this.hizbNumber);
   },
 
   methods: {
-    // load the whole chapter
-    async fetchChapter() {
-      try {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${this.chapterNumber}`
-          )
-          .then(response => {
-            this.verses = response.data.verses;
-            this.isLoaded = true;
-          })
-          .catch(error => {
-            this.error = error;
-          });
-      } catch (error) {
-        this.error = error;
-      }
-    },
-
-
     // load the first verse for the rest of chapters
     async fetchStartingVerse() {
       let id = 1;
@@ -106,7 +87,6 @@ export default {
         this.error = error;
       }
     },
-
 
     // fetch hizb
     async fetchHizb(hizbNumber) {

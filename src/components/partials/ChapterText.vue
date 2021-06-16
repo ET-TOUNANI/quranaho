@@ -9,7 +9,11 @@
         <p
           class="px-5 mt-16 mb-5 w-full bg-indigo-100 rounded border-b-4 border-indigo-200 dark:bg-indigo-800 dark:border-indigo-700"
         >
-          {{ translatedWords.chapter }} {{ chapterInfo.name_arabic }}
+          {{
+            translatedWords.chapter +
+              " " +
+              getChapterInfo(Number(verse.verse_key.split(":")[0]))
+          }}
         </p>
 
         <span v-if="chapterNumber != 9 && chapterNumber != 1">
@@ -45,7 +49,7 @@ export default {
   },
   props: {
     chapterNumber: {
-      type: [Number, String],
+      type: [Number || String],
       default: 1
     },
     startingVerse: {
@@ -61,6 +65,7 @@ export default {
       isLoaded: false,
       chapterInfo: {},
       currentChapterNumber: 0,
+      chaptersInfoList: [],
       translatedWords: {
         chapter: "سورة"
       }
@@ -68,14 +73,12 @@ export default {
   },
   methods: {
     // Fetch chapter info
-    async fetchChapterInfo(chapterNumber) {
+    async fetchChaptersInfo() {
       try {
         await axios
-          .get(
-            `https://api.quran.com/api/v4/chapters/${this.chapterNumber}?language=ar`
-          )
+          .get(`https://api.quran.com/api/v4/chapters`)
           .then(response => {
-            this.chapterInfo = response.data.chapter;
+            this.chaptersInfoList = response.data.chapters;
             this.isLoaded = true;
           })
           .catch(error => {
@@ -91,25 +94,15 @@ export default {
       return Number(verse.verse_key.split(":")[1]);
     },
 
-    // Find chapter number based on verse key
-    getChapterNumber(verse) {
-      return Number(verse.verse_key.split(":")[0]);
-    },
-
-    // Get chpater info for chapter with the sepecific number
+    // get chapter info
     getChapterInfo(chapterNumber) {
-      // console.log("chapterNumber:" + chapterNumber);
-      // if (chapterNumber > this.currentChapterNumber) {
-      //   this.fetchChapterInfo(chapterNumber);
-      //   this.chapterNumber = chapterNumber;
-      //   console.log("🔥 ", this.currentChapterNumber);
-      // }
-
-      return this.chapterInfo;
+      let chapterName = this.chaptersInfoList[chapterNumber]?.name_arabic;
+      return chapterName;
     }
   },
-  created() {
-    this.fetchChapterInfo(this.chapterNumber);
+
+  mounted() {
+    this.fetchChaptersInfo();
   }
 };
 </script>

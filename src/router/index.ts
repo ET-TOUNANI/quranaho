@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import Chapter from "../views/chapter/_id.vue";
 
 Vue.use(VueRouter);
 
@@ -22,8 +21,15 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/chapter/:id",
-    name: "id",
-    component: Chapter,
+    name: "chapter",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/chapter/_id.vue")
+  },
+  {
+    path: "/hizb/:id",
+    name: "hizb",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/hizb/_id.vue")
   },
 ];
 

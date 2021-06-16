@@ -30,7 +30,7 @@ export default {
       let appColorTheme = localStorage.getItem("mode");
       if (appColorTheme === null) appColorTheme = "light";
       document.documentElement.setAttribute("class", appColorTheme);
-      this.$store.commit("setappColorTheme", appColorTheme);
+      // this.$store.commit("setappColorTheme", appColorTheme);
     },
     // this is not working on reload target page
     async fetchChapters() {
@@ -38,7 +38,7 @@ export default {
         await axios
           .get("https://api.quran.com/api/v4/chapters?language=en")
           .then(response => {
-            this.$store.commit("setChaptersList", response.data.chapters);
+            // this.$store.commit("setChaptersList", response.data.chapters);
             this.isLoaded = true;
           })
           .catch(error => {

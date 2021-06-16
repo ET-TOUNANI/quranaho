@@ -58,7 +58,7 @@ export default {
   created() {
     // bring the value from  stored in app state module
     // from App components, the value brought from local storage
-    this.appColorTheme = this.$store.getters.getappColorTheme;
+    // this.appColorTheme = this.$store.getters.getappColorTheme;
   }
 };
 </script>

@@ -5,32 +5,32 @@ export default {
     currentHizb: {}
   },
   mutations: {
-    setChaptersList: (state, payload) => {
+    setChaptersList: (state: any, payload: any): any => {
       state.chaptersList = payload;
     },
-    setCurrentChapter: (state, payload) => {
+    setCurrentChapter: (state: any, payload: any): any => {
       state.currentChapter = payload;
     },
-    setCurrentHizb: (state, payload) => {
+    setCurrentHizb: (state: any, payload: any): any => {
       state.currentHizb = payload;
     }
   },
   actions: {
-    changeCurrentChapter: (context, payload) => {
+    changeCurrentChapter: (context: any, payload: any): void => {
       context.commit("setCurrentChapter", payload);
     },
-    changeCurrentHizb: (context, payload) => {
+    changeCurrentHizb: (context: any, payload: any): void => {
       context.commit("setCurrentHizb", payload);
     }
   },
   getters: {
-    getChaptersList: state => {
+    getChaptersList: (state: any): void => {
       return state.chaptersList;
     },
-    getCurrentChapter: state => {
+    getCurrentChapter: (state: any): any => {
       return state.currentChapter;
     },
-    getCurrentHizb: state => {
+    getCurrentHizb: (state: any): any => {
       return state.currentHizb;
     }
   }

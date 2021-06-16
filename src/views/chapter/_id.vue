@@ -51,7 +51,7 @@ export default {
         default: false,
       },
       hizbNumber: {
-        type: [String, Number],
+        type: [Number],
 
       }
     };
@@ -62,7 +62,7 @@ export default {
     AudioPlayer
   },
   created() {
-    this.chapterNumber = this.$route.params.id;
+    this.chapterNumber = Number(this.$route.params.id);
     this.fetchStartingVerse();
     this.fetchChapter(this.chapterNumber);
   },
@@ -130,7 +130,7 @@ export default {
 
     // fetch new chapter
     changeChapter(chapterNumber) {
-      this.$router.push({name: "id", params: {"id": chapterNumber}});
+      this.$router.push({name: "chapter", params: {"id": chapterNumber}});
       this.isLoaded = false;
       this.chapterNumber = chapterNumber;
       this.fetchStartingVerse();

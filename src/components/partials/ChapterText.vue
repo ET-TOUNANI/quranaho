@@ -96,7 +96,7 @@ export default {
 
     // get chapter info
     getChapterInfo(chapterNumber) {
-      let chapterName = this.chaptersInfoList[chapterNumber]?.name_arabic;
+      let chapterName = this.chaptersInfoList[chapterNumber - 1]?.name_arabic;
       return chapterName;
     }
   },

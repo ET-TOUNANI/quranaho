@@ -186,14 +186,6 @@ export default {
       this.hizbNumber = hizbNumber;
       this.$emit("changeHizb", hizbNumber);
     },
-    // Change juz
-    changeJuz(juzNumber) {
-      let jID = juzNumber;
-    },
-    // Change rub
-    changeRub(rubNumber) {
-      let rID = rubNumber;
-    },
     // Fetch list of all chapters names
     async fetchChapters() {
       try {
@@ -219,7 +211,6 @@ export default {
   created() {
     this.fetchReciters();
     this.fetchChapters();
-    this.chapter = this.$store.getters.getCurrentChapter;
   }
 };
 </script>

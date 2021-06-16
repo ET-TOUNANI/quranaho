@@ -44,7 +44,7 @@ export default {
         type: [String]
       },
       chapterNumber: {
-        type: [Number ,String],
+        type: [Number],
         default: 0
       },
       isLoaded: {
@@ -52,7 +52,7 @@ export default {
         default: false,
       },
       hizbNumber: {
-        type: [String, Number],
+        type: [Number],
 
       }
     };
@@ -110,7 +110,7 @@ export default {
 
     // fetch new chapter
     changeChapter(chapterNumber) {
-      this.$router.push({name: "id", params: {"id": chapterNumber}});
+      this.$router.push({name: "chapter", params: {"id": chapterNumber}});
       this.isLoaded = false;
       this.chapterNumber = chapterNumber;
       this.fetchStartingVerse();

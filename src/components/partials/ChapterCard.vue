@@ -26,8 +26,6 @@ export default {
   methods: {
     goToChapter() {
       this.$router.push({ name: "chapter", params: { id: this.chapter.id } });
-      // Save current chapter id in global state
-      this.$store.commit("setCurrentChapter", this.chapter);
     }
   }
 };

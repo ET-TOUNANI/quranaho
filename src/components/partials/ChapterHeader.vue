@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div
     v-if="chaptersLoaded && recitersLoaded"
@@ -138,7 +139,7 @@ export default {
       chaptersList: {},
       chaptersLoaded: false,
       recitersLoaded: false,
-      hizbNumber: "?"
+      hizbNumber: "1"
     };
   },
   methods: {

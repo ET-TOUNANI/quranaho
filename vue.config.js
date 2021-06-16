@@ -1,8 +1,8 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/quran-karim/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/theholy-quran/" : "./",
 
   pwa: {
-    name: 'kitabat',
-    themeColor: '#3478db'
+    name: "The Holy Quran",
+    themeColor: "#3478db"
   }
 };

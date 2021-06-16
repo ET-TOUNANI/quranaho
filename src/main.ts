@@ -3,9 +3,9 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import "./assets/styles/index.css";
-// import VueMeta from "vue-meta";
+import VueMeta from "vue-meta";
 
-// Vue.use(VueMeta);
+Vue.use(VueMeta);
 
 // Vue.config.productionTip = false;
 

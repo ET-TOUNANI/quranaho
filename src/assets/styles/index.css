@@ -1,4 +1,14 @@
-/* import tailwindcss */
+*,
+html,
+body {
+  direction: rtl;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,16 +22,6 @@
 @font-face {
   font-family: "arabic";
   src: url("../fonts/me_quran_Regular.ttf");
-}
-*,
-html,
-body {
-  direction: rtl;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 .quran {

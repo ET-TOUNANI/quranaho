@@ -9,7 +9,7 @@
           <button
             @click="isHidden = !isHidden"
             type="button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
@@ -60,7 +60,7 @@
               />
               <router-link to="/">
                 <h1
-                  class="text-white text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
+                  class="arabic text-white text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
                 >
                   {{ translatedWords.title }}
                 </h1>
@@ -70,14 +70,14 @@
           <div class="hidden  sm:block sm:ml-6">
             <div class="flex space-x-4">
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-600 hover:text-indigo-800 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
@@ -99,13 +99,13 @@
       <div class="px-2 pt-2 pb-3 flex flex-col">
         <router-link
           to="/"
-          class="text-gray-600 hover:bg-indigo-200 dark:hover:bg-indigo-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.chapters }}</router-link
         >
 
         <router-link
           to="/about"
-          class="text-gray-600 hover:bg-indigo-200 dark:hover:bg-indigo-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.about }}</router-link
         >
       </div>

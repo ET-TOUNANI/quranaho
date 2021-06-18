@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full bg-gray-50 dark:bg-gray-900 border-t border-gray-500 h-10 fixed top-full transform -translate-y-full"
+    class="w-full bg-gray-100 dark:bg-gray-900 border-t border-gray-500 h-10 fixed top-full transform -translate-y-full"
   >
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"

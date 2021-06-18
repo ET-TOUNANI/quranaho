@@ -2,10 +2,11 @@
   <div class="about h-screen">
     <div class="container mx-auto  ">
       <img
-        class="mx-auto h-32 my-8"
-        src="https://cdn.qurancdn.com/assets/quran-logo-f5d0f128f5aa2a1949a3157d96bbd04a184e4a4ee0e05d464a3f2ae8d0bdcbdf.png"
-        alt=""
-      />
+      class="mx-auto rounded-lg h-44 my-8"
+      src="https://unsplash.com/photos/kZ1zThg6G40/download?force=true&w=640"
+      alt=""
+    />
+
       <div class="text-lg text-gray-800 text-left w-full dark:text-gray-100 ">
         <h1 class="text-3xl font-semibold pt-3">About</h1>
         <p>

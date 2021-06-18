@@ -7,7 +7,7 @@
       <span v-if="getVerseNumber(verse) == 1">
         <!-- chapter starting devider -->
         <p
-          class="px-5 mt-16 mb-5 w-full bg-indigo-100 rounded border-b-4 border-indigo-200 dark:bg-indigo-800 dark:border-indigo-700"
+          class="px-5 mb-5 w-full bg-purple-100 rounded border-b-4 border-purple-200 dark:bg-purple-800 dark:border-purple-700"
         >
           {{
             translatedWords.chapter +

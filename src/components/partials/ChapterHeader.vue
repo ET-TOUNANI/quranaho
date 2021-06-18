@@ -1,15 +1,14 @@
-/* eslint-disable */
 <template>
   <div
     v-if="chaptersLoaded && recitersLoaded"
-    class="bg-gray-50 dark:bg-gray-800 border-t border-b dark:border-gray-700 "
+    class="bg-gray-100 dark:bg-gray-800 border-t border-b dark:border-gray-700 "
   >
     <div class="container mx-auto lg:max-w-xl py-4 flex">
       <!-- Chapters dropdown  -->
       <div class="mx-2 flex-1">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2  w-full bg-gray-50  dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="py-2  w-full bg-gray-100  dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
           {{ chapter.name_arabic }}
         </button>
@@ -41,7 +40,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="py-2 w-full  bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="py-2 w-full  bg-gray-100 dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
           <p class="text-md  font-normal ml-3 block truncate ">
             <span>
@@ -85,7 +84,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="py-2 w-full  bg-gray-50 dark:bg-indigo-800 dark:text-gray-100 dark:border-indigo-700 border-2 focus:outline-none focus:border focus:border-indigo-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="py-2 w-full  bg-gray-100 dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
         >
           {{ reciter }}
         </button>

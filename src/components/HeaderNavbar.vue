@@ -113,7 +113,7 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import ModeSwitcher from "@/components/partials/ModeSwitcher.vue";
 export default {
   data() {

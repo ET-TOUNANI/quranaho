@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VerseIcon from "@/components/icons/VerseIcon.vue";
 import axios from "axios";
 export default {

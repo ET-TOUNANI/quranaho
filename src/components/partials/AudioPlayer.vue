@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import PlayPauseIcon from "@/components/icons/PlayPauseIcon.vue";
 import SoundAdjusterIcon from "@/components/icons/SoundAdjusterIcon.vue";
 import axios from "axios";

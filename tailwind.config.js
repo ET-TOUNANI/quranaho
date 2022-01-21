@@ -2,35 +2,30 @@ module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
-    extend: {}
+    extend: {},
   },
   variants: {
-    extend: {}
+    extend: {},
   },
   plugins: [
-    function({ addComponents }) {
+    function ({ addComponents }) {
       addComponents({
         ".container": {
           maxWidth: "100%",
           "@screen sm": {
-            maxWidth: "640px"
+            maxWidth: "640px",
           },
           "@screen md": {
-            maxWidth: "768px"
+            maxWidth: "768px",
           },
           "@screen lg": {
-            maxWidth: "1200px"
+            maxWidth: "1200px",
           },
           "@screen xl": {
-            maxWidth: "1200px"
+            maxWidth: "1200px",
           },
-          "@screen 2xl": {
-            maxWidth: "1200px"
-          }
-        }
+        },
       });
-    }
-  ]
+    },
+  ],
 };
-
-

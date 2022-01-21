@@ -1,5 +1,5 @@
 <template>
-  <div class="home  xs:px-6 sm:px-2">
+  <div class="home xs:px-6 sm:px-2">
     <div class="container mx-auto">
       <home-header />
       <gallery />
@@ -14,7 +14,7 @@ import HomeHeader from "@/components/HomeHeader.vue";
 export default {
   components: {
     Gallery,
-    HomeHeader
-  }
+    HomeHeader,
+  },
 };
 </script>

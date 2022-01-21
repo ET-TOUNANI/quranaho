@@ -10,13 +10,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SearchBar from "@/components/partials/SearchBar.vue";
 
 export default {
   components: {
-    SearchBar
-  }
+    SearchBar,
+  },
 };
 </script>
 

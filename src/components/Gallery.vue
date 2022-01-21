@@ -1,8 +1,8 @@
 <template>
-  <div class="gallery  pb-2">
+  <div class="gallery pb-2">
     <div
       v-if="!loading"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3 md:gap-3 "
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3 md:gap-3"
     >
       <chapter-card
         v-for="chapter in chapters"
@@ -11,34 +11,29 @@
       />
     </div>
     <div class="w-full h-full grid place-items-center" v-else>
-      {{ translatedWords.loading }}...
+      {{ translatedWords._loading }}...
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
 import ChapterCard from "./partials/ChapterCard.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "Gallery",
   components: {
-    ChapterCard
+    ChapterCard,
   },
   data() {
     return {
       translatedWords: {
-        loading: "جار التحميل"
+        _loading: "جار التحميل",
       },
-      loading: {
-        type: Boolean,
-        default: true
-      },
-      error: {
-        type: String,
-        default: ""
-      },
-      chapters: {}
+      loading: true,
+      error: "",
+      chapters: {},
     };
   },
   methods: {
@@ -46,10 +41,10 @@ export default {
       try {
         await axios
           .get("https://api.quran.com/api/v4/chapters?language=en")
-          .then(response => {
+          .then((response) => {
             this.chapters = response.data.chapters;
           })
-          .catch(error => {
+          .catch((error) => {
             this.error = error;
           })
           .finally(() => {
@@ -58,12 +53,12 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
   },
   created() {
     this.fetchChapters();
-  }
-};
+  },
+});
 </script>
 
 <style></style>

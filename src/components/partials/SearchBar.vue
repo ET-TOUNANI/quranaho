@@ -31,13 +31,14 @@
 import SearchDropdown from "@/components/partials/SearchDropdown.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
 import axios from "axios";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   data() {
     return {
       translatedWords: {
         search: "بحث",
       },
-      error: "",
       searchResults: {},
       searchResultsLoaded: false,
     };
@@ -48,31 +49,27 @@ export default {
   },
   methods: {
     // search chapter or verse
-    async search(event) {
-      console.log(event.target.value);
-      let searchQuery = event.target.value;
+    async search(event: Event) {
+      let searchQuery = (event.target as HTMLInputElement).value;
       let searchPage = 0;
       if (searchQuery.length > 0) {
-        try {
-          await axios
-            .get(
-              `https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=${searchPage}&language=en`
-            )
-            .then((response) => {
-              this.searchResults = response.data.search.results;
-              console.log(response);
-              this.searchResultsLoaded = true;
-            })
-            .catch((error) => (this.error = error));
-        } catch (error) {
-          this.error = error;
-        }
+        await axios
+          .get(
+            `https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=${searchPage}&language=en`
+          )
+          .then((response) => {
+            this.searchResults = response.data.search.results;
+            this.searchResultsLoaded = true;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         this.searchResults = [];
       }
     },
   },
-};
+});
 </script>
 
 <style></style>

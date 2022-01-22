@@ -22,29 +22,29 @@
   </div>
 </template>
 
-<script lang="js">
-
+<script lang="ts">
 import ChapterText from "@/components/partials/ChapterText.vue";
 import ChapterHeader from "@/components/partials/ChapterHeader.vue";
 import AudioPlayer from "@/components/partials/AudioPlayer.vue";
-
 import axios from "axios";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   data() {
     return {
-       translatedWords: {
-        loading: "جار التحميل"
+      translatedWords: {
+        loading: "جار التحميل",
       },
       error: {
         type: String,
-        default: ""
+        default: "",
       },
       verses: {},
       startingVerse: {
-        type: [String]
+        type: [String],
       },
       chapterNumber: {
-        type: Number
+        type: Number,
       },
       isLoaded: {
         type: Boolean,
@@ -52,14 +52,13 @@ export default {
       },
       hizbNumber: {
         type: [Number],
-
-      }
+      },
     };
   },
   components: {
     ChapterText,
     ChapterHeader,
-    AudioPlayer
+    AudioPlayer,
   },
   created() {
     this.chapterNumber = Number(this.$route.params.id);
@@ -75,18 +74,17 @@ export default {
           .get(
             `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${this.chapterNumber}`
           )
-          .then(response => {
+          .then((response) => {
             this.verses = response.data.verses;
             this.isLoaded = true;
           })
-          .catch(error => {
+          .catch((error) => {
             this.error = error;
           });
       } catch (error) {
         this.error = error;
       }
     },
-
 
     // load the first verse for the rest of chapters
     async fetchStartingVerse() {
@@ -96,17 +94,16 @@ export default {
           .get(
             `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`
           )
-          .then(response => {
+          .then((response) => {
             this.startingVerse = response.data.verses[0].text_indopak;
           })
-          .catch(error => {
+          .catch((error) => {
             this.error = error;
           });
       } catch (error) {
         this.error = error;
       }
     },
-
 
     // fetch hizb
     async fetchHizb(hizbNumber) {
@@ -115,11 +112,11 @@ export default {
           .get(
             `https://api.quran.com/api/v4/quran/verses/indopak?hizb_number=${hizbNumber}`
           )
-          .then(response => {
+          .then((response) => {
             this.verses = response.data.verses;
             this.isLoaded = true;
           })
-          .catch(error => {
+          .catch((error) => {
             this.error = error;
           });
       } catch (error) {
@@ -127,25 +124,23 @@ export default {
       }
     },
 
-
     // fetch new chapter
     changeChapter(chapterNumber) {
-      this.$router.push({name: "chapter", params: {"id": chapterNumber}});
+      this.$router.push({ name: "chapter", params: { id: chapterNumber } });
       this.isLoaded = false;
       this.chapterNumber = chapterNumber;
       this.fetchStartingVerse();
       this.fetchChapter();
     },
 
-
     // fetch new hizb
     changeHizb(hizbNumber) {
       this.isLoaded = false;
       this.fetchStartingVerse();
-      this.fetchHizb(hizbNumber)
-    }
-  }
-};
+      this.fetchHizb(hizbNumber);
+    },
+  },
+});
 </script>
 
 <style>

@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script lang="ts">
 
 import ChapterText from "@/components/partials/ChapterText.vue";
 import ChapterHeader from "@/components/partials/ChapterHeader.vue";

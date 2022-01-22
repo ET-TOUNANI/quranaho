@@ -13,7 +13,7 @@
       </div>
 
       <div
-        class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2 "
+        class="border-2 border-gray-500 dark:border-gray-300 flex-1 rounded-md mx-2"
       ></div>
       <p class="ml-2 text-sm">
         {{ audioTotalDuration + "/" + audioProgressDuration }}
@@ -35,11 +35,12 @@
 import PlayPauseIcon from "@/components/icons/PlayPauseIcon.vue";
 import SoundAdjusterIcon from "@/components/icons/SoundAdjusterIcon.vue";
 import axios from "axios";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {
     PlayPauseIcon,
-    SoundAdjusterIcon
+    SoundAdjusterIcon,
   },
   data() {
     return {
@@ -48,12 +49,12 @@ export default {
       audioHostDomainName: "https://audio.qurancdn.com/",
       isAudioFilesLoaded: false,
       isAudioPlay: false,
-      audio: null,
+      audio: HTMLAudioElement,
       audioFullSource: "",
       audioTotalDuration: "0:00:00",
       audioProgressDuration: "0:00:00",
       soundState: false,
-      playPauseState: false
+      playPauseState: false,
     };
   },
   methods: {
@@ -64,47 +65,51 @@ export default {
           .get(
             `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
           )
-          .then(response => {
+          .then((response) => {
             this.versesAudioFilesList = response.data.audio_files;
             this.isAudioFilesLoaded = true;
           })
-          .catch(error => (this.error = error));
+          .catch((error) => (this.error = error));
       } catch (error) {
         this.error = error;
       }
     },
     // play audio file
-    playAudioFile(audioFileName) {
+    playAudioFile(audioFileName: string): void {
       if (!this.isAudioPlay) {
-        this.audio = new Audio(`${this.audioHostDomainName}/${audioFileName}`);
-        this.audio.play();
+        // this.audio = new Audio(`${this.audioHostDomainName}/${audioFileName}`);
+        // this.audio.play();
         this.isAudioPlay = true;
       }
     },
 
-    async playChapter() {
+    async playChapter(): Promise<void> {
       await this.fetchChapterVerseAudio();
-      // this.audioFullSource = this.audioHostDomainName + this.versesAudioFilesList[0].url;
-      this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
+      // // this.audioFullSource = this.audioHostDomainName + this.versesAudioFilesList[0].url;
+      // this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
 
-      let audioPlayerControl = document.getElementById("audioPlayerControl");
-      audioPlayerControl.addEventListener(
-        "ondurationchange",
-        () => {
-          console.log("change");
-        },
-        false
-      );
+      // let audioPlayerControl: HTMLElement | null =
+      //   document.getElementById("audioPlayerControl");
+      // if (audioPlayerControl) {
+      //   audioPlayerControl.play();
+      // }
+      // audioPlayerControl.addEventListener(
+      //   "ondurationchange",
+      //   (): void => {
+      //     console.log("change");
+      //   },
+      //   false
+      // );
 
-      console.log(this.audioFullSource);
+      // console.log(this.audioFullSource);
 
-      audioPlayerControl.play();
+      // audioPlayerControl.play();
 
-      if (this.isAudioFilesLoaded)
-        this.playAudioFile(this.versesAudioFilesList[0].url);
-    }
-  }
-};
+      // if (this.isAudioFilesLoaded)
+      //   this.playAudioFile(this.versesAudioFilesList[0].url);
+    },
+  },
+});
 </script>
 
 <style></style>

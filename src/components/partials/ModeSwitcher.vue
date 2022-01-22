@@ -1,7 +1,7 @@
 <template>
   <button
     @click="swtichThemeMode"
-    class="dark:bg-gray-800 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0  focus:ring-trasparent"
+    class="dark:bg-gray-800 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0 focus:ring-trasparent"
   >
     <svg
       v-if="appColorTheme === 'light'"
@@ -37,10 +37,11 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   data() {
     return {
-      appColorTheme: "light"
+      appColorTheme: "light" as string,
     };
   },
   methods: {
@@ -53,14 +54,14 @@ export default {
 
       // save mode in local storage
       localStorage.setItem("mode", this.appColorTheme);
-    }
+    },
   },
   created() {
     // bring the value from  stored in app state module
     // from App components, the value brought from local storage
     // this.appColorTheme = this.$store.getters.getappColorTheme;
-  }
-};
+  },
+});
 </script>
 
 <style></style>

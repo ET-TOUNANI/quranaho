@@ -38,21 +38,17 @@ export default defineComponent({
   },
   methods: {
     async fetchChapters() {
-      try {
-        await axios
-          .get("https://api.quran.com/api/v4/chapters?language=en")
-          .then((response) => {
-            this.chapters = response.data.chapters;
-          })
-          .catch((error) => {
-            this.error = error;
-          })
-          .finally(() => {
-            this.loading = false;
-          });
-      } catch (error) {
-        console.log(error);
-      }
+      await axios
+        .get("https://api.quran.com/api/v4/chapters?language=en")
+        .then((response) => {
+          this.chapters = response.data.chapters;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
   created() {

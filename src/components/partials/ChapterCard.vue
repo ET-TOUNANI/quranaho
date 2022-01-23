@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-declare interface Chapter {
+interface Chapter {
   id: number;
   name_arabic: string;
   name_complex: string;
@@ -39,11 +39,8 @@ export default defineComponent({
   },
   methods: {
     goToChapter(): void {
-      this.$router.push({ name: "chapter", params: { id: this.chapter?.id } });
+      this.$router.push({ name: "Chapter", params: { id: this.chapter?.id } });
     },
-  },
-  mounted() {
-    // console.log(this.chapter);
   },
 });
 </script>

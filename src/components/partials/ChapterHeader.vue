@@ -119,7 +119,7 @@
 import axios from "axios";
 import { defineComponent } from "vue";
 
-declare interface Reciter {
+ interface Reciter {
   id: number;
   name: string;
   translated_name: {
@@ -127,7 +127,7 @@ declare interface Reciter {
   };
 }
 
-declare interface Chapter {
+ interface Chapter {
   id: number;
   name_arabic: string;
   name_english: string;

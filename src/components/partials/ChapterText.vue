@@ -8,11 +8,7 @@
         <p
           class="px-5 mb-5 w-full bg-purple-100 rounded border-b-4 border-purple-200 dark:bg-purple-800 dark:border-purple-700"
         >
-          {{
-            translatedWords.chapter +
-            " " +
-            getChapterInfo(Number(verse.verse_key.split(":")[0]))
-          }}
+          {{ translatedWords.chapter + " " + chapterName }}
         </p>
 
         <span v-if="chapterNumber != 9 && chapterNumber != 1">
@@ -44,17 +40,16 @@ import VerseIcon from "@/components/icons/VerseIcon.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 
-declare interface Verse {
+interface Verse {
   id: number;
   verse_key: string;
   text_indopak: string;
 }
 
-declare interface Chapter {
+interface Chapter {
   id: number;
   chapter_key: string;
   name_arabic: string;
-  // verses: Verse[];
 }
 
 export default defineComponent({
@@ -63,14 +58,16 @@ export default defineComponent({
   },
   props: {
     chapterNumber: {
-      type: [Number || String],
-      default: 1,
+      default: 0,
+      type: Number,
     },
     startingVerse: {
-      type: [String, Object],
+      default: "",
+      type: String,
     },
     verses: {
-      type: [Array, Object],
+      default: () => [],
+      type: Array as () => Verse[],
     },
   },
   data() {
@@ -82,35 +79,28 @@ export default defineComponent({
       translatedWords: {
         chapter: "سورة",
       },
+      chapterName: "" as string,
     };
   },
   methods: {
     // Fetch chapter info
     async fetchChaptersInfo() {
-      try {
-        await axios
-          .get(`https://api.quran.com/api/v4/chapters`)
-          .then((response) => {
-            this.chaptersInfoList = response.data.chapters;
-            this.isLoaded = true;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } catch (error) {
-        console.log(error);
-      }
+      await axios
+        .get(`https://api.quran.com/api/v4/chapters`)
+        .then((response) => {
+          this.chaptersInfoList = response.data.chapters;
+          this.isLoaded = true;
+          this.chapterName =
+            this.chaptersInfoList[this.chapterNumber - 1].name_arabic;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     // Find verse number based on verse key
     getVerseNumber(verse: Verse) {
       return Number(verse.verse_key.split(":")[1]);
-    },
-
-    // get chapter info
-    getChapterInfo(chapterNumber: number) {
-      let chapterName = this.chaptersInfoList[chapterNumber - 1].name_arabic;
-      return chapterName;
     },
   },
 

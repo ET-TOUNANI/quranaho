@@ -44,7 +44,6 @@ export default defineComponent({
   },
   data() {
     return {
-      error: "",
       versesAudioFilesList: [],
       audioHostDomainName: "https://audio.qurancdn.com/",
       isAudioFilesLoaded: false,
@@ -60,19 +59,15 @@ export default defineComponent({
   methods: {
     // load verse audio
     async fetchChapterVerseAudio() {
-      try {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
-          )
-          .then((response) => {
-            this.versesAudioFilesList = response.data.audio_files;
-            this.isAudioFilesLoaded = true;
-          })
-          .catch((error) => (this.error = error));
-      } catch (error) {
-        this.error = error;
-      }
+      await axios
+        .get(
+          `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
+        )
+        .then((response) => {
+          this.versesAudioFilesList = response.data.audio_files;
+          this.isAudioFilesLoaded = true;
+        })
+        .catch((error) => console.log(error));
     },
     // play audio file
     playAudioFile(audioFileName: string): void {

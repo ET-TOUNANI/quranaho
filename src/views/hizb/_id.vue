@@ -23,109 +23,89 @@
 </template>
 
 <script lang="ts">
-
 import ChapterText from "@/components/partials/ChapterText.vue";
 import ChapterHeader from "@/components/partials/ChapterHeader.vue";
 import AudioPlayer from "@/components/partials/AudioPlayer.vue";
-
 import axios from "axios";
-export default {
+import { defineComponent } from "vue";
+
+ interface Verse {
+  number: number;
+  text: string;
+}
+
+export default defineComponent({
   data() {
     return {
-       translatedWords: {
-        loading: "جار التحميل"
+      translatedWords: {
+        loading: "جار التحميل",
       },
-      error: {
-        type: String,
-        default: ""
-      },
-      verses: {},
-      startingVerse: {
-        type: [String]
-      },
-      chapterNumber: {
-        type: [Number],
-        default: 0
-      },
-      isLoaded: {
-        type: Boolean,
-        default: false,
-      },
-      hizbNumber: {
-        type: [Number],
-
-      }
+      verses: [] as Verse[],
+      startingVerse: "" as string,
+      chapterNumber: 0 as number,
+      isLoaded: false as boolean,
+      hizbNumber: 0 as number,
     };
   },
   components: {
     ChapterText,
     ChapterHeader,
-    AudioPlayer
+    AudioPlayer,
   },
   created() {
-    this.hizbNumber = this.$route.params.id;
+    this.hizbNumber = Number(this.$route.params.id);
     this.fetchStartingVerse();
     this.fetchHizb(this.hizbNumber);
   },
 
   methods: {
     // load the first verse for the rest of chapters
-    async fetchStartingVerse() {
+    async fetchStartingVerse(): Promise<void> {
       let id = 1;
-      try {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`
-          )
-          .then(response => {
-            this.startingVerse = response.data.verses[0].text_indopak;
-          })
-          .catch(error => {
-            this.error = error;
-          });
-      } catch (error) {
-        this.error = error;
-      }
+      await axios
+        .get(
+          `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`
+        )
+        .then((response) => {
+          this.startingVerse = response.data.verses[0].text_indopak;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     // fetch hizb
-    async fetchHizb(hizbNumber) {
-      try {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/quran/verses/indopak?hizb_number=${hizbNumber}`
-          )
-          .then(response => {
-            this.verses = response.data.verses;
-            this.isLoaded = true;
-          })
-          .catch(error => {
-            this.error = error;
-          });
-      } catch (error) {
-        this.error = error;
-      }
+    async fetchHizb(hizbNumber: number): Promise<void> {
+      await axios
+        .get(
+          `https://api.quran.com/api/v4/quran/verses/indopak?hizb_number=${hizbNumber}`
+        )
+        .then((response) => {
+          this.verses = response.data.verses;
+          this.isLoaded = true;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
-
     // fetch new chapter
-    changeChapter(chapterNumber) {
-      this.$router.push({name: "chapter", params: {"id": chapterNumber}});
+    changeChapter(chapterNumber: number): void {
+      this.$router.push({ name: "Chapter", params: { id: chapterNumber } });
       this.isLoaded = false;
       this.chapterNumber = chapterNumber;
       this.fetchStartingVerse();
-      this.fetchChapter();
+      // this.fetchChapter();
     },
 
-
     // fetch new hizb
-    changeHizb(hizbNumber) {
+    changeHizb(hizbNumber: number): void {
       this.isLoaded = false;
       this.fetchStartingVerse();
-      this.fetchHizb(hizbNumber)
-    }
-  }
-};
+      this.fetchHizb(hizbNumber);
+    },
+  },
+});
 </script>
 
 <style>

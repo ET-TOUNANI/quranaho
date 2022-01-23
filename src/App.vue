@@ -90,7 +90,7 @@ export default {
 //           this.isLoaded = true;
 //         })
 //         .catch((error) => {
-//           this.error = error;
+//           console.log(error);
 //         });
 //     },
 //   },

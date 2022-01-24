@@ -18,15 +18,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.home {
-  background-image: linear-gradient(
-    180deg,
-    #2f6ed3 5%,
-    #5095e4 20%,
-    #5095e4 60%,
-    #2f6ed3 95%
-  );
-}
-</style>

@@ -1,48 +1,26 @@
 <template>
   <svg
-  class="h-full"
-    version="1.1"
-    id="Capa_1"
+    class="h-8 w-8"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0px"
-    y="0px"
-    viewBox="0 0 511.999 511.999"
-    style="enable-background:new 0 0 511.999 511.999;"
-    xml:space="preserve"
+    aria-hidden="true"
+    role="img"
+    width="32"
+    height="32"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 24 24"
   >
-    <g>
-      <g>
-        <path
-          d="M508.874,478.708L360.142,329.976c28.21-34.827,45.191-79.103,45.191-127.309c0-111.75-90.917-202.667-202.667-202.667
-                          S0,90.917,0,202.667s90.917,202.667,202.667,202.667c48.206,0,92.482-16.982,127.309-45.191l148.732,148.732
-                          c4.167,4.165,10.919,4.165,15.086,0l15.081-15.082C513.04,489.627,513.04,482.873,508.874,478.708z M202.667,362.667
-                          c-88.229,0-160-71.771-160-160s71.771-160,160-160s160,71.771,160,160S290.896,362.667,202.667,362.667z"
-        />
-      </g>
-    </g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
-    <g></g>
+    <path
+      d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0c.41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z"
+      fill="currentColor"
+    ></path>
   </svg>
 </template>
 
 <script lang="ts">
-export default {
-  name: "SearchIcon"
-};
-</script>
+import { defineComponent } from "vue";
 
-<style></style>
+export default defineComponent({
+  name: "SearchIcon",
+});
+</script>

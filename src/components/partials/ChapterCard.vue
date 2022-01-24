@@ -1,5 +1,7 @@
 <template>
-  <div class="card">
+  <div
+    class="border-2 dark:border-white dark:border-opacity-40 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
+  >
     <router-link :to="{ name: 'Chapter', params: { id: chapter?.id } }">
       <div
         class="w-full inline-flex items-center justify-start px-3 sm:px-6 py-2 sm:py-4"
@@ -25,7 +27,7 @@
         </div>
 
         <div
-          class="rounded-lg text-sm font-semibold bg-green-100 dark:bg-green-700 dark:text-gray-300 flex flex-wrap justify-center items-center text-gray-500 h-8 w-8"
+          class="rounded-lg text-sm font-semibold bg-green-400 dark:bg-green-700 text-gray-600 dark:text-gray-300 flex flex-wrap justify-center items-center h-8 w-8"
         >
           {{ chapter?.id }}
         </div>

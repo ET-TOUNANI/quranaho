@@ -8,14 +8,14 @@
       <div class="mx-2 flex-1">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
+          class="py-2 w-full bg-gray-900 dark:text-gray-100 text-gray-600 rounded"
         >
           {{ chapter.name_arabic }}
         </button>
         <ul
           id="scroll-style-1"
           v-if="showChaptersDropdown"
-          class="c--scrollbar absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base overflow-auto sm:text-sm"
+          class="c--scrollbar absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -40,7 +40,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
+          class="py-2 w-full dark:text-gray-100 text-gray-600 rounded"
         >
           <p class="text-md font-normal ml-3 block truncate">
             <span>
@@ -54,7 +54,7 @@
         <ul
           id="scroll-style-1"
           v-if="showHizbsDropdown"
-          class="c--scrollbar absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base overflow-auto sm:text-sm"
+          class="absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -84,14 +84,14 @@
       <div class="mx-2 flex-1">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
+          class="py-2 w-full dark:text-gray-100 text-gray-600 rounded"
         >
           {{ reciter }}
         </button>
         <ul
           id="scroll-style-1"
           v-if="showRecitersDropdown"
-          class="c--scrollbar absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded-sm py-1 text-base overflow-auto sm:text-sm"
+          class="absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -228,13 +228,3 @@ export default defineComponent({
   },
 });
 </script>
-<style>
-.card {
-  background: rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 3px 8px 0 rgb(31 38 135 / 37%) !important;
-  backdrop-filter: blur(4px) !important;
-  -webkit-backdrop-filter: blur(4px) !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-}
-</style>

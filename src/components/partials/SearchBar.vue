@@ -4,16 +4,14 @@
       <div>
         <div class="mt-1 relative rounded-md shadow-sm">
           <div
-            class="absolute inset-y-0 left-0 py-4 ml-3 rounded-full cursor-pointer"
+            class="absolute inset-y-0 left-0 grid place-content-center pt-1 ml-3 rounded-full cursor-pointer text-gray-600"
           >
-            <!-- <span class="sm:text-sm cursor-pointer h-full "> -->
             <search-icon />
-            <!-- </span> -->
           </div>
           <input
             @input="search"
             type="text"
-            class="block w-full text-md text-gray-900 dark:bg-gray-900 border border-gray-300 dark:border-gray-500 rounded-full shadow-sm pr-3 pl-10 py-3 focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+            class="block w-full text-md text-gray-900 dark:bg-gray-900 border border-gray-300 dark:border-gray-500 rounded-full shadow-sm pr-3 pl-10 py-3 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400"
             :placeholder="translatedWords.search + '...'"
           />
         </div>

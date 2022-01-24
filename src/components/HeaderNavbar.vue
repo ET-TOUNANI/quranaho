@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="shadow">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-4">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -50,11 +50,11 @@
         >
           <div class="flex-shrink-0 flex items-center">
             <div class="flex items-center">
-              <img
+              <!-- <img
                 class="block h-8 w-auto"
                 src="../assets/images/quran-logo.png"
                 alt="Workflow"
-              />
+              /> -->
               <router-link to="/">
                 <h1
                   class="arabic text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
@@ -128,13 +128,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-nav {
-  background: rgba(255, 255, 255, 0.65);
-  box-shadow: 0 0px 20px 0 rgb(31 38 135 / 37%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-</style>

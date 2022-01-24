@@ -4,10 +4,7 @@
   >
     <span v-for="verse in verses" :key="verse.id">
       <span v-if="getVerseNumber(verse) == 1">
-        <!-- chapter starting devider -->
-        <p
-          class="px-5 mb-5 w-full bg-purple-100 rounded border-b-4 border-purple-200 dark:bg-purple-800 dark:border-purple-700"
-        >
+        <p class="card px-5 mb-5 w-full">
           {{ translatedWords.chapter + " " + chapterName }}
         </p>
 
@@ -17,14 +14,12 @@
           </span>
         </span>
       </span>
-      <!-- verse indopack text -->
       <span v-for="(word, index) in verse.text_indopak.split(' ')" :key="index"
         >{{ word + " " }}
       </span>
-      <!-- verse number icon -->
       <span class="relative">
         <span
-          class="pt-4 text-gray-800 absolute w-full h-full text-lg text-center font-bold"
+          class="pt-3 text-gray-800 absolute w-full h-full text-lg text-center font-bold"
           >{{ getVerseNumber(verse) }}</span
         >
         <span class="chapter__verseNumberIcon">
@@ -115,5 +110,13 @@ export default defineComponent({
 .chapter__verseNumberIcon svg {
   height: 40px;
   display: inline-block;
+}
+.card {
+  background: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 3px 8px 0 rgb(31 38 135 / 37%) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
 }
 </style>

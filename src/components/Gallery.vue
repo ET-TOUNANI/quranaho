@@ -2,7 +2,7 @@
   <div class="gallery pb-2">
     <div
       v-if="!loading"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3 md:gap-3"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-3 md:gap-3 mx-2 sm:mx-0"
     >
       <chapter-card
         v-for="chapter in chapters"

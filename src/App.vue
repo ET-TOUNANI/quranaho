@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-100 dark:bg-gray-800 min-h-screen">
+  <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
     <header-navbar />
     <router-view />
     <Footer v-if="false" />
@@ -100,5 +100,3 @@ export default {
 //   },
 // };
 </script>
-
-<style></style>

@@ -1,11 +1,8 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav class="shadow bg-gray-100 dark:bg-gray-800 ">
-    <div class="max-w-7xl  mx-auto px-2 sm:px-6 lg:px-4">
+  <nav>
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-4">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          <!-- Mobile menu button-->
-
           <button
             @click="isHidden = !isHidden"
             type="button"
@@ -60,38 +57,37 @@
               />
               <router-link to="/">
                 <h1
-                  class="arabic text-white text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
+                  class="arabic text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
                 >
                   {{ translatedWords.title }}
                 </h1>
               </router-link>
             </div>
           </div>
-          <div class="hidden  sm:block sm:ml-6">
+          <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <router-link
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
                 to="/"
                 >{{ translatedWords.chapters }}</router-link
               >
 
               <router-link
                 to="/about"
-                class="text-gray-600 px-2 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 dark:text-gray-200 hover:bg-purple-100 dark:hover:bg-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium"
                 >{{ translatedWords.about }}</router-link
               >
             </div>
           </div>
         </div>
         <div
-          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0"
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0"
         >
           <mode-switcher />
         </div>
       </div>
     </div>
 
-    <!-- Mobile menu, show/hide based on menu state. -->
     <div
       class="sm:hidden bg-gray-200 dark:bg-gray-900"
       :class="isHidden ? 'hidden' : ''"
@@ -99,13 +95,13 @@
       <div class="px-2 pt-2 pb-3 flex flex-col">
         <router-link
           to="/"
-          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100 px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.chapters }}</router-link
         >
 
         <router-link
           to="/about"
-          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100  px-3 py-2 rounded-md text-sm font-medium"
+          class="text-gray-600 hover:bg-purple-200 dark:hover:bg-purple-600 dark:text-gray-100 px-3 py-2 rounded-md text-sm font-medium"
           >{{ translatedWords.about }}</router-link
         >
       </div>
@@ -115,21 +111,30 @@
 
 <script lang="ts">
 import ModeSwitcher from "@/components/partials/ModeSwitcher.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   data() {
     return {
       isHidden: true,
       translatedWords: {
         chapters: "جميع السور",
         about: "معلومات عنا",
-        title: "القرآن الكريم"
-      }
+        title: "القرآن الكريم",
+      },
     };
   },
   components: {
-    ModeSwitcher
-  }
-};
+    ModeSwitcher,
+  },
+});
 </script>
 
-<style></style>
+<style>
+nav {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0px 20px 0 rgb(31 38 135 / 37%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+</style>

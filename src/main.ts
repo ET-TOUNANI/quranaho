@@ -6,6 +6,6 @@ import "./assets/styles/index.css";
 // import { createMetaManager } from "vue-meta";
 
 createApp(App)
-//   .use(createMetaManager())
+  //   .use(createMetaManager())
   .use(router)
   .mount("#app");

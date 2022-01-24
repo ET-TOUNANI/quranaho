@@ -8,7 +8,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2 w-full bg-gray-100 dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
         >
           {{ chapter.name_arabic }}
         </button>
@@ -40,7 +40,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="py-2 w-full bg-gray-100 dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
         >
           <p class="text-md font-normal ml-3 block truncate">
             <span>
@@ -84,7 +84,7 @@
       <div class="mx-2 flex-1">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="py-2 w-full bg-gray-100 dark:bg-purple-800 dark:text-gray-100 dark:border-purple-700 border-2 focus:outline-none focus:border focus:border-purple-800 border-gray-200 rounded-md shadow-sm text-gray-900 rounded-sm"
+          class="card py-2 w-full dark:text-gray-100 text-gray-600 rounded-sm"
         >
           {{ reciter }}
         </button>
@@ -119,7 +119,7 @@
 import axios from "axios";
 import { defineComponent } from "vue";
 
- interface Reciter {
+interface Reciter {
   id: number;
   name: string;
   translated_name: {
@@ -127,7 +127,7 @@ import { defineComponent } from "vue";
   };
 }
 
- interface Chapter {
+interface Chapter {
   id: number;
   name_arabic: string;
   name_english: string;
@@ -228,5 +228,13 @@ export default defineComponent({
   },
 });
 </script>
-
-<style></style>
+<style>
+.card {
+  background: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 3px 8px 0 rgb(31 38 135 / 37%) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home xs:px-6 sm:px-2">
+  <div class="xs:px-6 sm:px-2">
     <div class="container mx-auto">
       <home-header />
       <gallery />
@@ -18,3 +18,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.home {
+  background-image: linear-gradient(
+    180deg,
+    #2f6ed3 5%,
+    #5095e4 20%,
+    #5095e4 60%,
+    #2f6ed3 95%
+  );
+}
+</style>

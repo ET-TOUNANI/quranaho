@@ -11,14 +11,14 @@ import HeaderNavbar from "@/components/HeaderNavbar.vue";
 import Footer from "@/components/partials/Footer.vue";
 import axios from "axios";
 import { ref, onBeforeMount } from "vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   setup() {
     let error = ref("");
     let isLoaded = ref(false);
 
     function setupAppColorTheme() {
-      console.log("setupAppColorTheme");
       // get the theme from local storage
       let appColorTheme = localStorage.getItem("mode");
       if (appColorTheme === null) appColorTheme = "light";
@@ -36,10 +36,6 @@ export default {
         .catch((error) => {
           error.value = error;
         });
-
-      // call the function to setup the app color theme
-      setupAppColorTheme();
-
       return { error, isLoaded };
     }
 
@@ -53,7 +49,7 @@ export default {
     HeaderNavbar,
     Footer,
   },
-};
+});
 
 // export default {
 //   components: {

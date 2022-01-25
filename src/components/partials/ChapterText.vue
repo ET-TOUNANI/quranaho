@@ -1,10 +1,10 @@
 <template>
   <div
-    class="chapter__container quran dark:text-white text-black text-4xl leading-normal text-justify pt-4 min-h-screen lg:max-w-xl mx-auto pb-16"
+    class="quran dark:text-white text-black text-4xl leading-normal text-justify pt-4 min-h-screen lg:max-w-xl mx-auto pb-16"
   >
     <span v-for="verse in verses" :key="verse.id">
       <span v-if="getVerseNumber(verse) == 1">
-        <p class="card px-5 mb-5 w-full">
+        <p class="px-5 mb-5 w-full border-2 dark:border-opacity-40 darktext-gray-300 border-green-500 dark:border-green-500 bg-gray-100 dark:bg-gray-900  rounded">
           {{ translatedWords.chapter + " " + chapterName }}
         </p>
 

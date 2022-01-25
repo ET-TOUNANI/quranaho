@@ -8,14 +8,14 @@
       <div class="mx-2 flex-1">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2 w-full bg-gray-900 dark:text-gray-100 text-gray-600 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-400 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
         >
           {{ chapter.name_arabic }}
         </button>
         <ul
-          id="scroll-style-1"
+          id="list"
           v-if="showChaptersDropdown"
-          class="c--scrollbar absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
+          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -24,14 +24,14 @@
           <li
             v-for="chapter in chaptersList"
             :key="chapter.id"
-            class="text-gray-900 hover:bg-gray-100 select-none py-1 relative cursor-pointer border-b px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeChapter(chapter)"
           >
-            <span class="text-md my-1 font-normal ml-3 block truncate">
-              {{ chapter.name_arabic }}
-            </span>
+            <span class="text-md my-1 font-normal ml-3 block truncate">{{
+              chapter.name_arabic
+            }}</span>
           </li>
         </ul>
       </div>
@@ -40,21 +40,17 @@
       <div class="mx-2 flex-1">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="py-2 w-full dark:text-gray-100 text-gray-600 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
         >
           <p class="text-md font-normal ml-3 block truncate">
-            <span>
-              {{ translatedWords.hizb }}
-            </span>
-            <span class="mx-1">
-              {{ hizbNumber }}
-            </span>
+            <span>{{ translatedWords.hizb }}</span>
+            <span class="mx-1">{{ hizbNumber }}</span>
           </p>
         </button>
         <ul
-          id="scroll-style-1"
+          id="list"
           v-if="showHizbsDropdown"
-          class="absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
+          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -63,18 +59,14 @@
           <li
             v-for="hizb in 60"
             :key="hizb"
-            class="text-gray-900 hover:bg-gray-100 select-none py-1 relative cursor-pointer border-b px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeHizb(hizb)"
           >
             <p class="text-md my-1 font-normal ml-3 block truncate">
-              <span>
-                {{ translatedWords.hizb }}
-              </span>
-              <span class="mx-1">
-                {{ hizb }}
-              </span>
+              <span>{{ translatedWords.hizb }}</span>
+              <span class="mx-1">{{ hizb }}</span>
             </p>
           </li>
         </ul>
@@ -84,14 +76,14 @@
       <div class="mx-2 flex-1">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="py-2 w-full dark:text-gray-100 text-gray-600 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
         >
           {{ reciter }}
         </button>
         <ul
-          id="scroll-style-1"
+          id="list"
           v-if="showRecitersDropdown"
-          class="absolute max-w-xs w-48 z-10 bg-white dark:bg-gray-300 mt-1 shadow-lg max-h-96 rounded py-1 text-base overflow-auto sm:text-sm"
+          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -100,14 +92,14 @@
           <li
             v-for="reciter in reciters"
             :key="reciter.id"
-            class="text-gray-900 hover:bg-gray-100 select-none py-1 relative cursor-pointer border-b px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeReciter(reciter.id)"
           >
-            <span class="text-md my-1 font-normal ml-3 block truncate">
-              {{ reciter.translated_name.name }}
-            </span>
+            <span class="text-md my-1 font-normal ml-3 block truncate">{{
+              reciter.translated_name.name
+            }}</span>
           </li>
         </ul>
       </div>
@@ -228,3 +220,29 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+#list {
+  scrollbar-width: auto;
+  scrollbar-color: #e6e6e6 #ffffff;
+  direction: ltr;
+}
+
+/* Chrome, Edge, and Safari */
+#list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#list::-webkit-scrollbar-track {
+  background: #34d399;
+  border-radius: 10px;
+}
+
+#list::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+</style>

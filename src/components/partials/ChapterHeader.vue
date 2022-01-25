@@ -1,21 +1,21 @@
 <template>
   <div
     v-if="chaptersLoaded && recitersLoaded"
-    class="bg-gray-100 dark:bg-gray-800 border-t border-b dark:border-gray-700"
+    class="px-2 sm:px-0"
   >
-    <div class="container mx-auto lg:max-w-xl py-4 flex">
+    <div class="container sm:mx-auto lg:max-w-xl py-4 sm:flex">
       <!-- Chapters dropdown  -->
-      <div class="mx-2 flex-1">
+      <div class="flex-1 mt-2 sm:pt-0">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-400 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-400 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
           {{ chapter.name_arabic }}
         </button>
         <ul
           id="list"
           v-if="showChaptersDropdown"
-          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -24,7 +24,7 @@
           <li
             v-for="chapter in chaptersList"
             :key="chapter.id"
-            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeChapter(chapter)"
@@ -37,10 +37,10 @@
       </div>
 
       <!-- Hizbs dropdown -->
-      <div class="mx-2 flex-1">
+      <div class="sm:mx-4 flex-1 mt-2 sm:pt-0">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
           <p class="text-md font-normal ml-3 block truncate">
             <span>{{ translatedWords.hizb }}</span>
@@ -50,7 +50,7 @@
         <ul
           id="list"
           v-if="showHizbsDropdown"
-          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -59,7 +59,7 @@
           <li
             v-for="hizb in 60"
             :key="hizb"
-            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeHizb(hizb)"
@@ -73,17 +73,17 @@
       </div>
 
       <!-- Reciters dropdown  -->
-      <div class="mx-2 flex-1">
+      <div class="flex-1 mt-2 sm:pt-0">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
           {{ reciter }}
         </button>
         <ul
           id="list"
           v-if="showRecitersDropdown"
-          class="text-right absolute w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 mt-1 shadow-xl max-h-96 border-2 rounded py-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -92,7 +92,7 @@
           <li
             v-for="reciter in reciters"
             :key="reciter.id"
-            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 py-1 relative cursor-pointer border-b-2 px-2"
+            class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
             @click="changeReciter(reciter.id)"

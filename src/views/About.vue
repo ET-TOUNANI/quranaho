@@ -2,7 +2,7 @@
   <div class="about h-screen">
     <div class="container mx-auto">
       <img
-        class="mx-auto rounded-lg h-44 my-8"
+        class="mx-auto rounded-md h-44 my-8"
         src="https://unsplash.com/photos/kZ1zThg6G40/download?force=true&w=640"
         alt=""
       />

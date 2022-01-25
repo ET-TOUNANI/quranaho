@@ -1,7 +1,8 @@
 <template>
   <ul
+    id="list"
     v-if="searchResults.length > 0"
-    class="absolute text-gray-900 bg-white z-10 mt-1 w-full shadow-lg max-h-96 rounded-sm py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+    class="absolute text-gray-900 bg-white z-10 mt-1 w-full shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"
     aria-labelledby="listbox-label"
@@ -32,7 +33,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
- interface SearchResult {
+interface SearchResult {
   verse_id: number;
   text: string;
 }
@@ -40,7 +41,8 @@ import { defineComponent } from "vue";
 export default defineComponent({
   props: {
     searchResults: {
-      type: Object as () => SearchResult[],
+      type: Array as () => SearchResult[],
+      default: () => [],
     },
   },
 });

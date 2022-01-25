@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-2 dark:border-white dark:border-opacity-40 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-900 delay-75 rounded"
+    class="border-2 dark:border-white dark:border-opacity-40 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
   >
     <router-link :to="{ name: 'Chapter', params: { id: chapter?.id } }">
       <div
@@ -11,6 +11,10 @@
         >
           <p class="arabic text-gray-700 dark:text-gray-300">
             {{ chapter?.name_arabic }}
+            <span class="pr-2 opacity-30 text-sm font-bold">
+              <span> {{ "(" + chapter?.verses_count }}</span
+              ><span class="mx-0.5">{{ verse + ")" }}</span>
+            </span>
           </p>
         </div>
         <div class="flex flex-col pl-4">
@@ -19,15 +23,16 @@
           >
             {{ chapter?.translated_name.name }}
           </p>
+          <p></p>
           <p
-            class="text-sm text-left text-gray-600 font-normal dark:text-gray-400"
+            class="text-sm text-left text-gray-500 font-normal dark:text-gray-400"
           >
             {{ chapter?.name_complex }}
           </p>
         </div>
 
         <div
-          class="rounded-lg text-sm font-semibold bg-green-400 dark:bg-green-700 text-gray-600 dark:text-gray-300 flex flex-wrap justify-center items-center h-8 w-8"
+          class="rounded-md text-sm font-semibold bg-green-400 dark:bg-green-400 text-gray-500 dark:text-gray-800 flex flex-wrap justify-center items-center h-8 w-8"
         >
           {{ chapter?.id }}
         </div>
@@ -46,6 +51,7 @@ interface Chapter {
   translated_name: {
     name: string;
   };
+  verses_count: number;
 }
 
 export default defineComponent({
@@ -53,6 +59,11 @@ export default defineComponent({
     chapter: {
       type: Object as () => Chapter,
     },
+  },
+  data: () => {
+    return {
+      verse: "آية",
+    };
   },
   methods: {
     goToChapter(): void {

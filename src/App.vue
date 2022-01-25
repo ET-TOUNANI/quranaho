@@ -2,13 +2,13 @@
   <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
     <header-navbar />
     <router-view />
-    <Footer v-if="false" />
+    <AppFooter />
   </div>
 </template>
 
 <script lang="ts">
 import HeaderNavbar from "@/components/HeaderNavbar.vue";
-import Footer from "@/components/partials/Footer.vue";
+import AppFooter from "@/components/partials/AppFooter.vue";
 import axios from "axios";
 import { ref, onBeforeMount } from "vue";
 import { defineComponent } from "vue";
@@ -47,14 +47,14 @@ export default defineComponent({
 
   components: {
     HeaderNavbar,
-    Footer,
+    AppFooter,
   },
 });
 
 // export default {
 //   components: {
 //     HeaderNavbar,
-//     Footer,
+//     AppFooter,
 //   },
 //   // useMeta({
 //   //   title: "القرآن الكريم",
@@ -96,3 +96,14 @@ export default defineComponent({
 //   },
 // };
 </script>
+
+<style>
+.home {
+  background-image: linear-gradient(
+    to right bottom,
+    #0d1d3a,
+    #1a2f55 52%,
+    #365a83
+  );
+}
+</style>

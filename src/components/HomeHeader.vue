@@ -1,7 +1,7 @@
 <template>
   <div class="header text-white pt-8">
     <img
-      class="mx-auto rounded-lg h-44"
+      class="mx-auto rounded-md h-44"
       src="https://unsplash.com/photos/kZ1zThg6G40/download?force=true&w=640"
       alt=""
     />

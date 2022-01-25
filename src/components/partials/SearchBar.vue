@@ -11,7 +11,7 @@
           <input
             @input="search"
             type="text"
-            class="block w-full text-md text-gray-900 dark:bg-gray-900 border border-gray-300 dark:border-gray-500 rounded-full shadow-sm pr-3 pl-10 py-3 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400"
+            class="block w-full text-md text-gray-900 dark:bg-gray-700 border border-gray-300 dark:border-gray-500 rounded-full shadow-sm pr-3 pl-10 py-3 focus:outline-none focus:ring-1 focus:ring-green-400 dark:text-gray-100 focus:border-green-400"
             :placeholder="translatedWords.search + '...'"
           />
         </div>

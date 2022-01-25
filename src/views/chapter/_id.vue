@@ -1,5 +1,5 @@
 <template>
-  <div class="chapter text-white dark:bg-gray-800">
+  <div class="chapter">
     <chapter-header
       v-on:changeChapter="changeChapter"
       v-on:changeHizb="changeHizb"

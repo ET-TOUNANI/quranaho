@@ -2,7 +2,8 @@
   <ul
     id="list"
     v-if="searchResults.length > 0"
-    class="absolute text-gray-900 bg-white z-10 mt-1 w-full shadow-lg max-h-96 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+    style="max-height: calc(100vh - 200px);"
+    class="absolute text-gray-900 bg-white dark:bg-gray-700 dark:text-gray-100 z-50 mt-1 w-full shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"
     aria-labelledby="listbox-label"
@@ -12,21 +13,23 @@
       <li
         v-for="(result, index) in searchResults"
         :key="index"
-        class="select-none relative py-1 border-b px-2 hover:bg-gray-100"
+        class="select-none p-1 relative border-b-2 border-opacity-10 hover:bg-gray-100 dark:hover:bg-gray-800"
         id="listbox-option-0"
         role="option"
       >
-        <div class="items-center">
-          <span class="rounded-md bg-green-300 p-1 text-xs">{{
-            result.verse_id
-          }}</span>
-          <span class="quran text-2xl my-1 font-normal ml-3 block truncate">
+        <div>
+          <span
+            class="rounded-sm bg-green-400 dark:bg-green-400 text-gray-500 dark:text-gray-800 p-1 text-xs"
+            >{{ result.verse_id }}</span
+          >
+          <span class="quran pt-1 text-2xl font-normal ml-3 block truncate">
             {{ result.text }}
           </span>
           <!-- <p>{{ result.translations[0].text }}</p> -->
         </div>
       </li>
     </router-link>
+    <slot name="load-button" />
   </ul>
 </template>
 

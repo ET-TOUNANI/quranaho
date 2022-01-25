@@ -5,19 +5,53 @@
       src="https://unsplash.com/photos/kZ1zThg6G40/download?force=true&w=640"
       alt=""
     />
+    <search-bar @close-modal="showSearchModal = false" v-if="showSearchModal" />
 
-    <search-bar />
+    <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto my-8">
+      <div class="mt-1 relative mx-2 sm:mx-0">
+        <div :class="showSearchModal ? 'opacity-20' : 'opacity-100'">
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <div
+              class="absolute inset-y-0 left-0 grid place-content-center pt-1 ml-3 rounded-full cursor-pointer text-gray-600"
+            >
+              <search-icon />
+            </div>
+            <input
+              @focus="showSearchModal = true"
+              type="text"
+              class="block w-full text-md text-gray-900 dark:bg-gray-700 border border-gray-300 dark:border-gray-500 rounded-full shadow-sm pr-3 pl-10 py-3 focus:outline-none"
+              :placeholder="translatedWords.search + '...'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import SearchBar from "@/components/partials/SearchBar.vue";
+import { defineComponent } from "@vue/runtime-core";
+import SearchIcon from "./icons/SearchIcon.vue";
 
-export default {
+export default defineComponent({
+  data: () => {
+    return {
+      translatedWords: {
+        search: "بحث",
+      },
+      showSearchModal: false,
+    };
+  },
+
+  mounted() {
+    this.showSearchModal = true;
+  },
   components: {
     SearchBar,
+    SearchIcon,
   },
-};
+});
 </script>
 
 <style></style>

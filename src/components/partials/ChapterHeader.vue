@@ -240,29 +240,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-#list {
-  scrollbar-width: auto;
-  scrollbar-color: #e6e6e6 #ffffff;
-  direction: ltr;
-}
-
-/* Chrome, Edge, and Safari */
-#list::-webkit-scrollbar {
-  width: 6px;
-}
-
-#list::-webkit-scrollbar-track {
-  background: #34d399;
-  border-radius: 10px;
-}
-
-#list::-webkit-scrollbar-thumb {
-  background-color: #e6e6e6;
-  border-radius: 10px;
-  border: 3px solid #ffffff;
-}
-</style>

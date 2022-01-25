@@ -1,8 +1,8 @@
 <template>
-  <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto my-8">
-    <div class="mt-1 relative">
-      <div>
-        <div class="mt-1 relative rounded-md shadow-sm">
+  <div class="fixed left-0 top-0 w-full h-screen z-40">
+    <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto my-8 z-50">
+      <div class="mt-1 relative mx-2 sm:mx-0">
+        <div class="my-1 relative rounded-md shadow-sm z-50">
           <div
             class="absolute inset-y-0 left-0 grid place-content-center pt-1 ml-3 rounded-full cursor-pointer text-gray-600"
           >
@@ -15,13 +15,26 @@
             :placeholder="translatedWords.search + '...'"
           />
         </div>
-      </div>
 
-      <search-dropdown
-        :searchResults="searchResults"
-        v-if="searchResultsLoaded"
-      />
+        <search-dropdown
+          :searchResults="searchResults"
+          v-if="searchResultsLoaded"
+        >
+          <template #load-button>
+            <button
+              @click="loadMore()"
+              class="w-full py-3 hover:text-green-400"
+            >
+              {{ `${loadMoreMessage} (${totalResults})` }}
+            </button>
+          </template></search-dropdown
+        >
+      </div>
     </div>
+    <div
+      @click.self="closeSearchModal()"
+      class="fixed left-0 top-0 h-screen w-full backdrop-filter backdrop-blur-sm overflow-hidden z-40 backst"
+    ></div>
   </div>
 </template>
 
@@ -37,27 +50,47 @@ export default defineComponent({
       translatedWords: {
         search: "بحث",
       },
-      searchResults: {},
+      loadMoreMessage: "تحميل المزيد",
+      searchResults: [],
       searchResultsLoaded: false,
+      currentPage: 0,
+      searchQuery: "",
+      totalResults: 0,
+      totalPages: 0,
     };
   },
+
   components: {
     SearchDropdown,
     SearchIcon,
   },
+
+  mounted() {
+    this.searchQuery = "god";
+    this.loadResults();
+  },
+
   methods: {
-    // search chapter or verse
-    async search(event: Event) {
-      let searchQuery = (event.target as HTMLInputElement).value;
-      let searchPage = 0;
-      if (searchQuery.length > 0) {
+    search(event: Event) {
+      // disable body scrolling when search is open
+      document.body.style.overflow = "hidden";
+      this.searchQuery = (event.target as HTMLInputElement).value;
+      this.loadResults();
+    },
+
+    async loadResults() {
+      if (this.searchQuery.length > 0) {
         await axios
           .get(
-            `https://api.quran.com/api/v4/search?q=${searchQuery}&size=20&page=${searchPage}&language=en`
+            `https://api.quran.com/api/v4/search?q=${this.searchQuery}&size=20&page=${this.currentPage}&language=en`
           )
           .then((response) => {
-            this.searchResults = response.data.search.results;
+            this.searchResults = this.searchResults.concat(
+              response.data.search.results
+            );
             this.searchResultsLoaded = true;
+            this.totalResults = response.data.search.total_results;
+            this.totalPages = response.data.search.total_pages;
           })
           .catch((error) => {
             console.log(error);
@@ -65,6 +98,16 @@ export default defineComponent({
       } else {
         this.searchResults = [];
       }
+    },
+
+    loadMore(): void {
+      this.currentPage++;
+      this.loadResults();
+    },
+
+    // emit search results to parent component
+    closeSearchModal(): void {
+      this.$emit("close-modal");
     },
   },
 });

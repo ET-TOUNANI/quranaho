@@ -1,21 +1,18 @@
 <template>
-  <div
-    v-if="chaptersLoaded && recitersLoaded"
-    class="px-2 sm:px-0"
-  >
+  <div v-if="chaptersLoaded && recitersLoaded" class="px-2 sm:px-0">
     <div class="container sm:mx-auto lg:max-w-xl py-4 sm:flex">
       <!-- Chapters dropdown  -->
       <div class="flex-1 mt-2 sm:pt-0">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-400 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
           {{ chapter.name_arabic }}
         </button>
         <ul
           id="list"
           v-if="showChaptersDropdown"
-          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-50 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -50,7 +47,7 @@
         <ul
           id="list"
           v-if="showHizbsDropdown"
-          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-50 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -83,7 +80,7 @@
         <ul
           id="list"
           v-if="showRecitersDropdown"
-          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-10 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
+          class="text-right absolute w-full left-0 sm:left-auto sm:w-60 z-50 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 mt-1 shadow-xl max-h-96 border-2 rounded-mdpy-1 overflow-auto"
           tabindex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
@@ -104,6 +101,11 @@
         </ul>
       </div>
     </div>
+    <div
+      class="fixed h-screen w-full left-0 top-0 z-40"
+      v-if="isAnyMenuOpen"
+      @click="closeAllMenus()"
+    ></div>
   </div>
 </template>
 
@@ -149,6 +151,17 @@ export default defineComponent({
       hizbNumber: 1 as number,
     };
   },
+
+  computed: {
+    isAnyMenuOpen(): boolean {
+      return (
+        this.showChaptersDropdown ||
+        this.showHizbsDropdown ||
+        this.showRecitersDropdown
+      );
+    },
+  },
+
   methods: {
     // Fetch list of available reciters for audio playing
     async fetchReciters() {
@@ -211,6 +224,13 @@ export default defineComponent({
       } catch (error) {
         console.log(error);
       }
+    },
+
+    // close all menus
+    closeAllMenus() {
+      this.showChaptersDropdown = false;
+      this.showHizbsDropdown = false;
+      this.showRecitersDropdown = false;
     },
   },
 

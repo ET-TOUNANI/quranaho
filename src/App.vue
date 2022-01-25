@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="bg-gray-50 dark:bg-gray-800 min-h-screen">
-    <header-navbar />
+    <AppNavbar />
     <router-view />
     <AppFooter />
   </div>
 </template>
 
 <script lang="ts">
-import HeaderNavbar from "@/components/HeaderNavbar.vue";
+import AppNavbar from "@/components/AppNavbar.vue";
 import AppFooter from "@/components/partials/AppFooter.vue";
 import axios from "axios";
 import { ref, onBeforeMount } from "vue";
@@ -21,7 +21,7 @@ export default defineComponent({
     function setupAppColorTheme() {
       // get the theme from local storage
       let appColorTheme = localStorage.getItem("mode");
-      if (appColorTheme === null) appColorTheme = "light";
+      if (appColorTheme === null) appColorTheme = "dark";
       document.documentElement.setAttribute("class", appColorTheme);
       // this.$store.commit("setappColorTheme", appColorTheme);
     }
@@ -46,7 +46,7 @@ export default defineComponent({
   },
 
   components: {
-    HeaderNavbar,
+    AppNavbar,
     AppFooter,
   },
 });

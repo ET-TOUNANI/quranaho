@@ -50,11 +50,11 @@
         >
           <div class="flex-shrink-0 flex items-center">
             <div class="flex items-center">
-              <!-- <img
+              <img
                 class="block h-8 w-auto"
                 src="../assets/images/quran-logo.png"
                 alt="Workflow"
-              /> -->
+              />
               <router-link to="/">
                 <h1
                   class="arabic text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"

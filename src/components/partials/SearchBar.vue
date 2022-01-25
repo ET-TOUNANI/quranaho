@@ -1,8 +1,20 @@
 <template>
-  <div class="fixed left-0 top-0 w-full h-screen z-40">
-    <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto my-8 z-50">
-      <div class="mt-1 relative mx-2 sm:mx-0">
-        <div class="my-1 relative rounded-md shadow-sm z-50">
+  <div
+    tabindex="0"
+    class="fixed left-0 top-0 w-full h-screen z-40"
+    @keydown.esc="closeSearchModal()"
+  >
+    <div class="sm:max-w-full md:max-w-xl lg:max-w-2xl mx-auto z-50">
+      <div class="relative mx-2 sm:mx-0 z-50">
+        <div class="w-full flex justify-center py-4">
+          <button
+            class="bg-gray-500 bg-opacity-10 rounded-full text-gray-700 dark:text-gray-400"
+            @click="closeSearchModal()"
+          >
+            <close-icon />
+          </button>
+        </div>
+        <div class="my-1 relative rounded-md shadow-sm">
           <div
             class="absolute inset-y-0 left-0 grid place-content-center pt-1 ml-3 rounded-full cursor-pointer text-gray-600"
           >
@@ -25,7 +37,7 @@
               @click="loadMore()"
               class="w-full py-3 hover:text-green-400"
             >
-              {{ `${loadMoreMessage} (${totalResults})` }}
+              {{ `${loadMoreMessage} (${remainingResults})` }}
             </button>
           </template></search-dropdown
         >
@@ -33,7 +45,7 @@
     </div>
     <div
       @click.self="closeSearchModal()"
-      class="fixed left-0 top-0 h-screen w-full backdrop-filter backdrop-blur-sm overflow-hidden z-40 backst"
+      class="fixed left-0 top-0 h-screen w-full backdrop-filter backdrop-blur-sm bg-black bg-opacity-20 overflow-hidden z-40"
     ></div>
   </div>
 </template>
@@ -43,6 +55,7 @@ import SearchDropdown from "@/components/partials/SearchDropdown.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
+import CloseIcon from "../icons/CloseIcon.vue";
 
 export default defineComponent({
   data() {
@@ -55,19 +68,21 @@ export default defineComponent({
       searchResultsLoaded: false,
       currentPage: 0,
       searchQuery: "",
-      totalResults: 0,
       totalPages: 0,
+      remainingResults: 0,
     };
   },
 
   components: {
     SearchDropdown,
     SearchIcon,
+    CloseIcon,
   },
 
   mounted() {
     this.searchQuery = "god";
     this.loadResults();
+    document.body.style.overflow = "hidden";
   },
 
   methods: {
@@ -89,7 +104,8 @@ export default defineComponent({
               response.data.search.results
             );
             this.searchResultsLoaded = true;
-            this.totalResults = response.data.search.total_results;
+            this.remainingResults =
+              response.data.search.total_results - this.searchResults.length;
             this.totalPages = response.data.search.total_pages;
           })
           .catch((error) => {
@@ -107,6 +123,7 @@ export default defineComponent({
 
     // emit search results to parent component
     closeSearchModal(): void {
+      document.body.style.overflow = "initial";
       this.$emit("close-modal");
     },
   },

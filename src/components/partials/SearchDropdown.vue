@@ -2,7 +2,7 @@
   <ul
     id="list"
     v-if="searchResults.length > 0"
-    style="max-height: calc(100vh - 200px);"
+    style="max-height: calc(100vh - 200px)"
     class="absolute text-gray-900 bg-white dark:bg-gray-700 dark:text-gray-100 z-50 mt-1 w-full shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
     tabindex="-1"
     role="listbox"

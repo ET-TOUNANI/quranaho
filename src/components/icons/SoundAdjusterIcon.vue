@@ -1,7 +1,7 @@
 <template>
   <div class="cursor-pointer">
     <svg
-      v-if="soundState"
+      v-if="isMute"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -43,8 +43,13 @@
 
 <script lang="ts">
 export default {
-  props: ["soundState"],
-  name: "SoundAdjusterIcon"
+  props: {
+    isMute: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  name: "SoundAdjusterIcon",
 };
 </script>
 

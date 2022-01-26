@@ -5,11 +5,8 @@
     <div
       class="container px-2 text-gray-800 dark:text-gray-100 mx-auto h-full py-2 flex items-center justify-end"
     >
-      <div class="text-sm text-gray-50 bg-red-800 opacity-80 px-2 mx-1 rounded">
-        audio not available for the moment
-      </div>
-      <div @click="soundState = !soundState">
-        <sound-adjuster-icon :soundState="soundState" />
+      <div @click="isMute = !isMute">
+        <sound-adjuster-icon :isMute="isMute" />
       </div>
 
       <div
@@ -18,14 +15,8 @@
       <p class="ml-2 text-sm">
         {{ audioTotalDuration + "/" + audioProgressDuration }}
       </p>
-      <div @click="playPauseState = !playPauseState">
+      <div @click="play()">
         <play-pause-icon :playPauseState="playPauseState" />
-      </div>
-      <div class="hidden">
-        <audio ref="player" id="audioPlayerControl">
-          <source :src="audioFullSource" type="audio/mpeg" />
-          Your browser does not support the audio tag.
-        </audio>
       </div>
     </div>
   </div>
@@ -36,6 +27,7 @@ import PlayPauseIcon from "@/components/icons/PlayPauseIcon.vue";
 import SoundAdjusterIcon from "@/components/icons/SoundAdjusterIcon.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
+import { Howl, Howler } from "howler";
 
 export default defineComponent({
   components: {
@@ -46,62 +38,48 @@ export default defineComponent({
     return {
       versesAudioFilesList: [],
       audioHostDomainName: "https://audio.qurancdn.com/",
-      isAudioFilesLoaded: false,
-      isAudioPlay: false,
-      audio: HTMLAudioElement,
-      audioFullSource: "",
       audioTotalDuration: "0:00:00",
       audioProgressDuration: "0:00:00",
-      soundState: false,
+      isMute: false,
       playPauseState: false,
+      currentAudioIndex: 0,
     };
   },
+
+  mounted() {
+    this.fetchChapterVerseAudio();
+  },
+
   methods: {
     // load verse audio
     async fetchChapterVerseAudio() {
       await axios
         .get(
-          `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=2`
+          `https://api.quran.com/api/v4/quran/recitations/1?chapter_number=1`
         )
         .then((response) => {
           this.versesAudioFilesList = response.data.audio_files;
-          this.isAudioFilesLoaded = true;
+          console.log(this.versesAudioFilesList);
         })
         .catch((error) => console.log(error));
     },
-    // play audio file
-    playAudioFile(audioFileName: string): void {
-      if (!this.isAudioPlay) {
-        // this.audio = new Audio(`${this.audioHostDomainName}/${audioFileName}`);
-        // this.audio.play();
-        this.isAudioPlay = true;
-      }
-    },
 
-    async playChapter(): Promise<void> {
-      await this.fetchChapterVerseAudio();
-      // // this.audioFullSource = this.audioHostDomainName + this.versesAudioFilesList[0].url;
-      // this.audioFullSource = "https://audio.qurancdn.com/Sudais/mp3/002002.mp3";
-
-      // let audioPlayerControl: HTMLElement | null =
-      //   document.getElementById("audioPlayerControl");
-      // if (audioPlayerControl) {
-      //   audioPlayerControl.play();
-      // }
-      // audioPlayerControl.addEventListener(
-      //   "ondurationchange",
-      //   (): void => {
-      //     console.log("change");
-      //   },
-      //   false
-      // );
-
-      // console.log(this.audioFullSource);
-
-      // audioPlayerControl.play();
-
-      // if (this.isAudioFilesLoaded)
-      //   this.playAudioFile(this.versesAudioFilesList[0].url);
+    play() {
+      let a = `${this.audioHostDomainName}${
+        this.versesAudioFilesList[this.currentAudioIndex]["url"]
+      }`;
+      var sound = new Howl({
+        src: [a],
+        autoplay: false,
+        loop: false,
+        onend: () => {
+          this.currentAudioIndex++;
+          if (this.currentAudioIndex < this.versesAudioFilesList.length) {
+            this.play();
+          }
+        },
+      });
+      sound.play();
     },
   },
 });

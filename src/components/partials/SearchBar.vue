@@ -28,6 +28,13 @@
           />
         </div>
 
+        <div
+          v-if="searchResults.length === 0 && searchQuery !== ''"
+          class="text-center"
+        >
+          {{ nothingFoundMessage }}
+        </div>
+
         <search-dropdown
           :searchResults="searchResults"
           v-if="searchResultsLoaded"
@@ -64,6 +71,7 @@ export default defineComponent({
         search: "بحث",
       },
       loadMoreMessage: "تحميل المزيد",
+      nothingFoundMessage: "لم يتم العثور على أي نتائج",
       searchResults: [],
       searchResultsLoaded: false,
       currentPage: 0,
@@ -79,12 +87,6 @@ export default defineComponent({
     CloseIcon,
   },
 
-  mounted() {
-    this.searchQuery = "god";
-    this.loadResults();
-    document.body.style.overflow = "hidden";
-  },
-
   methods: {
     search(event: Event) {
       // disable body scrolling when search is open
@@ -95,30 +97,32 @@ export default defineComponent({
 
     async loadResults() {
       if (this.searchQuery.length > 0) {
-        await axios
-          .get(
-            `https://api.quran.com/api/v4/search?q=${this.searchQuery}&size=20&page=${this.currentPage}&language=en`
-          )
-          .then((response) => {
-            this.searchResults = this.searchResults.concat(
-              response.data.search.results
-            );
-            this.searchResultsLoaded = true;
-            this.remainingResults =
-              response.data.search.total_results - this.searchResults.length;
-            this.totalPages = response.data.search.total_pages;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        setTimeout(async () => {
+          await axios
+            .get(
+              `https://api.quran.com/api/v4/search?q=${this.searchQuery}&size=20&page=${this.currentPage}&language=en`
+            )
+            .then((response) => {
+              this.searchResults = this.searchResults.concat(
+                response.data.search.results
+              );
+              this.searchResultsLoaded = true;
+              this.remainingResults =
+                response.data.search.total_results - this.searchResults.length;
+              this.totalPages = response.data.search.total_pages;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }, 100);
       } else {
         this.searchResults = [];
       }
     },
 
-    loadMore(): void {
+    async loadMore() {
+      await this.loadResults();
       this.currentPage++;
-      this.loadResults();
     },
 
     // emit search results to parent component

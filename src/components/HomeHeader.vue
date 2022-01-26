@@ -42,7 +42,7 @@ export default defineComponent({
       translatedWords: {
         search: "بحث",
       },
-      show: false,
+      show: false as boolean,
     };
   },
 
@@ -53,9 +53,7 @@ export default defineComponent({
       }, 100);
     },
   },
-  mounted() {
-    this.show = true;
-  },
+
   components: {
     SearchBar,
     SearchIcon,

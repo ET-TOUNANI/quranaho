@@ -1,5 +1,5 @@
 <template>
-  <div v-if="chaptersLoaded && recitersLoaded" class="px-2 sm:px-0">
+  <div v-if="chaptersLoaded && recitersLoaded" class="px-2 sm:px-0 w-full">
     <div class="container sm:mx-auto lg:max-w-xl py-4 sm:flex">
       <!-- Chapters dropdown  -->
       <div class="flex-1 mt-2 sm:pt-0">

@@ -78,6 +78,7 @@ export default defineComponent({
       searchQuery: "",
       totalPages: 0,
       remainingResults: 0,
+      isInputActive: false,
     };
   },
 
@@ -92,10 +93,12 @@ export default defineComponent({
       // disable body scrolling when search is open
       document.body.style.overflow = "hidden";
       this.searchQuery = (event.target as HTMLInputElement).value;
+      this.isInputActive = true;
       this.loadResults();
     },
 
     async loadResults() {
+      if (this.isInputActive) this.searchResults = [];
       if (this.searchQuery.length > 0) {
         setTimeout(async () => {
           await axios
@@ -114,13 +117,12 @@ export default defineComponent({
             .catch((error) => {
               console.log(error);
             });
-        }, 100);
-      } else {
-        this.searchResults = [];
+        }, 50);
       }
     },
 
     async loadMore() {
+      this.isInputActive = false;
       await this.loadResults();
       this.currentPage++;
     },

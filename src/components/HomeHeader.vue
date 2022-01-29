@@ -1,10 +1,39 @@
 <template>
-  <div class="header text-white pt-8">
-    <img
+  <div class="header pt-8">
+    <!-- <img
       class="mx-auto rounded-md h-44"
-      src="https://unsplash.com/photos/kZ1zThg6G40/download?force=true&w=640"
+      src="../assets/star-light.png"
       alt=""
-    />
+    /> -->
+    <div class="w-full grid place-content-center">
+      <svg
+        class="h-44"
+        viewBox="0 0 512 512"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_7_12)">
+          <path
+            id="outer-circle"
+            d="M218 37.5L180.5 75H127.8H75V127.7V180.5L37.3 218.2L-0.5 256L37.3 293.8L75 331.5V384.3V437H127.7H180.5L218.2 474.7L256 512.5L293.8 474.7L331.5 437H384.3H437V384.3V331.5L474.7 293.8L512.5 256L474.7 218.2L437 180.5V127.7V75H384.2H331.5L294 37.5C273.4 16.9 256.3 -7.63685e-06 256 -7.63685e-06C255.7 -7.63685e-06 238.6 16.9 218 37.5ZM285 90.5L313.5 119H353.2H393V158.7V198.5L421.7 227.2L450.5 256L421.7 284.8L393 313.5V353.3V393H353.3H313.5L284.8 421.7L256 450.5L227.2 421.7L198.5 393H158.7H119V353.3V313.5L90.3 284.8L61.5 256L90.3 227.2L119 198.5V158.7V119H158.8H198.5L227 90.5C242.7 74.8 255.7 62 256 62C256.3 62 269.3 74.8 285 90.5Z"
+            fill="#34D399"
+            fill-opacity="0.92"
+          />
+          <path
+            id="inner-circle"
+            d="M233.5 127L211.5 149H180.3H149V180.2V211.5L126.8 233.7L104.5 256L126.8 278.3L149 300.5V331.8V363H180.2H211.5L233.7 385.2L256 407.5L278.3 385.2L300.5 363H331.8H363V331.8V300.5L385.2 278.3L407.5 256L385.2 233.7L363 211.5V180.2V149H331.7H300.5L278.5 127C266.4 114.9 256.3 105 256 105C255.7 105 245.6 114.9 233.5 127Z"
+            fill="#34D399"
+            fill-opacity="0.92"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_7_12">
+            <rect width="512" height="512" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+
     <transition name="slide-fade">
       <search-bar @close-modal="show = false" v-if="show" />
     </transition>
@@ -72,5 +101,26 @@ export default defineComponent({
 .slide-fade-leave-to {
   transform: translateY(100vh);
   opacity: 0;
+}
+
+#outer-circle {
+  animation: rotation 40s infinite;
+  animation-timing-function: linear;
+  transform-origin: center;
+}
+
+#inner-circle {
+  animation: rotation 50s infinite;
+  animation-timing-function: linear;
+  transform-origin: center;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

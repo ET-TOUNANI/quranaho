@@ -1,22 +1,17 @@
 <template>
-  <div class="chapter">
+  <div class="chapter w-full">
     <chapter-header
       v-on:changeChapter="changeChapter"
       v-on:changeHizb="changeHizb"
     />
     <div class="container mx-auto">
-      <div
-        v-if="!isLoaded"
-        class="text-gray-800 dark:text-gray-100 absolute w-40 inset-1/2"
-      >
-        {{ translatedWords.loading + "..." }}
-      </div>
       <chapter-text
-        v-else
+        v-if="isLoaded"
         :chapterNumber="chapterNumber"
         :startingVerse="startingVerse"
         :verses="verses"
       />
+      <Loading v-else />
     </div>
   </div>
 </template>
@@ -27,6 +22,7 @@ import ChapterHeader from "@/components/partials/ChapterHeader.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 
+import Loading from "@/components/Loading.vue";
 interface Verse {
   number: number;
   text: string;
@@ -36,9 +32,6 @@ interface Verse {
 export default defineComponent({
   data() {
     return {
-      translatedWords: {
-        loading: "جار التحميل",
-      },
       verses: [] as Verse[],
       startingVerse: "" as string,
       chapterNumber: 0 as number,
@@ -49,6 +42,7 @@ export default defineComponent({
   components: {
     ChapterText,
     ChapterHeader,
+    Loading,
   },
   mounted() {
     this.chapterNumber = Number(this.$route.params.id);
@@ -65,7 +59,9 @@ export default defineComponent({
         )
         .then((response) => {
           this.verses = response.data.verses;
-          this.isLoaded = true;
+          setTimeout(() => {
+            this.isLoaded = true;
+          }, 1000);
         })
         .catch((error) => {
           console.log(error);
@@ -96,7 +92,9 @@ export default defineComponent({
         )
         .then((response) => {
           this.verses = response.data.verses;
-          this.isLoaded = true;
+          setTimeout(() => {
+            this.isLoaded = true;
+          }, 1000);
         })
         .catch((error) => {
           console.log(error);

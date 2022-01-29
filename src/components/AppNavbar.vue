@@ -46,13 +46,13 @@
           </button>
         </div>
         <div
-          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start "
         >
           <div class="flex-shrink-0 flex items-center">
             <div class="flex items-center">
               <img
-                class="block h-8 w-auto"
-                src="../assets/images/quran-logo.png"
+                class="block h-8 w-auto pl-4 sm:pl-0"
+                src="../assets/logo.png"
                 alt="Workflow"
               />
               <router-link to="/">

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="quran dark:text-white text-black text-4xl leading-normal text-justify pt-4 min-h-screen lg:max-w-xl sm:mx-auto pb-16 mx-3"
+    id="text"
+    class="quran dark:text-white text-black leading-normal text-justify pt-4 min-h-screen lg:max-w-xl sm:mx-auto pb-16 mx-3"
   >
     <span v-for="verse in verses" :key="verse.id">
       <span v-if="getVerseNumber(verse) == 1">
@@ -120,5 +121,46 @@ export default defineComponent({
   -webkit-backdrop-filter: blur(4px) !important;
   border-radius: 8px !important;
   border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+#text,
+#text * {
+  overflow-y: hidden;
+}
+
+/* define break points for text size from mobile to tv */
+@media (min-width: 320px) {
+  #text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #text {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #text {
+    font-size: 2.8rem;
+  }
+}
+
+
+/* // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 }
 </style>

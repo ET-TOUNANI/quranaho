@@ -10,9 +10,8 @@
         :chapter="chapter"
       />
     </div>
-    <div class="w-full h-full grid place-items-center" v-else>
-      {{ translatedWords._loading }}...
-    </div>
+
+    <Loading v-else />
   </div>
 </template>
 
@@ -20,17 +19,16 @@
 import axios from "axios";
 import ChapterCard from "./partials/ChapterCard.vue";
 import { defineComponent } from "vue";
+import Loading from "@/components/Loading.vue";
 
 export default defineComponent({
   name: "Gallery",
   components: {
     ChapterCard,
+    Loading,
   },
   data() {
     return {
-      translatedWords: {
-        _loading: "جار التحميل",
-      },
       loading: true,
       error: "",
       chapters: {},

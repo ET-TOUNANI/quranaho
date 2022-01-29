@@ -84,6 +84,16 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0"
         >
           <mode-switcher />
+          <a
+            class="hidden sm:block"
+            href="https://ko-fi.com/K3K690OEW"
+            target="_blank"
+            ><img
+              height="40"
+              style="border: 0px; height: 32px; padding: 0px 10px"
+              src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3"
+              alt="Buy Me a Coffee at ko-fi.com"
+          /></a>
         </div>
       </div>
     </div>

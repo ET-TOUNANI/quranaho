@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "howler": "^2.2.3",
+    "pinia": "^2.0.9",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-property-decorator": "^9.1.2",

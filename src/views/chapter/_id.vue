@@ -18,14 +18,12 @@
         :verses="verses"
       />
     </div>
-    <audio-player />
   </div>
 </template>
 
 <script lang="ts">
 import ChapterText from "@/components/partials/ChapterText.vue";
 import ChapterHeader from "@/components/partials/ChapterHeader.vue";
-import AudioPlayer from "@/components/partials/AudioPlayer.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 
@@ -51,7 +49,6 @@ export default defineComponent({
   components: {
     ChapterText,
     ChapterHeader,
-    AudioPlayer,
   },
   mounted() {
     this.chapterNumber = Number(this.$route.params.id);

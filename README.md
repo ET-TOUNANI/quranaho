@@ -35,6 +35,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-### api
+### api usd
 
 https://quran.api-docs.io/v4/
+
+
+## Screenshot
+
+![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/desktop.jpg)
+
+![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/mobile.jpg)   

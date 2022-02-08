@@ -28,7 +28,6 @@
         </defs>
       </svg>
     </div>
-
     <transition name="slide-fade">
       <search-bar @close-modal="show = false" v-if="show" />
     </transition>

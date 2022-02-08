@@ -1,4 +1,13 @@
-# quran-karim
+# quranaho
+disclaimer: The name of the website is qouted from a verse of the Quran.
+
+
+## Screenshot
+
+![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/desktop.jpg)
+
+![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/mobile.jpg)   
+
 
 ## Project setup
 ```
@@ -39,9 +48,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 https://quran.api-docs.io/v4/
 
-
-## Screenshot
-
-![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/desktop.jpg)
-
-![](https://raw.githubusercontent.com/adibemohamed/quranaho/master/presses/mobile.jpg)   

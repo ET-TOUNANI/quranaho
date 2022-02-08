@@ -1,5 +1,5 @@
 # quranaho
-disclaimer: The name of the website is qouted from a verse of the Quran.
+disclaimer: The name of the website is taken from a verse of the Quran.
 
 
 ## Screenshot

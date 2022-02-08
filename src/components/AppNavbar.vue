@@ -46,7 +46,7 @@
           </button>
         </div>
         <div
-          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start "
+          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex-shrink-0 flex items-center">
             <div class="flex items-center">
@@ -56,11 +56,7 @@
                 alt="Workflow"
               />
               <router-link to="/">
-                <h1
-                  class="arabic text-gray-600 px-2 dark:text-gray-200 text-2xl font-black"
-                >
-                  {{ translatedWords.title }}
-                </h1>
+                <img src="@/assets/quran-karem.png" alt="quran-karem" class="h-10" />
               </router-link>
             </div>
           </div>

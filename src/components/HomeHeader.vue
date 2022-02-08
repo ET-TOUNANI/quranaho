@@ -1,10 +1,5 @@
 <template>
   <div class="header pt-8">
-    <!-- <img
-      class="mx-auto rounded-md h-44"
-      src="../assets/star-light.png"
-      alt=""
-    /> -->
     <div class="w-full grid place-content-center">
       <svg
         class="h-44"

@@ -116,7 +116,7 @@
 </template>
 
 <script lang="ts">
-import ModeSwitcher from "@/components/partials/ModeSwitcher.vue";
+import ModeSwitcher from "@/components/ModeSwitcher.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
   data() {

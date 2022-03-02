@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import ChapterText from "@/components/partials/ChapterText.vue";
-import ChapterHeader from "@/components/partials/ChapterHeader.vue";
+import ChapterText from "@/components/ChapterText.vue";
+import ChapterHeader from "@/components/ChapterHeader.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 

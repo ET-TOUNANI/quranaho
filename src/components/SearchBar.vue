@@ -58,11 +58,11 @@
 </template>
 
 <script lang="ts">
-import SearchDropdown from "@/components/partials/SearchDropdown.vue";
+import SearchDropdown from "@/components/SearchDropdown.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
-import CloseIcon from "../icons/CloseIcon.vue";
+import CloseIcon from "./icons/CloseIcon.vue";
 
 export default defineComponent({
   data() {

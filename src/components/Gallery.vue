@@ -13,7 +13,7 @@
 
 <script lang="ts">
   import axios from 'axios'
-  import ChapterCard from './partials/ChapterCard.vue'
+  import ChapterCard from './ChapterCard.vue'
   import { defineComponent } from 'vue'
   import Loading from '@/components/Loading.vue'
 

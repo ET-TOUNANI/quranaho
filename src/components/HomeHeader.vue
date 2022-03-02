@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import SearchBar from "@/components/partials/SearchBar.vue";
+import SearchBar from "@/components/SearchBar.vue";
 import { defineComponent } from "@vue/runtime-core";
 import SearchIcon from "./icons/SearchIcon.vue";
 

@@ -56,8 +56,12 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <nav-bar-item :to="'/'"> {{ translatedWords.chapters }} </nav-bar-item>
-              <nav-bar-item :to="'/about'"> {{ translatedWords.about }} </nav-bar-item>
+              <nav-bar-item :to="'/'">
+                <nav-bar-item-label> {{ translatedWords.chapters }} </nav-bar-item-label>
+              </nav-bar-item>
+              <nav-bar-item :to="'/about'">
+                <nav-bar-item-label> {{ translatedWords.about }} </nav-bar-item-label>
+              </nav-bar-item>
             </div>
           </div>
         </div>
@@ -78,8 +82,12 @@
 
     <div class="sm:hidden bg-gray-200 dark:bg-gray-700" :class="isHidden ? 'hidden' : ''">
       <div class="px-2 pt-2 pb-3 flex flex-col">
-        <nav-bar-item :to="'/'"> {{ translatedWords.chapters }} </nav-bar-item>
-        <nav-bar-item :to="'/about'"> {{ translatedWords.about }} </nav-bar-item>
+        <nav-bar-item :to="'/'">
+          <nav-bar-item-label> {{ translatedWords.chapters }} </nav-bar-item-label>
+        </nav-bar-item>
+        <nav-bar-item :to="'/about'">
+          <nav-bar-item-label> {{ translatedWords.about }} </nav-bar-item-label>
+        </nav-bar-item>
       </div>
     </div>
   </nav>
@@ -89,6 +97,7 @@
   import ModeSwitcher from '@/components/ModeSwitcher.vue'
   import { defineComponent } from 'vue'
   import NavBarItem from './NavBarItem.vue'
+  import NavBarItemLabel from './NavBarItemLabel.vue'
   export default defineComponent({
     data() {
       return {
@@ -102,7 +111,8 @@
     },
     components: {
       ModeSwitcher,
-      NavBarItem
+      NavBarItem,
+      NavBarItemLabel
     }
   })
 </script>

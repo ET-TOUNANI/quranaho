@@ -45,16 +45,10 @@
             </svg>
           </button>
         </div>
-        <div
-          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
-        >
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0 flex items-center">
             <div class="flex items-center">
-              <img
-                class="block h-8 w-auto pl-4 sm:pl-0"
-                src="../assets/logo.png"
-                alt="Workflow"
-              />
+              <img class="block h-8 w-auto pl-4 sm:pl-0" src="../assets/logo.png" alt="Workflow" />
               <router-link to="/">
                 <img src="@/assets/quran-karem.png" alt="quran-karem" class="h-10" />
               </router-link>
@@ -62,17 +56,8 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <router-link
-                class="text-gray-600 dark:text-gray-200 hover:text-green-400 dark:hover:text-green-400 hover:border-green-400 border-b-2 border-opacity-0 hover:border-opacity-100 mx-6 py-2 delay-100"
-                to="/"
-                >{{ translatedWords.chapters }}</router-link
-              >
-
-              <router-link
-                to="/about"
-                class="text-gray-600 dark:text-gray-200 hover:text-green-400 dark:hover:text-green-400 hover:border-green-400 border-b-2 border-opacity-0 hover:border-opacity-100 mx-6 py-2 delay-100"
-                >{{ translatedWords.about }}</router-link
-              >
+              <nav-bar-item :to="'/'"> {{ translatedWords.chapters }} </nav-bar-item>
+              <nav-bar-item :to="'/about'"> {{ translatedWords.about }} </nav-bar-item>
             </div>
           </div>
         </div>
@@ -80,10 +65,7 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0"
         >
           <mode-switcher />
-          <a
-            class="hidden sm:block"
-            href="https://ko-fi.com/K3K690OEW"
-            target="_blank"
+          <a class="hidden sm:block" href="https://ko-fi.com/K3K690OEW" target="_blank"
             ><img
               height="40"
               style="border: 0px; height: 32px; padding: 0px 10px"
@@ -94,43 +76,33 @@
       </div>
     </div>
 
-    <div
-      class="sm:hidden bg-gray-200 dark:bg-gray-700"
-      :class="isHidden ? 'hidden' : ''"
-    >
+    <div class="sm:hidden bg-gray-200 dark:bg-gray-700" :class="isHidden ? 'hidden' : ''">
       <div class="px-2 pt-2 pb-3 flex flex-col">
-        <router-link
-          to="/"
-          class="text-gray-600 dark:text-gray-200 hover:text-green-400 dark:hover:text-green-400 hover:border-green-400 border-b-2 border-opacity-0 hover:border-opacity-100 px-3 py-2"
-          >{{ translatedWords.chapters }}</router-link
-        >
-
-        <router-link
-          to="/about"
-          class="text-gray-600 dark:text-gray-200 hover:text-green-400 dark:hover:text-green-400 hover:border-green-400 border-b-2 border-opacity-0 hover:border-opacity-100 px-3 py-2"
-          >{{ translatedWords.about }}</router-link
-        >
+        <nav-bar-item :to="'/'"> {{ translatedWords.chapters }} </nav-bar-item>
+        <nav-bar-item :to="'/about'"> {{ translatedWords.about }} </nav-bar-item>
       </div>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
-import ModeSwitcher from "@/components/ModeSwitcher.vue";
-import { defineComponent } from "vue";
-export default defineComponent({
-  data() {
-    return {
-      isHidden: true,
-      translatedWords: {
-        chapters: "جميع السور",
-        about: "معلومات عنا",
-        title: "القرآن الكريم",
-      },
-    };
-  },
-  components: {
-    ModeSwitcher,
-  },
-});
+  import ModeSwitcher from '@/components/ModeSwitcher.vue'
+  import { defineComponent } from 'vue'
+  import NavBarItem from './NavBarItem.vue'
+  export default defineComponent({
+    data() {
+      return {
+        isHidden: true,
+        translatedWords: {
+          chapters: 'جميع السور',
+          about: 'معلومات عنا',
+          title: 'القرآن الكريم'
+        }
+      }
+    },
+    components: {
+      ModeSwitcher,
+      NavBarItem
+    }
+  })
 </script>

@@ -1,10 +1,34 @@
+<script lang="ts">
+  import { defineComponent, ref } from 'vue'
+  export default defineComponent({
+    setup() {
+      const appTheme = ref('light' as string)
+
+      function toggle() {
+        // switch modes
+        appTheme.value = appTheme.value === 'dark' ? 'light' : 'dark'
+
+        // change class in html tag
+        document.documentElement.setAttribute('class', appTheme.value)
+
+        // save mode in local storage
+        localStorage.setItem('mode', appTheme.value)
+      }
+      return {
+        appTheme,
+        toggle
+      }
+    }
+  })
+</script>
+
 <template>
   <button
-    @click="swtichThemeMode"
+    @click="toggle"
     class="dark:bg-gray-700 p-1 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-0 focus:ring-trasparent"
   >
     <svg
-      v-if="appColorTheme === 'light'"
+      v-if="appTheme === 'light'"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -19,7 +43,7 @@
       ></path>
     </svg>
     <svg
-      v-if="appColorTheme === 'dark'"
+      v-if="appTheme === 'dark'"
       class="w-6 h-6"
       fill="none"
       stroke="currentColor"
@@ -35,33 +59,3 @@
     </svg>
   </button>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  data() {
-    return {
-      appColorTheme: "light" as string,
-    };
-  },
-  methods: {
-    swtichThemeMode() {
-      // switch modes
-      this.appColorTheme = this.appColorTheme === "dark" ? "light" : "dark";
-
-      // change class in html tag
-      document.documentElement.setAttribute("class", this.appColorTheme);
-
-      // save mode in local storage
-      localStorage.setItem("mode", this.appColorTheme);
-    },
-  },
-  created() {
-    // bring the value from  stored in app state module
-    // from App components, the value brought from local storage
-    // this.appColorTheme = this.$store.getters.getappColorTheme;
-  },
-});
-</script>
-
-<style></style>

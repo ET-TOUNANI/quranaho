@@ -18,7 +18,8 @@ export const useQuranStore = defineStore({
     reciters: [],
     currentChapter: {},
     chaptersLoaded: false,
-    recitersLoaded: false
+    recitersLoaded: false,
+    currentChapterName: ''
   }),
   getters: {},
 
@@ -79,7 +80,8 @@ export const useQuranStore = defineStore({
       await axios.get('https://api.quran.com/api/v4/chapters?language=en').then((response) => {
         this.chaptersList = response.data.chapters
         this.chaptersLoaded = true
-        this.currentChapter = this.chaptersList[0]
+        ;(this.currentChapter = this.chaptersList[0]),
+          (this.currentChapterName = response.data.chapters[this.chapterNumber - 1].name_arabic)
       })
     }
   }

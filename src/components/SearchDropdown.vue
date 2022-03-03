@@ -1,3 +1,16 @@
+<script lang="ts">
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    props: {
+      searchResults: {
+        type: Array,
+        required: true
+      }
+    }
+  })
+</script>
+
 <template>
   <ul
     id="list"
@@ -32,21 +45,3 @@
     <slot name="load-button" />
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-interface SearchResult {
-  verse_id: number;
-  text: string;
-}
-
-export default defineComponent({
-  props: {
-    searchResults: {
-      type: Array as () => SearchResult[],
-      default: () => [],
-    },
-  },
-});
-</script>

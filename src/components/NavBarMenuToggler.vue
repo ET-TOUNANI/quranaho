@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-  const props = defineProps({
+  props: {
     isHidden: {
-      type: Boolean,
-      default: true
-    }
-  })
+        type: Boolean,
+        default: true
+      }
+  }
 </script>
 
 <template>

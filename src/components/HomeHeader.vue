@@ -1,3 +1,41 @@
+<script lang="ts">
+  import SearchBar from '@/components/SearchBar.vue'
+  import { defineComponent, ref, onMounted } from '@vue/runtime-core'
+  import SearchIcon from './icons/SearchIcon.vue'
+
+  export default defineComponent({
+    components: {
+      SearchBar,
+      SearchIcon
+    },
+
+    setup() {
+      const searchTranslation = 'بحث'
+      const show = ref(false)
+
+      function showSearchModal() {
+        setTimeout(() => {
+          show.value = true
+        }, 100)
+      }
+
+      onMounted(() => {
+        window.addEventListener('keydown', (e) => {
+          if (e.keyCode == 75 || e.ctrlKey) {
+            showSearchModal()
+          }
+        })
+      })
+
+      return {
+        searchTranslation,
+        show,
+        showSearchModal
+      }
+    }
+  })
+</script>
+
 <template>
   <div class="header pt-8">
     <div class="w-full grid place-content-center">
@@ -48,45 +86,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-  import SearchBar from '@/components/SearchBar.vue'
-  import { defineComponent } from '@vue/runtime-core'
-  import SearchIcon from './icons/SearchIcon.vue'
-
-  export default defineComponent({
-    data: () => {
-      return {
-        translatedWords: {
-          search: 'بحث'
-        },
-        show: false as boolean
-      }
-    },
-
-    methods: {
-      showSearchModal() {
-        setTimeout(() => {
-          this.show = true
-        }, 100)
-      }
-    },
-
-    components: {
-      SearchBar,
-      SearchIcon
-    },
-
-    mounted() {
-      window.addEventListener('keydown', (e) => {
-        if (e.keyCode == 75 || e.ctrlKey) {
-          console.log('show search modal')
-          this.showSearchModal()
-        }
-      })
-    }
-  })
-</script>
 
 <style>
   .slide-fade-enter-active {

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+  let message = 'جار التحميل...'
+</script>
+
 <template>
   <div
     class="fixed top-0 left-0 bg-gray-50 dark:bg-gray-800 h-screen w-full z-50 grid place-content-center"
@@ -8,7 +12,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-let message = "جار التحميل...";
-</script>

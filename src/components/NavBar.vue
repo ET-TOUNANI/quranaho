@@ -1,3 +1,33 @@
+<script lang="ts">
+  import ModeSwitcher from '@/components/ModeSwitcher.vue'
+  import { defineComponent, ref } from 'vue'
+  import NavBarItem from './NavBarItem.vue'
+  import NavBarItemLabel from './NavBarItemLabel.vue'
+  import NavBarMenuToggler from './NavBarMenuToggler.vue'
+  export default defineComponent({
+    components: {
+      ModeSwitcher,
+      NavBarItem,
+      NavBarItemLabel,
+      NavBarMenuToggler
+    },
+
+    setup() {
+      const isHidden = ref(true)
+      const translatedWords = {
+        chapters: 'جميع السور',
+        about: 'معلومات عنا',
+        title: 'القرآن الكريم'
+      }
+
+      return {
+        isHidden,
+        translatedWords
+      }
+    }
+  })
+</script>
+
 <template>
   <nav class="border-b-2 border-gray-200 dark:border-gray-700">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-4">
@@ -52,29 +82,3 @@
     </div>
   </nav>
 </template>
-
-<script lang="ts">
-  import ModeSwitcher from '@/components/ModeSwitcher.vue'
-  import { defineComponent } from 'vue'
-  import NavBarItem from './NavBarItem.vue'
-  import NavBarItemLabel from './NavBarItemLabel.vue'
-  import NavBarMenuToggler from './NavBarMenuToggler.vue'
-  export default defineComponent({
-    data() {
-      return {
-        isHidden: true,
-        translatedWords: {
-          chapters: 'جميع السور',
-          about: 'معلومات عنا',
-          title: 'القرآن الكريم'
-        }
-      }
-    },
-    components: {
-      ModeSwitcher,
-      NavBarItem,
-      NavBarItemLabel,
-      NavBarMenuToggler
-    }
-  })
-</script>

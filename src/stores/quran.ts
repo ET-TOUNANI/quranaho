@@ -2,7 +2,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import axios from 'axios'
 
 export const useQuranStore = defineStore({
-  id: 'chapter',
+  id: 'quran',
 
   state: () => ({
     id: 0,
@@ -13,7 +13,12 @@ export const useQuranStore = defineStore({
     verses: [],
     startingVerse: '',
     chapterNumber: 0,
-    hizbNumber: 0
+    hizbNumber: 0,
+    chaptersList: [],
+    reciters: [],
+    currentChapter: {},
+    chaptersLoaded: false,
+    recitersLoaded: false
   }),
   getters: {},
 
@@ -59,6 +64,23 @@ export const useQuranStore = defineStore({
           this.startingVerse = response.data.verses[0].text_indopak
         })
       // this.isLoading = false
+    },
+
+    async fetchReciters() {
+      await axios
+        .get('https://api.quran.com/api/v4/resources/recitations?language=ar')
+        .then((response) => {
+          this.reciters = response.data.recitations
+          this.reciter = this.reciters[0].translated_name.name
+          this.recitersLoaded = true
+        })
+    },
+    async fetchchaptersInfo() {
+      await axios.get('https://api.quran.com/api/v4/chapters?language=en').then((response) => {
+        this.chaptersList = response.data.chapters
+        this.chaptersLoaded = true
+        this.currentChapter = this.chaptersList[0]
+      })
     }
   }
 })

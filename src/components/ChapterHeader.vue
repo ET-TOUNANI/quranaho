@@ -1,5 +1,87 @@
+<script lang="ts">
+  import { defineComponent } from 'vue'
+  import { useQuranStore } from '@/stores/quran'
+
+  export default defineComponent({
+    data() {
+      return {
+        translatedWords: {
+          chapters: 'جميع السور',
+          about: 'معلومات عنا',
+          title: 'القرآن الكريم',
+          hizb: 'حزب',
+          juz: 'جزء',
+          rub: 'ربع'
+        },
+        reciters: [] as Reciter[],
+        reciter: '' as string,
+        chapter: {} as Chapter,
+        showRecitersDropdown: false as boolean,
+        showChaptersDropdown: false as boolean,
+        showHizbsDropdown: false as boolean,
+        chaptersList: [] as Chapter[],
+        chaptersLoaded: false as boolean,
+        recitersLoaded: false as boolean,
+        hizbNumber: 1 as number
+      }
+    },
+
+    computed: {
+      isAnyMenuOpen(): boolean {
+        return this.showChaptersDropdown || this.showHizbsDropdown || this.showRecitersDropdown
+      }
+    },
+
+    setup() {
+      const quran = useQuranStore()
+
+      quran.fetchchaptersInfo()
+      quran.fetchReciters()
+
+      // Change current reciter
+      function changeReciter(reciterNumber: number) {
+        // let reciterObject = this.reciters.filter((reciter) => reciter.id === reciterNumber)
+        // this.reciter = reciterObject[0].translated_name.name
+        // this.showRecitersDropdown = false
+      }
+
+      // Change chapter
+      function changeChapter(selectedChapter: Chapter) {
+        // // make sure that we are not fetching the same chapter
+        // if (this.chapter.id !== selectedChapter.id) {
+        //   this.chapter = selectedChapter
+        //   this.showChaptersDropdown = false
+        //   this.$emit('changeChapter', selectedChapter.id)
+        // }
+      }
+
+      // Change hizb
+      function changeHizb(hizbNumber: number) {
+        // // make sure that we are not fetching the same chapter
+        // this.showHizbsDropdown = false
+        // this.hizbNumber = hizbNumber
+        // this.$emit('changeHizb', hizbNumber)
+      }
+
+      function closeAllMenus() {
+        this.showChaptersDropdown = false
+        this.showHizbsDropdown = false
+        this.showRecitersDropdown = false
+      }
+
+      return {
+        quran,
+        changeReciter,
+        changeChapter,
+        changeHizb,
+        closeAllMenus
+      }
+    }
+  })
+</script>
+
 <template>
-  <div v-if="chaptersLoaded && recitersLoaded" class="px-2 sm:px-0 w-full">
+  <div v-if="(chaptersLoaded && recitersLoaded) || true" class="px-2 sm:px-0 w-full">
     <div class="container sm:mx-auto lg:max-w-xl py-4 sm:flex">
       <!-- Chapters dropdown  -->
       <div class="flex-1 mt-2 sm:pt-0">
@@ -19,7 +101,7 @@
           aria-activedescendant="listbox-option-3"
         >
           <li
-            v-for="chapter in chaptersList"
+            v-for="chapter in quran.chaptersList"
             :key="chapter.id"
             class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
@@ -87,7 +169,7 @@
           aria-activedescendant="listbox-option-3"
         >
           <li
-            v-for="reciter in reciters"
+            v-for="reciter in quran.reciters"
             :key="reciter.id"
             class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
@@ -108,135 +190,3 @@
     ></div>
   </div>
 </template>
-
-<script lang="ts">
-import axios from "axios";
-import { defineComponent } from "vue";
-
-interface Reciter {
-  id: number;
-  name: string;
-  translated_name: {
-    name: string;
-  };
-}
-
-interface Chapter {
-  id: number;
-  name_arabic: string;
-  name_english: string;
-  number: number;
-}
-
-export default defineComponent({
-  data() {
-    return {
-      translatedWords: {
-        chapters: "جميع السور",
-        about: "معلومات عنا",
-        title: "القرآن الكريم",
-        hizb: "حزب",
-        juz: "جزء",
-        rub: "ربع",
-      },
-      reciters: [] as Reciter[],
-      reciter: "" as string,
-      chapter: {} as Chapter,
-      showRecitersDropdown: false as boolean,
-      showChaptersDropdown: false as boolean,
-      showHizbsDropdown: false as boolean,
-      chaptersList: [] as Chapter[],
-      chaptersLoaded: false as boolean,
-      recitersLoaded: false as boolean,
-      hizbNumber: 1 as number,
-    };
-  },
-
-  computed: {
-    isAnyMenuOpen(): boolean {
-      return (
-        this.showChaptersDropdown ||
-        this.showHizbsDropdown ||
-        this.showRecitersDropdown
-      );
-    },
-  },
-
-  methods: {
-    // Fetch list of available reciters for audio playing
-    async fetchReciters() {
-      try {
-        await axios
-          .get("https://api.quran.com/api/v4/resources/recitations?language=ar")
-          .then((response) => {
-            this.reciters = response.data.recitations;
-            this.reciter = this.reciters[0].translated_name.name;
-            this.recitersLoaded = true;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    // Change current reciter
-    changeReciter(reciterNumber: number) {
-      let reciterObject = this.reciters.filter(
-        (reciter) => reciter.id === reciterNumber
-      );
-      this.reciter = reciterObject[0].translated_name.name;
-      this.showRecitersDropdown = false;
-    },
-
-    // Change chapter
-    changeChapter(selectedChapter: Chapter) {
-      // make sure that we are not fetching the same chapter
-      if (this.chapter.id !== selectedChapter.id) {
-        this.chapter = selectedChapter;
-        this.showChaptersDropdown = false;
-        this.$emit("changeChapter", selectedChapter.id);
-      }
-    },
-
-    // Change hizb
-    changeHizb(hizbNumber: number) {
-      // make sure that we are not fetching the same chapter
-      this.showHizbsDropdown = false;
-      this.hizbNumber = hizbNumber;
-      this.$emit("changeHizb", hizbNumber);
-    },
-
-    // Fetch list of all chapters names
-    async fetchChapters() {
-      try {
-        await axios
-          .get("https://api.quran.com/api/v4/chapters?language=en")
-          .then((response) => {
-            this.chaptersList = response.data.chapters;
-            this.chaptersLoaded = true;
-            this.chapter = this.chaptersList[0];
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    // close all menus
-    closeAllMenus() {
-      this.showChaptersDropdown = false;
-      this.showHizbsDropdown = false;
-      this.showRecitersDropdown = false;
-    },
-  },
-
-  created() {
-    this.fetchReciters();
-    this.fetchChapters();
-  },
-});
-</script>

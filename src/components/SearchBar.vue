@@ -28,22 +28,13 @@
           />
         </div>
 
-        <div
-          v-if="searchResults.length === 0 && searchQuery !== ''"
-          class="text-center"
-        >
+        <div v-if="searchResults.length === 0 && searchQuery !== ''" class="text-center">
           {{ nothingFoundMessage }}
         </div>
 
-        <search-dropdown
-          :searchResults="searchResults"
-          v-if="searchResultsLoaded"
-        >
+        <search-dropdown :searchResults="searchResults" v-if="searchResultsLoaded">
           <template #load-button>
-            <button
-              @click="loadMore()"
-              class="w-full py-3 hover:text-green-400"
-            >
+            <button @click="loadMore()" class="w-full py-3 hover:text-green-400">
               {{ `${loadMoreMessage} (${remainingResults})` }}
             </button>
           </template></search-dropdown
@@ -58,82 +49,80 @@
 </template>
 
 <script lang="ts">
-import SearchDropdown from "@/components/SearchDropdown.vue";
-import SearchIcon from "@/components/icons/SearchIcon.vue";
-import axios from "axios";
-import { defineComponent } from "vue";
-import CloseIcon from "./icons/CloseIcon.vue";
+  import SearchDropdown from '@/components/SearchDropdown.vue'
+  import SearchIcon from '@/components/icons/SearchIcon.vue'
+  import axios from 'axios'
+  import { defineComponent } from 'vue'
+  import CloseIcon from './icons/CloseIcon.vue'
 
-export default defineComponent({
-  data() {
-    return {
-      translatedWords: {
-        search: "بحث",
-      },
-      loadMoreMessage: "تحميل المزيد",
-      nothingFoundMessage: "لم يتم العثور على أي نتائج",
-      searchResults: [],
-      searchResultsLoaded: false,
-      currentPage: 0,
-      searchQuery: "",
-      totalPages: 0,
-      remainingResults: 0,
-      isInputActive: false,
-    };
-  },
-
-  components: {
-    SearchDropdown,
-    SearchIcon,
-    CloseIcon,
-  },
-
-  methods: {
-    search(event: Event) {
-      // disable body scrolling when search is open
-      document.body.style.overflow = "hidden";
-      this.searchQuery = (event.target as HTMLInputElement).value;
-      this.isInputActive = true;
-      this.loadResults();
-    },
-
-    async loadResults() {
-      if (this.isInputActive) this.searchResults = [];
-      if (this.searchQuery.length > 0) {
-        setTimeout(async () => {
-          await axios
-            .get(
-              `https://api.quran.com/api/v4/search?q=${this.searchQuery}&size=20&page=${this.currentPage}&language=en`
-            )
-            .then((response) => {
-              this.searchResults = this.searchResults.concat(
-                response.data.search.results
-              );
-              this.searchResultsLoaded = true;
-              this.remainingResults =
-                response.data.search.total_results - this.searchResults.length;
-              this.totalPages = response.data.search.total_pages;
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }, 50);
+  export default defineComponent({
+    data() {
+      return {
+        translatedWords: {
+          search: 'بحث'
+        },
+        loadMoreMessage: 'تحميل المزيد',
+        nothingFoundMessage: 'لم يتم العثور على أي نتائج',
+        searchResults: [],
+        searchResultsLoaded: false,
+        currentPage: 0,
+        searchQuery: '',
+        totalPages: 0,
+        remainingResults: 0,
+        isInputActive: false
       }
     },
 
-    async loadMore() {
-      this.isInputActive = false;
-      await this.loadResults();
-      this.currentPage++;
+    components: {
+      SearchDropdown,
+      SearchIcon,
+      CloseIcon
     },
 
-    // emit search results to parent component
-    closeSearchModal(): void {
-      document.body.style.overflow = "initial";
-      this.$emit("close-modal");
-    },
-  },
-});
+    methods: {
+      search(event: Event) {
+        // disable body scrolling when search is open
+        document.body.style.overflow = 'hidden'
+        this.searchQuery = (event.target as HTMLInputElement).value
+        this.isInputActive = true
+        this.loadResults()
+      },
+
+      async loadResults() {
+        if (this.isInputActive) this.searchResults = []
+        if (this.searchQuery.length > 0) {
+          setTimeout(async () => {
+            await axios
+              .get(
+                `https://api.quran.com/api/v4/search?q=${this.searchQuery}&size=20&page=${this.currentPage}&language=en`
+              )
+              .then((response) => {
+                this.searchResults = this.searchResults.concat(response.data.search.results)
+                this.searchResultsLoaded = true
+                this.remainingResults =
+                  response.data.search.total_results - this.searchResults.length
+                this.totalPages = response.data.search.total_pages
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          }, 50)
+        }
+      },
+
+      async loadMore() {
+        this.isInputActive = false
+        await this.loadResults()
+        this.currentPage++
+      },
+
+      // emit search results to parent component
+      closeSearchModal(): void {
+        document.body.style.overflow = 'initial'
+        this.$emit('close-modal')
+      }
+    }
+  })
 </script>
 
 <style></style>

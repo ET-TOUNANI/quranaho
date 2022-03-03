@@ -1,12 +1,7 @@
 <template>
   <div class="header pt-8">
     <div class="w-full grid place-content-center">
-      <svg
-        class="h-44"
-        viewBox="0 0 512 512"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg class="h-44" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_7_12)">
           <path
             id="outer-circle"
@@ -55,66 +50,75 @@
 </template>
 
 <script lang="ts">
-import SearchBar from "@/components/SearchBar.vue";
-import { defineComponent } from "@vue/runtime-core";
-import SearchIcon from "./icons/SearchIcon.vue";
+  import SearchBar from '@/components/SearchBar.vue'
+  import { defineComponent } from '@vue/runtime-core'
+  import SearchIcon from './icons/SearchIcon.vue'
 
-export default defineComponent({
-  data: () => {
-    return {
-      translatedWords: {
-        search: "بحث",
-      },
-      show: false as boolean,
-    };
-  },
-
-  methods: {
-    showSearchModal() {
-      setTimeout(() => {
-        this.show = true;
-      }, 100);
+  export default defineComponent({
+    data: () => {
+      return {
+        translatedWords: {
+          search: 'بحث'
+        },
+        show: false as boolean
+      }
     },
-  },
 
-  components: {
-    SearchBar,
-    SearchIcon,
-  },
-});
+    methods: {
+      showSearchModal() {
+        setTimeout(() => {
+          this.show = true
+        }, 100)
+      }
+    },
+
+    components: {
+      SearchBar,
+      SearchIcon
+    },
+
+    mounted() {
+      window.addEventListener('keydown', (e) => {
+        if (e.keyCode == 75 || e.ctrlKey) {
+          console.log('show search modal')
+          this.showSearchModal()
+        }
+      })
+    }
+  })
 </script>
 
 <style>
-.slide-fade-enter-active {
-  transition: all 0.2s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateY(100vh);
-  opacity: 0;
-}
-
-#outer-circle {
-  animation: rotation 40s infinite;
-  animation-timing-function: linear;
-  transform-origin: center;
-}
-
-#inner-circle {
-  animation: rotation 50s infinite;
-  animation-timing-function: linear;
-  transform-origin: center;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
+  .slide-fade-enter-active {
+    transition: all 0.2s ease;
   }
-  to {
-    transform: rotate(360deg);
+  .slide-fade-leave-active {
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
   }
-}
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  #outer-circle {
+    animation: rotation 40s infinite;
+    animation-timing-function: linear;
+    transform-origin: center;
+  }
+
+  #inner-circle {
+    animation: rotation 50s infinite;
+    animation-timing-function: linear;
+    transform-origin: center;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 </style>

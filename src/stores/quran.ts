@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import axios from 'axios'
 
-export const useChapterStore = defineStore({
+export const useQuranStore = defineStore({
   id: 'chapter',
 
   state: () => ({
@@ -9,29 +9,60 @@ export const useChapterStore = defineStore({
     isLoading: false,
     reciter: 0,
     currentPlayingChapter: 0,
-    chapters: []
+    chapters: [],
+    verses: [],
+    startingVerse: '',
+    chapterNumber: 0,
+    hizbNumber: 0
   }),
   getters: {},
 
   actions: {
     async fetchAllChapters() {
       this.isLoading = true
+      await axios.get('https://api.quran.com/api/v4/chapters?language=en').then((response) => {
+        this.chapters = response.data.chapters
+      })
+      this.isLoading = false
+    },
+    async fetchChapter(id: number) {
+      // this.isLoading = true
+      this.fetchStartingVerse()
       await axios
-        .get('https://api.quran.com/api/v4/chapters?language=en')
+        .get(`https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`)
         .then((response) => {
-          this.chapters = response.data.chapters
+          this.verses = response.data.verses
+          setTimeout(() => {
+            this.isLoading = false
+          }, 1000)
         })
-        .catch((error) => {
-          console.log(error)
+    },
+
+    async fetchHizb(hizbNumber: number) {
+      // this.isLoading = true
+      this.fetchStartingVerse()
+      await axios
+        .get(`https://api.quran.com/api/v4/quran/verses/indopak?hizb_number=${hizbNumber}`)
+        .then((response) => {
+          this.verses = response.data.verses
         })
-        .finally(() => {
-          this.isLoading = false
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
+    },
+    async fetchStartingVerse() {
+      this.isLoading = true
+      const id = 1
+      await axios
+        .get(`https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`)
+        .then((response) => {
+          this.startingVerse = response.data.verses[0].text_indopak
         })
+      // this.isLoading = false
     }
-    // fetchChapter(id) {},
   }
 })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useChapterStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useQuranStore, import.meta.hot))
 }

@@ -16,7 +16,7 @@
   import { defineComponent } from 'vue'
   import Loading from '@/components/Loading.vue'
 
-  import { useChapterStore } from '@/stores/quran'
+  import { useQuranStore } from '@/stores/quran'
 
   export default defineComponent({
     components: {
@@ -25,7 +25,7 @@
     },
 
     setup() {
-      const quran = useChapterStore()
+      const quran = useQuranStore()
       quran.fetchAllChapters()
 
       return { quran }

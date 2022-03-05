@@ -5,7 +5,7 @@
   export default defineComponent({
     props: {
       chapter: {
-        type: Array
+        type: Object
       }
     },
 

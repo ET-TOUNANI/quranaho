@@ -1,10 +1,14 @@
-<script lang="ts" setup>
-  props: {
-    isHidden: {
+<script lang="ts">
+  import { defineComponent } from 'vue-demi'
+
+  defineComponent({
+    props: {
+      isHidden: {
         type: Boolean,
         default: true
       }
-  }
+    }
+  })
 </script>
 
 <template>

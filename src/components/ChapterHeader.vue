@@ -1,72 +1,49 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, computed, ref } from 'vue'
   import { useQuranStore } from '@/stores/quran'
+  import { useRouter } from 'vue-router'
 
   export default defineComponent({
-    data() {
-      return {
-        translatedWords: {
-          chapters: 'جميع السور',
-          about: 'معلومات عنا',
-          title: 'القرآن الكريم',
-          hizb: 'حزب',
-          juz: 'جزء',
-          rub: 'ربع'
-        },
-        reciters: [] as Reciter[],
-        reciter: '' as string,
-        chapter: {} as Chapter,
-        showRecitersDropdown: false as boolean,
-        showChaptersDropdown: false as boolean,
-        showHizbsDropdown: false as boolean,
-        chaptersList: [] as Chapter[],
-        chaptersLoaded: false as boolean,
-        recitersLoaded: false as boolean,
-        hizbNumber: 1 as number
-      }
-    },
-
-    computed: {
-      isAnyMenuOpen(): boolean {
-        return this.showChaptersDropdown || this.showHizbsDropdown || this.showRecitersDropdown
-      }
-    },
-
     setup() {
       const quran = useQuranStore()
+      const router = useRouter()
+      const showRecitersDropdown = ref(false)
+      const showChaptersDropdown = ref(false)
+      const showHizbsDropdown = ref(false)
+      const translatedWords = {
+        chapters: 'جميع السور',
+        about: 'معلومات عنا',
+        title: 'القرآن الكريم',
+        hizb: 'حزب',
+        juz: 'جزء',
+        rub: 'ربع'
+      }
+      const isAnyMenuOpen = computed(() => {
+        return showChaptersDropdown.value || showHizbsDropdown.value || showRecitersDropdown.value
+      })
 
       quran.fetchchaptersInfo()
       quran.fetchReciters()
 
-      // Change current reciter
       function changeReciter(reciterNumber: number) {
-        // let reciterObject = this.reciters.filter((reciter) => reciter.id === reciterNumber)
-        // this.reciter = reciterObject[0].translated_name.name
-        // this.showRecitersDropdown = false
+        closeAllMenus()
+        quran.setReciter(reciterNumber)
       }
 
-      // Change chapter
-      function changeChapter(selectedChapter: Chapter) {
-        // // make sure that we are not fetching the same chapter
-        // if (this.chapter.id !== selectedChapter.id) {
-        //   this.chapter = selectedChapter
-        //   this.showChaptersDropdown = false
-        //   this.$emit('changeChapter', selectedChapter.id)
-        // }
+      function changeChapter(chapterNumber: number) {
+        closeAllMenus()
+        quran.fetchChapter(chapterNumber)
+        router.push({ name: 'Chapter', params: { id: chapterNumber } })
       }
 
-      // Change hizb
       function changeHizb(hizbNumber: number) {
-        // // make sure that we are not fetching the same chapter
-        // this.showHizbsDropdown = false
-        // this.hizbNumber = hizbNumber
-        // this.$emit('changeHizb', hizbNumber)
+        quran.fetchHizb(hizbNumber)
       }
 
       function closeAllMenus() {
-        this.showChaptersDropdown = false
-        this.showHizbsDropdown = false
-        this.showRecitersDropdown = false
+        showChaptersDropdown.value = false
+        showHizbsDropdown.value = false
+        showRecitersDropdown.value = false
       }
 
       return {
@@ -74,22 +51,27 @@
         changeReciter,
         changeChapter,
         changeHizb,
-        closeAllMenus
+        closeAllMenus,
+        showRecitersDropdown,
+        showChaptersDropdown,
+        showHizbsDropdown,
+        translatedWords,
+        isAnyMenuOpen
       }
     }
   })
 </script>
 
 <template>
-  <div v-if="(chaptersLoaded && recitersLoaded) || true" class="px-2 sm:px-0 w-full">
+  <div v-if="quran.chaptersLoaded && quran.recitersLoaded" class="px-2 sm:px-0 w-full">
     <div class="container sm:mx-auto lg:max-w-xl py-4 sm:flex">
       <!-- Chapters dropdown  -->
       <div class="flex-1 mt-2 sm:pt-0">
         <button
           @click="showChaptersDropdown = !showChaptersDropdown"
-          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
-          {{ chapter.name_arabic }}
+          {{ quran.currentChapter.name_arabic }}
         </button>
         <ul
           id="list"
@@ -106,7 +88,7 @@
             class="hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 py-1 relative cursor-pointer border-b-2 px-2"
             id="listbox-option-0"
             role="option"
-            @click="changeChapter(chapter)"
+            @click="changeChapter(chapter.id)"
           >
             <span class="text-md my-1 font-normal ml-3 block truncate">{{
               chapter.name_arabic
@@ -119,7 +101,7 @@
       <div class="sm:mx-4 flex-1 mt-2 sm:pt-0">
         <button
           @click="showHizbsDropdown = !showHizbsDropdown"
-          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
           <p class="text-md font-normal ml-3 block truncate">
             <span>{{ translatedWords.hizb }}</span>
@@ -155,9 +137,9 @@
       <div class="flex-1 mt-2 sm:pt-0">
         <button
           @click="showRecitersDropdown = !showRecitersDropdown"
-          class="py-2 w-full border-2 dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
+          class="py-2 w-full border-2 dark:border-white dark:border-opacity-40 text-gray-700 dark:text-gray-300 hover:border-green-400 dark:hover:border-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 delay-75 rounded"
         >
-          {{ reciter }}
+          {{ quran.reciter.translated_name.name }}
         </button>
         <ul
           id="list"

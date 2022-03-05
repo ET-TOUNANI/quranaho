@@ -12,8 +12,8 @@ export const useQuranStore = defineStore({
     chapters: [],
     verses: [],
     startingVerse: '',
-    chapterNumber: 0,
-    hizbNumber: 0,
+    chapterNumber: 1,
+    hizbNumber: 1,
     chaptersList: [],
     reciters: [],
     currentChapter: {},
@@ -24,6 +24,9 @@ export const useQuranStore = defineStore({
   getters: {},
 
   actions: {
+    /**
+     * Loads the chapters list
+     */
     async fetchAllChapters() {
       this.isLoading = true
       await axios.get('https://api.quran.com/api/v4/chapters?language=en').then((response) => {
@@ -31,11 +34,17 @@ export const useQuranStore = defineStore({
       })
       this.isLoading = false
     },
+
+    /**
+     * Fetch the verses of the current chapter
+     *
+     * @param id
+     */
     async fetchChapter(id: number) {
       // this.isLoading = true
       this.fetchStartingVerse()
       await axios
-        .get(`https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`)
+        .get(`https://api.quran.com/api/v4/quran/verses/qpc_nastaleeq?chapter_number=${id}`)
         .then((response) => {
           this.verses = response.data.verses
           setTimeout(() => {
@@ -44,11 +53,16 @@ export const useQuranStore = defineStore({
         })
     },
 
+    /**
+     * Fetch the verse of the current hizb
+     *
+     * @param hizbNumber
+     */
     async fetchHizb(hizbNumber: number) {
       // this.isLoading = true
       this.fetchStartingVerse()
       await axios
-        .get(`https://api.quran.com/api/v4/quran/verses/indopak?hizb_number=${hizbNumber}`)
+        .get(`https://api.quran.com/api/v4/quran/verses/qpc_nastaleeq?hizb_number=${hizbNumber}`)
         .then((response) => {
           this.verses = response.data.verses
         })
@@ -56,33 +70,54 @@ export const useQuranStore = defineStore({
         this.isLoading = false
       }, 1000)
     },
+
+    /**
+     * Fetch the starting verse
+     *
+     */
     async fetchStartingVerse() {
       this.isLoading = true
       const id = 1
       await axios
-        .get(`https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=${id}`)
+        .get(`https://api.quran.com/api/v4/quran/verses/qpc_nastaleeq?chapter_number=${id}`)
         .then((response) => {
-          this.startingVerse = response.data.verses[0].text_indopak
+          this.startingVerse = response.data.verses[0].text_qpc_nastaleeq
         })
       // this.isLoading = false
     },
 
+    /**
+     * Fetch the reciters list
+     */
     async fetchReciters() {
       await axios
         .get('https://api.quran.com/api/v4/resources/recitations?language=ar')
         .then((response) => {
           this.reciters = response.data.recitations
-          this.reciter = this.reciters[0].translated_name.name
+          this.reciter = this.reciters[0]
           this.recitersLoaded = true
         })
     },
+
+    /**
+     * Fetch the verses of the current chapter
+     */
     async fetchchaptersInfo() {
       await axios.get('https://api.quran.com/api/v4/chapters?language=en').then((response) => {
         this.chaptersList = response.data.chapters
         this.chaptersLoaded = true
-        ;(this.currentChapter = this.chaptersList[0]),
-          (this.currentChapterName = response.data.chapters[this.chapterNumber - 1].name_arabic)
+        this.currentChapter = this.chaptersList[0]
+        this.currentChapterName = response.data.chapters[this.chapterNumber - 1].name_arabic
       })
+    },
+
+    /**
+     * Update the current reciter
+     *
+     * @param id
+     */
+    setReciter(id) {
+      this.reciter = this.reciters.find((reciter) => reciter.id === id)
     }
   }
 })

@@ -20,16 +20,16 @@ html {
 /* custom style */
 
 @font-face {
-  font-family: "quran";
-  src: url("../fonts/ScheherazadeRegOT.ttf");
+  font-family: 'quran';
+  src: url('../fonts/indopak-nastaleeq-waqf-lazim-v4.woff2');
 }
 @font-face {
   font-family: "arabic";
-  src: url("../fonts/me_quran_Regular.ttf");
+  src: url("../fonts/arabic.ttf");
 }
 
 .quran {
-  font-family: "quran";
+  font-family: 'quran' !important;
 }
 
 .arabic {
